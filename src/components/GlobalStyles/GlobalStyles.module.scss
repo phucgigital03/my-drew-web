@@ -5,11 +5,12 @@
     --black: #000;
     --white: #fff;
     --text-color: #161823;
-    --font-family: 'ProximaNova,SofiaPro';
+    --font-family: 'Roboto Mono,regular,sans-serif';
 
     // DefaultLayout
     --width-inner-header-Header: 1150px;
     --width-container-defaultLayout: 1150px;
+    --height-Header: 86px;
 }
 
 * {
@@ -18,12 +19,25 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('../../assets/fonts/roboto_moto.woff2');
+}
+@font-face {
+    font-family: 'regular';
+    src: url('../../assets/fonts/regular_1.woff');
+}
+@font-face {
+    font-family: 'regular';
+    src: url('../../assets/fonts/regular_1.woff2');
+}
+
 html {
     font-size: 62.5%;
 }
 
 body {
-    // font-family: var(--font-family);
+    font-family: var(--font-family);
     font-size: 1.6rem;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
@@ -53,4 +67,8 @@ input {
 a {
     text-decoration: none;
     color: var(--text-color);
+}
+
+li{
+    list-style-type: none;
 }
