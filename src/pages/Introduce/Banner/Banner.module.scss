@@ -1,0 +1,58 @@
+
+// section 1
+.banner{
+    height: auto;
+    min-height: 58px;
+    box-shadow: inset 0 -1px 0 0 #e5e5e5;
+    padding-top: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: var(--white);
+    & input{
+        display: none;
+    }
+}
+.listInfo{
+    width: 100%;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    transform: translateX(0%);
+    transition: all 1s linear;
+}
+.checkBanner1:checked ~ .listInfo{
+    transform: translateX(0%);
+}
+.checkBanner2:checked ~ .listInfo{
+    transform: translateX(-100%);
+
+}
+.checkBanner3:checked ~ .listInfo{
+    transform: translateX(-200%);
+
+}
+.itemInfo{
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+    text-align: center;
+    flex-shrink: 0;
+    & p{
+        font-size: 1.4rem;
+        line-height: 2.8rem;
+        display: inline-block;
+        margin-top: 2px;
+    }
+}
+.titleBanner{
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    display: block;
+}
+.linkBanner{
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: underline;
+}

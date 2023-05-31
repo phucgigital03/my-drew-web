@@ -1,0 +1,66 @@
+.shopLi{
+    display: flex;
+    align-items: center;
+    padding: 12px 28px 12px 0px;
+    cursor: pointer;
+
+    & .title{
+        font-size: 1.8rem;
+        font-weight: 900;
+        margin-right: 6px;
+        line-height: 2.1rem;
+    }
+    & .iconDown{
+        margin-top: 4px;
+        font-size: 1.4rem;
+        transform: scale(1.2);
+    }
+}
+.contentMenu{
+    width: 250px;
+    padding: 20px 0px;
+}
+.listCategory{
+    padding-left: 0px;
+}
+.itemCategory{
+    position: relative;
+    padding: 0px 25px;
+    line-height: 4rem;
+    cursor: pointer;
+    &::before{
+        content: "";
+        position: absolute;
+        left: 1rem;
+        top: 0.5rem;
+        height: 2.5rem;
+        width: 2.5rem;
+        z-index: 99;
+        transition: all 0.5 linear;
+    }
+    & a{
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: var(--text);
+        text-decoration: none;
+        padding: 10px 20px;
+        line-height: 2rem;
+    }
+    &:hover > a{
+        color: var(--text);
+        text-decoration: none;
+    }
+    &:hover:before{
+        background-image: url(https://cdn.shopify.com/s/files/1/0133/1907/7947/files/Drew_Mascot_Logo.jpg?v=1636089309);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+}
+.activeCategory{
+    text-decoration: underline !important;
+}
+.itemCategory:has(.activeCategory)::before {
+    background-image: url(https://cdn.shopify.com/s/files/1/0133/1907/7947/files/Drew_Mascot_Logo.jpg?v=1636089309);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
