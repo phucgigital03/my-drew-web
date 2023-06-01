@@ -51,49 +51,7 @@
 .feature + .feature{
     margin-left: 6px;
 }
-.unit{
-    font-size: 1.6rem;
-    font-weight: 900;
-    padding: 11px 20px;
-    cursor: pointer;
-    line-height: 2.4rem;
-    text-align: center;
-}
-.menuCountry{
-    width: 180px;
-    overflow: auto;
-    max-height: 70vh;
-    height: 260px;
-}
-.listCountry{
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-.itemCountry{
-    padding: 8px 18px;
-    flex-shrink: 0;
-    cursor: pointer;
-    + .itemCountry {
-        margin-top: 4px;
-    }
-    &:hover{
-        background-color: rgb(213, 212, 212,0.4);
-    }
-}
-.linkCountry{
-    color: var(--text);
-    text-decoration: none;
-    font-size: 1.6rem;
-    font-weight: 500;
-    &:hover{
-        color: var(--text);
-    }
-}
-.cart,
-.login,
-.search{
+.login{
     height: 100%;
     display: flex;
     align-items: center;
@@ -106,19 +64,4 @@
 .login a:hover{
     color: var(--text);
     text-decoration: none;
-}
-.cart{
-    padding-right: 0px;
-}
-.value{
-    font-size: 1.2rem;
-    height: 36px;
-    width: 36px;
-    border-radius: 50%;
-    background-color: black;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 6px;
 }

@@ -4,6 +4,7 @@ import {  NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react/headless";
+import { memo } from "react";
 
 import Popper from "~/components/Popper";
 import configs from "~/configs";
@@ -102,4 +103,4 @@ function CategoryMenu() {
     );
 }
 
-export default CategoryMenu;
+export default memo(CategoryMenu);
