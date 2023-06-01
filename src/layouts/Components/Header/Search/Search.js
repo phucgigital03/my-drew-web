@@ -4,21 +4,15 @@ import Modal from 'react-bootstrap/Modal';
 import { useRef, useState, memo, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+
 import { useDebounce } from "~/hooks";
+import FormGroup from "~/components/FormGroup";
 
 function Seacrh({className}) {
     const [show, setShow] = useState(false);
     const [textSearch,setTextSearch] = useState("")
-    const labelSearch = useRef(null); 
     const inputSearch = useRef(null); 
-    const handleBlur = function(e){
-        const textInput = e.target.value
-        if(textInput){
-            labelSearch.current.classList.add(clsx(styles.labelSearchHasText));
-        }else{
-            labelSearch.current.classList.remove(clsx(styles.labelSearchHasText));
-        }
-    }
+    
     const handleCloseModal = ()=>{
         setShow(false)
     }
@@ -26,7 +20,7 @@ function Seacrh({className}) {
         setShow(true)
     }
     const handleEnteredModal = ()=>{
-        inputSearch.current.focus()
+        inputSearch.current.focusSearch()
     }
     const handleChangeInputSearch = (e)=>{
         const textInput = e.target.value
@@ -61,22 +55,12 @@ function Seacrh({className}) {
             > 
                 <div className={clsx(styles.wrapModalHeader)}>
                     <div className={clsx(styles.searchHeader)}>
-                        <input 
+                        <FormGroup 
                             ref={inputSearch}
-                            value={textSearch} 
-                            id="search" 
-                            className={clsx(styles.inputSearch)} 
-                            type="text"
-                            onChange={handleChangeInputSearch}
-                            onBlur={handleBlur}
+                            valueInput={textSearch}
+                            labelText={"Search"} 
+                            handleChange={handleChangeInputSearch}
                         />
-                        <label 
-                            ref={labelSearch}
-                            htmlFor="search" 
-                            className={clsx(styles.labelSearch)} 
-                        >
-                            Search
-                        </label>
                         <FontAwesomeIcon icon={faMagnifyingGlass}/>
                     </div>
                     <div className={clsx(styles.wrapBtn)}>
