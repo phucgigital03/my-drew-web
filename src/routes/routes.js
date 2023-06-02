@@ -1,13 +1,26 @@
-import Home from "~/pages/Home"
-import ScrapBooks from "~/pages/ScrapBooks"
-import Introduce from "~/pages/Introduce"
 import configs from "~/configs"
 import { IntroduceLayout } from "~/layouts"
+import ShowProduct from "~/pages/ShowProduct"
+import ScrapBooks from "~/pages/ScrapBooks"
+import Introduce from "~/pages/Introduce"
+import Login from "~/pages/Login"
+import Register from "~/pages/Register"
+import RecoverPwd from "~/pages/RecoverPwd"
 
 const publicRoutes = [
     {path: configs.routes.introduce, LayOut: IntroduceLayout, Component: Introduce},
-    {path: configs.routes.home, Component: Home},
+    {path: configs.routes.newArrivals, Component: ShowProduct},
+    {path: configs.routes.outerwear, Component: ShowProduct},
+    {path: configs.routes.sweatshirts, Component: ShowProduct},
+    {path: configs.routes.tops, Component: ShowProduct},
+    {path: configs.routes.tees, Component: ShowProduct},
+    {path: configs.routes.bottoms, Component: ShowProduct},
+    {path: configs.routes.accessories, Component: ShowProduct},
+    {path: configs.routes.shopAll, Component: ShowProduct},
     {path: configs.routes.scrapbooks, Component: ScrapBooks},
+    {path: configs.routes.login, Component: Login},
+    {path: configs.routes.register, Component: Register},
+    {path: configs.routes.recoverPwd, Component: RecoverPwd},
 ]
 
 const privateRoutes = []

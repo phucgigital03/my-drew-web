@@ -8,7 +8,7 @@ import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDebounce } from "~/hooks";
 import FormGroup from "~/components/FormGroup";
 
-function Seacrh({className}) {
+function Seacrh() {
     const [show, setShow] = useState(false);
     const [textSearch,setTextSearch] = useState("")
     const inputSearch = useRef(null); 
@@ -40,9 +40,7 @@ function Seacrh({className}) {
     return (
         <>
             <div 
-                className={clsx(styles.search,{
-                    [className]: className
-                })}
+                className={clsx(styles.search)}
                 onClick={handleOpenModal}
             >
                 <span>search</span>

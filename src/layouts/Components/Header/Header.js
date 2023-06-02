@@ -21,17 +21,17 @@ function Header() {
                 </ul>
             </nav>
             <div className={clsx(styles.wrapLogo)}>
-                <Link to={configs.routes.home} className={clsx(styles.logo)}>
+                <Link to={configs.routes.shopAll} className={clsx(styles.logo)}>
                     <img src={images.logo} alt="logo"/>
                 </Link>
             </div>
             <div className={clsx(styles.headerIcons)}>
                 <CountryMenu/>
-                <Seacrh className={clsx(styles.feature)}/>
+                <Seacrh/>
                 <div className={clsx(styles.feature,styles.login)}>
-                    <Link to={"/account/login"}>login</Link>
+                    <Link to={configs.routes.login}>login</Link>
                 </div>
-                <Cart className={clsx(styles.feature)}/>
+                <Cart/>
             </div>
         </header>
     );

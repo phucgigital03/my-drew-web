@@ -8,7 +8,7 @@ import images from "~/assets/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-function Cart({className}) {
+function Cart() {
     const [product,setProduct] = useState([])
     const [show,setShow] = useState(false)
     const handleHide = ()=>{
@@ -26,9 +26,7 @@ function Cart({className}) {
     return (
         <>
             <div 
-                className={clsx(styles.cart,{
-                    [className]: className
-                })}
+                className={clsx(styles.cart)}
                 onClick={hanldeOpen}
             >
                 <span className={clsx(styles.label)}>bag</span>
