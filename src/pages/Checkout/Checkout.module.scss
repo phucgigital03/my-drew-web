@@ -1,0 +1,18 @@
+.checkout{
+    margin: 0px 56px;
+    padding: 0px 28px;
+}
+.sectionCheckout1{
+    padding: 20px;
+}
+.logocheckout{
+    height: 44px;
+    margin-bottom: 22px;
+    & img{
+        height: 100%;
+    }
+}
+.infoCustomer{
+    display: flex;
+    justify-content: space-between;
+}

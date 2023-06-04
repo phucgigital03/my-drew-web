@@ -1,0 +1,38 @@
+.wrapPriceShipAndPayment{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 14px;
+    flex-shrink: 0;
+    flex-basis: 50%;
+}
+.titleMethodPayment,
+.titlePriceShip{
+    color: #333;
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+.textPriceShip{
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-size: 1.6rem;
+}
+.methodPayment{
+    margin-top: 20px;
+}
+.titleMethodPayment{
+    margin-bottom: 12px;
+}
+.contentMethodPayment{
+    border: 1px solid #cecdcd;
+    background: #fff;
+    background-clip: padding-box;
+    border-radius: 5px;
+    color: #545454;
+}

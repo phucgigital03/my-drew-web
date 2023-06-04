@@ -6,6 +6,7 @@ import Introduce from "~/pages/Introduce"
 import Login from "~/pages/Login"
 import Register from "~/pages/Register"
 import RecoverPwd from "~/pages/RecoverPwd"
+import Checkout from "~/pages/Checkout"
 
 const publicRoutes = [
     {path: configs.routes.introduce, LayOut: IntroduceLayout, Component: Introduce},
@@ -21,6 +22,7 @@ const publicRoutes = [
     {path: configs.routes.login, Component: Login},
     {path: configs.routes.register, Component: Register},
     {path: configs.routes.recoverPwd, Component: RecoverPwd},
+    {path: configs.routes.checkout, Component: Checkout , LayOut: null},
 ]
 
 const privateRoutes = []

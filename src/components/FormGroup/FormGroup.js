@@ -4,7 +4,7 @@ import styles from "./FormGroup.module.scss"
 import { forwardRef, useRef, useImperativeHandle } from "react";
 
 
-function FormGroup({labelText,valueInput,handleChange},ref) {
+function FormGroup({idInput,classNameWrap,labelText,typeInput = "text",valueInput,handleChange},ref) {
     const label = useRef(null);
     const inputText = useRef(null);
     useImperativeHandle(ref, () => {
@@ -13,7 +13,7 @@ function FormGroup({labelText,valueInput,handleChange},ref) {
                 inputText.current.focus()
             }
         };
-      }, []);
+    }, []);
     const handleBlur = function(e){
         const textInput = e.target.value
         if(textInput){
@@ -23,20 +23,22 @@ function FormGroup({labelText,valueInput,handleChange},ref) {
         }
     }
     return (
-        <div className={clsx(styles.formGroup)}>
+        <div className={clsx(styles.formGroup,{
+            [classNameWrap]: classNameWrap
+        })}>
             <input 
                 ref={inputText}
-                id="search" 
-                type="text"
+                id={idInput} 
+                className={clsx(styles.input)} 
+                type={typeInput}
                 spellCheck={false}
                 value={valueInput} 
-                className={clsx(styles.input)} 
                 onChange={handleChange}
                 onBlur={handleBlur}
             />
             <label 
                 ref={label}
-                htmlFor="search" 
+                htmlFor={idInput} 
                 className={clsx(styles.label)} 
             >
                 {labelText}

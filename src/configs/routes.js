@@ -13,6 +13,7 @@ const routes = {
     login: "/collectionsaccount/login",
     register: "/collectionsaccount/register",
     recoverPwd: "/collectionsaccount/recover",
+    checkout: "/checkout",
 }
 
 export default routes

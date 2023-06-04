@@ -1,0 +1,46 @@
+.recover{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 90px;
+}
+.contentRecover{
+    width: 478px;
+    padding: 0px 20px;
+}
+.titleRecover{
+    font-size: 4rem;
+    text-align: center;
+    margin: 26px 0px;
+    font-weight: 800;
+}
+.descriptRecover{
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 3rem;
+}
+.wrapForm{
+    margin-top: 20px;
+}
+.recoverBtn{
+    font-size: 1.6rem;
+    background-color: #ffc103;
+    color: black;
+    font-weight: 700;
+    display: flex;
+    margin: auto;
+    margin-top: 40;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    padding: 8px 34px;
+}
+.linkLogin{
+    font-size: 1.4rem;
+    color: #333;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    &:hover{
+        color: #333;
+    }
+}

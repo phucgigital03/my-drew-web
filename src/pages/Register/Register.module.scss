@@ -1,0 +1,31 @@
+.register{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 90px;
+}
+.contentRegister{
+    width: 478px;
+    padding: 0px 20px;
+}
+.titleRegister{
+    font-size: 4rem;
+    text-align: center;
+    margin: 26px 0px;
+    font-weight: 800;
+}
+.wrapForm{
+    margin-top: 20px;
+}
+.registerBtn{
+    font-size: 1.6rem;
+    background-color: #ffc103;
+    color: black;
+    font-weight: 700;
+    display: flex;
+    margin: auto;
+    margin-top: 40;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    padding: 8px 34px;
+}

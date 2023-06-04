@@ -1,0 +1,33 @@
+.wrapDeliveryInfo{
+    padding: 0px 14px;
+    flex-basis: 50%;
+}
+.headerDelivery{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.titleForm{
+    color: #333;
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+.linkLogin{
+    & a{
+        color: #333;
+        text-decoration: none;
+        font-size: 1.6rem;
+        & svg{
+            margin-right: 6px;
+        }
+        &:hover{
+            color: #333;
+            text-decoration: none;
+        }
+    }
+}
+.setWidth{
+    width: 100%;
+}
