@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import configs from "~/configs";
 import FormGroup from "~/components/FormGroup";
+import Button from "~/components/Button";
 
 function Login() {
     return ( 
@@ -19,7 +20,7 @@ function Login() {
                     </form>
                 </div>
                 <Link className={clsx(styles.linkRecover)} to={configs.routes.recoverPwd}>Forgot your password?</Link>
-                <button className={clsx(styles.signInBtn)}>sign in</button>
+                <Button yellow classBtn={clsx(styles.signInBtn)}>sign in</Button>
                 <Link className={clsx(styles.linkRegister)} to={configs.routes.register}>Create account</Link>
             </div>
         </div>

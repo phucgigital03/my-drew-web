@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import FormGroup from "~/components/FormGroup/FormGroup";
 import MenuProduct from "~/components/MenuProduct";
+import Button from "~/components/Button";
 
 function InfoOrder({products}) {
     return ( 
@@ -20,7 +21,7 @@ function InfoOrder({products}) {
                             classNameWrap={"setWidth"} 
                             labelText={"Nhập mã giảm giá"} 
                         />
-                        <button className={clsx(styles.discountBtn)}>Áp dụng</button>
+                        <Button black classBtn={clsx(styles.discountBtn)}>Áp dụng</Button>
                     </div>
                     <div className={clsx(styles.totalPriceOrder)}>
                         <div className={clsx(styles.tableOrder)}>
@@ -48,7 +49,7 @@ function InfoOrder({products}) {
                     </div>
                     <div className={clsx(styles.wrapBtnOrder)}>
                         <Link className={clsx(styles.linkBackCart)} to={"/"}>Quay về giỏ hàng</Link>
-                        <button className={clsx(styles.orderBtn)}>ĐẶT HÀNG</button>
+                        <Button black classBtn={clsx(styles.orderBtn)}>ĐẶT HÀNG</Button>
                     </div>
                 </footer>
             </div>

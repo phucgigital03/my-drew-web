@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import configs from "~/configs";
 import MenuProduct from "~/components/MenuProduct";
 import images from "~/assets/image";
+import Button from "~/components/Button";
 
 const fakeProducts = [
     {
@@ -66,9 +67,9 @@ function Cart() {
                                 <p className={clsx(styles.numberMoney)}>${0.00}</p>
                             </div>
                             <Link to={configs.routes.checkout}>
-                                <button className={clsx(styles.checkOutBtn)}>
+                                <Button black classBtn={clsx(styles.checkOutBtn)}>
                                     checkout
-                                </button>
+                                </Button>
                             </Link>
                         </div>
                         <p className={clsx(styles.textEnd)}>Taxes and shipping calculated at checkout</p>

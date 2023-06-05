@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import Filters from "./Filters";
-import images from "~/assets/image";
+import ItemProduct from "~/components/ItemProduct";
 
 function ShowProduct() {
     return (
@@ -22,70 +22,11 @@ function ShowProduct() {
                         >
                             <Row>
                                 <Col className={clsx(styles.collumCollec)}  xs={12} sm={12} md={3} lg={3} xl={3} xxl={3}>
-                                    <div className={clsx(styles.itemCollec)}>
-                                        <h3 className={clsx(styles.titleProduct)}>
-                                            oversized mascot trucker jacket  vintage color block
-                                        </h3>
-                                        <div className={clsx(styles.wrapImgProduct)}>
-                                            <img src={images.categoryThree} alt="product"/>
-                                        </div>
-                                        <span className={clsx(styles.priceProduct)}>{230000} VND</span>
-                                    </div>
-                                </Col>
-                                <Col className={clsx(styles.collumCollec)}  xs={12} sm={12} md={3} lg={3} xl={3} xxl={3}>
-                                    <div className={clsx(styles.itemCollec)}>
-                                        <h3 className={clsx(styles.titleProduct)}>
-                                            oversized mascot trucker jacket  vintage color block
-                                        </h3>
-                                        <div className={clsx(styles.wrapImgProduct)}>
-                                            <img src={images.categoryThree} alt="product"/>
-                                        </div>
-                                        <span className={clsx(styles.priceProduct)}>{230000} VND</span>
-                                    </div>
-                                </Col>
-                                <Col className={clsx(styles.collumCollec)}  xs={12} sm={12} md={3} lg={3} xl={3} xxl={3}>
-                                    <div className={clsx(styles.itemCollec)}>
-                                        <h3 className={clsx(styles.titleProduct)}>
-                                            oversized mascot trucker jacket  vintage color block
-                                        </h3>
-                                        <div className={clsx(styles.wrapImgProduct)}>
-                                            <img src={images.categoryThree} alt="product"/>
-                                        </div>
-                                        <span className={clsx(styles.priceProduct)}>{230000} VND</span>
-                                    </div>
-                                </Col>
-                                <Col className={clsx(styles.collumCollec)}  xs={12} sm={12} md={3} lg={3} xl={3} xxl={3}>
-                                    <div className={clsx(styles.itemCollec)}>
-                                        <h3 className={clsx(styles.titleProduct)}>
-                                            oversized mascot trucker jacket  vintage color block
-                                        </h3>
-                                        <div className={clsx(styles.wrapImgProduct)}>
-                                            <img src={images.categoryThree} alt="product"/>
-                                        </div>
-                                        <span className={clsx(styles.priceProduct)}>{230000} VND</span>
-                                    </div>
-                                </Col>
-                                <Col className={clsx(styles.collumCollec)}  xs={12} sm={12} md={3} lg={3} xl={3} xxl={3}>
-                                    <div className={clsx(styles.itemCollec)}>
-                                        <h3 className={clsx(styles.titleProduct)}>
-                                            oversized mascot trucker jacket  vintage color block
-                                        </h3>
-                                        <div className={clsx(styles.wrapImgProduct)}>
-                                            <img src={images.categoryThree} alt="product"/>
-                                        </div>
-                                        <span className={clsx(styles.priceProduct)}>{230000} VND</span>
-                                    </div>
-                                </Col>
-                                <Col className={clsx(styles.collumCollec)}  xs={12} sm={12} md={3} lg={3} xl={3} xxl={3}>
-                                    <div className={clsx(styles.itemCollec)}>
-                                        <h3 className={clsx(styles.titleProduct)}>
-                                            oversized mascot trucker jacket  vintage color block
-                                        </h3>
-                                        <div className={clsx(styles.wrapImgProduct)}>
-                                            <img src={images.categoryThree} alt="product"/>
-                                        </div>
-                                        <span className={clsx(styles.priceProduct)}>{230000} VND</span>
-                                    </div>
+                                    <ItemProduct 
+                                        classCollect={clsx(styles.itemCollec)}
+                                        classTitle={clsx(styles.titleProduct)}
+                                        classPrice={clsx(styles.priceProduct)}
+                                    />
                                 </Col>
                             </Row>
                         </Container>

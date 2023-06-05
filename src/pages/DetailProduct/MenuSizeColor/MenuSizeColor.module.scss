@@ -1,0 +1,39 @@
+.listSize{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.itemSize{
+    cursor: pointer;
+    + .itemSize{
+        margin-left: 20px;
+    }
+}
+.wrapContentSize{
+    position: relative;
+    width: 80px;
+    height: 40px;
+    border: 1px solid #333;
+    & input,
+    & label{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        font-weight: 400;
+    }
+    & input{
+        cursor: pointer;
+        opacity: 0;
+    }
+    & .activeSize{
+        color: var(--black);
+        background-color: #ffc117;
+    }
+}

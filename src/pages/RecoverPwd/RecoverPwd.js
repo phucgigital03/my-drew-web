@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import configs from "~/configs";
 import FormGroup from "~/components/FormGroup"
+import Button from "~/components/Button";
 
 function RecoverPwd() {
     return ( 
@@ -20,7 +21,7 @@ function RecoverPwd() {
                         <FormGroup idInput={"Email"} labelText={"Email"}/>
                     </form>
                 </div>
-                <button className={clsx(styles.recoverBtn)}>submit</button>
+                <Button yellow classBtn={clsx(styles.recoverBtn)}>submit</Button>
                 <Link className={clsx(styles.linkLogin)} to={configs.routes.login}>cancel</Link>
             </div>
         </div>

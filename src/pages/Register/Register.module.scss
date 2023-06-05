@@ -18,14 +18,19 @@
     margin-top: 20px;
 }
 .registerBtn{
-    font-size: 1.6rem;
-    background-color: #ffc103;
-    color: black;
-    font-weight: 700;
     display: flex;
     margin: auto;
-    margin-top: 40;
+    justify-content: center;
     margin-top: 40px;
     margin-bottom: 15px;
-    padding: 8px 34px;
+}
+.linkLogin{
+    text-align: center;
+    font-size: 1.4rem;
+    color: #333;
+    margin-top: 10px;
+    display: block;
+    &:hover{
+        color: #333;
+    }
 }

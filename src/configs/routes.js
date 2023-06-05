@@ -14,6 +14,7 @@ const routes = {
     register: "/collectionsaccount/register",
     recoverPwd: "/collectionsaccount/recover",
     checkout: "/checkout",
+    detailProduct: "/products/:idproduct",
 }
 
 export default routes

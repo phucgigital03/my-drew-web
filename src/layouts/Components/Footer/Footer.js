@@ -5,6 +5,7 @@ import { IconShopFooter } from "~/components/Icons";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from "~/components/Button";
 
 function Footer() {
     return (  
@@ -18,7 +19,7 @@ function Footer() {
                         <div className={clsx(styles.wrapForm)}>
                             <form>
                                 <input placeholder="email" type="text"/>
-                                <button>Submit</button>
+                                <Button black>Submit</Button>
                             </form>
                         </div>
                     </div>

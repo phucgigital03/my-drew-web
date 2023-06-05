@@ -105,13 +105,8 @@
     margin: 0;
 }
 .checkOutBtn{
-    font-size: 1.6rem;
-    font-weight: 900;
-    background-color: black;
-    color: var(--white);
-    border: none;
     border: 1px solid black;
-    padding: 22px 20px;
+    height: 72px;
     &:hover{
         color: black;
         background-color: #ffc001;

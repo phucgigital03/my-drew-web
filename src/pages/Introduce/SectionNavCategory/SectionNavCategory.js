@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import images from "~/assets/image";
+import Button from "~/components/Button";
 
 function SectionNavCategory() {
     return ( 
@@ -18,7 +19,7 @@ function SectionNavCategory() {
                             </div>
                             <div className={clsx(styles.wrapBtn)}>
                                 <p className={clsx(styles.title)}>TEES TO OWN SUMMER</p>
-                                <button className={clsx(styles.categoryBtn)}>Shop Men's</button>
+                                <Button white md boder classBtn={clsx(styles.categoryBtn)}>Shop Men's</Button>
                             </div>
                         </div>
                     </Col>
@@ -29,7 +30,7 @@ function SectionNavCategory() {
                             </div>
                             <div className={clsx(styles.wrapBtn)}>
                                 <p className={clsx(styles.title)}>FITS TO GO ALL OUT</p>
-                                <button className={clsx(styles.categoryBtn)}>Shop Women's</button>
+                                <Button white md boder classBtn={clsx(styles.categoryBtn)}>Shop Women's</Button>
                             </div>
                         </div>
                     </Col>
@@ -40,7 +41,7 @@ function SectionNavCategory() {
                             </div>
                             <div className={clsx(styles.wrapBtn)}>
                                 <p className={clsx(styles.title)}>STYLES FOR ALL DAY PLAY</p>
-                                <button className={clsx(styles.categoryBtn)}>Shop Kid's</button>
+                                <Button white md boder classBtn={clsx(styles.categoryBtn)}>Shop Kid's</Button>
                             </div>
                         </div>
                     </Col>

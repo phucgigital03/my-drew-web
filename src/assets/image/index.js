@@ -11,6 +11,8 @@ import categoryTwo from './category2.jpg'
 import categoryThree from './catetory3.webp'
 import iconvnpay from './iconvnpay.png'
 import visapay from './visapay.svg'
+import imgSize from './imgSize.webp'
+import imgCotton from './imgCotton.webp'
 
 const images = {
     logo: logo,
@@ -25,7 +27,9 @@ const images = {
     categoryTwo:categoryTwo,
     categoryThree:categoryThree,
     iconvnpay:iconvnpay,
-    visapay:visapay
+    visapay:visapay,
+    imgSize: imgSize,
+    imgCotton: imgCotton,
 }
 
 export default images

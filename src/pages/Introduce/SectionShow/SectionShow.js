@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import styles from './SectionShow.module.scss'
 
+import Button from "~/components/Button";
+
 function SectionShow({title,heading,description,imgLink,videoLink,renderBtn}) {
     return ( 
         <div className={clsx(styles.sectionShow)}>
@@ -20,12 +22,12 @@ function SectionShow({title,heading,description,imgLink,videoLink,renderBtn}) {
                     {
                         renderBtn ? (
                             <>
-                                <button className={clsx(styles.shopBtn)}>Shop Tees</button>
-                                <button className={clsx(styles.shopBtn)}>Shop Summer Styles</button>
+                                <Button black boder>Shop Tees</Button>
+                                <Button black lg boder>Shop Summer Styles</Button>
                             </>
 
                         ) : (
-                            <button className={clsx(styles.shopBtn)}>Shop</button>
+                            <Button black sm boder>Shop</Button>
                         )
                     }
                 </div>

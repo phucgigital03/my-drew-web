@@ -29,35 +29,3 @@
         opacity: 1;
     }
 }
-.itemCollec{
-    max-width: 322px;
-    margin: 0;
-    width: 100%;
-    padding: 16px;
-}
-.titleProduct{
-    opacity: 0;
-    margin: 0;
-    font-size: 1.4rem;
-    text-align: center;
-    padding: 0px 20px;
-    line-height: 2.4rem;
-    transition: all 0.2s ease;
-}
-.wrapImgProduct{
-    width: 100%;
-    padding: 20px;
-    & img{
-        width: 100%;
-        height: 100%;
-    }
-}
-.priceProduct{
-    opacity: 0;
-    font-size: 1.8rem;
-    padding: 0px 20px;
-    text-align: end;
-    width: 100%;
-    display: block;
-    transition: all 0.2s ease;
-}

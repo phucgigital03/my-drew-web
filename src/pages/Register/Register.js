@@ -1,7 +1,10 @@
 import clsx from "clsx";
 import styles from './Register.module.scss'
+import { Link } from "react-router-dom";
 
 import FormGroup from "~/components/FormGroup"
+import Button from "~/components/Button";
+import configs from "~/configs";
 
 function Register() {
     return (
@@ -18,7 +21,8 @@ function Register() {
                         <FormGroup idInput={"Password"} labelText={"Password"}/>
                     </form>
                 </div>
-                <button className={clsx(styles.registerBtn)}>create</button>
+                <Button yellow classBtn={clsx(styles.registerBtn)}>create</Button>
+                <Link className={clsx(styles.linkLogin)} to={configs.routes.login}>Do you have account ? Login</Link>
             </div>
         </div>
      );

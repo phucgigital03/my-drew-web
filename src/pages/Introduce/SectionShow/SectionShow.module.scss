@@ -52,19 +52,3 @@
     align-items: center;
     margin-top: 24px;
 }
-.shopBtn{
-    font-size: 1.6rem;
-    color: white;
-    background-color: black;
-    padding: 10px 24px;
-    border-radius: 20px;
-    cursor: pointer;
-
-    + .shopBtn {
-        margin-left: 10px;
-    }
-    
-    &:hover{
-        opacity: 0.6;
-    }
-}

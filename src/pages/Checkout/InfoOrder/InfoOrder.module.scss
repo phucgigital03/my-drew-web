@@ -24,12 +24,6 @@
     align-items: center;
 }
 .discountBtn{
-    width: 100px;
-    padding: 10px 6px;
-    font-size: 1.6rem;
-    background-color: black;
-    color: white;
-    font-weight: 700;
     margin-left: 12px;
     flex-shrink: 0;
 }
@@ -60,12 +54,4 @@
     text-decoration: none;
     font-size: 1.6rem;
     cursor: pointer;
-}
-.orderBtn{
-    width: 120px;
-    padding: 10px 6px;
-    font-size: 1.6rem;
-    background-color: black;
-    color: white;
-    font-weight: 700;
 }
