@@ -8,7 +8,7 @@ import Register from "~/pages/Register"
 import RecoverPwd from "~/pages/RecoverPwd"
 import Checkout from "~/pages/Checkout"
 import DetailProduct from "~/pages/DetailProduct"
-import Cart from "~/pages/Cart"
+import CartPage from "~/pages/CartPage"
 
 const publicRoutes = [
     {path: configs.routes.introduce, LayOut: IntroduceLayout, Component: Introduce},
@@ -16,7 +16,7 @@ const publicRoutes = [
     {path: configs.routes.register, Component: Register},
     {path: configs.routes.recoverPwd, Component: RecoverPwd},
     {path: configs.routes.detailProduct, Component: DetailProduct},
-    {path: configs.routes.cart, Component: Cart},
+    {path: configs.routes.cart, Component: CartPage},
     {path: configs.routes.checkout, Component: Checkout , LayOut: null},
     {path: configs.routes.newArrivals, Component: ShowProduct},
     {path: configs.routes.shopAll, Component: ShowProduct},

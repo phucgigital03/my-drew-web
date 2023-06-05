@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import styles from './Cart.module.scss'
+import styles from './CartPage.module.scss'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus,faMinus,faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,7 @@ import images from "~/assets/image";
 import Button from "~/components/Button";
 import MenuRelation from "~/components/MenuRelation";
 
-function Cart() {
+function CartPage() {
     return ( 
         <div className={clsx(styles.cart)}>
             <div className={clsx(styles.headerCart)}>
@@ -99,4 +99,4 @@ function Cart() {
      );
 }
 
-export default Cart;
+export default CartPage;

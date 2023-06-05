@@ -3,8 +3,7 @@ import styles from "./FormGroup.module.scss"
 
 import { forwardRef, useRef, useImperativeHandle } from "react";
 
-
-function FormGroup({idInput,classNameWrap,labelText,typeInput = "text",valueInput,handleChange},ref) {
+function FormGroup({idInput,nameInput,classNameWrap,labelText,typeInput = "text",valueInput,errorMessage = false,handleChange},ref) {
     const label = useRef(null);
     const inputText = useRef(null);
     useImperativeHandle(ref, () => {
@@ -23,27 +22,30 @@ function FormGroup({idInput,classNameWrap,labelText,typeInput = "text",valueInpu
         }
     }
     return (
-        <div className={clsx(styles.formGroup,{
-            [classNameWrap]: classNameWrap
-        })}>
-            <input 
-                ref={inputText}
-                id={idInput} 
-                className={clsx(styles.input)} 
-                type={typeInput}
-                spellCheck={false}
-                value={valueInput} 
-                onChange={handleChange}
-                onBlur={handleBlur}
-            />
-            <label 
-                ref={label}
-                htmlFor={idInput} 
-                className={clsx(styles.label)} 
-            >
-                {labelText}
-            </label>
-            <span className={clsx(styles.message)}></span>
+        <div  className={clsx(styles.wrapForm)} >
+            <div className={clsx(styles.formGroup,{
+                [classNameWrap]: classNameWrap
+            })}>
+                <input 
+                    ref={inputText}
+                    name={nameInput}
+                    id={idInput} 
+                    className={clsx(styles.input)} 
+                    type={typeInput}
+                    spellCheck={false}
+                    value={valueInput} 
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
+                <label 
+                    ref={label}
+                    htmlFor={idInput} 
+                    className={clsx(styles.label)} 
+                >
+                    {labelText}
+                </label>
+            </div>
+            <span className={clsx(styles.errorMessage)}>{errorMessage}</span>
         </div>
     );
 }

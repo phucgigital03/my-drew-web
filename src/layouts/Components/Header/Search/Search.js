@@ -31,7 +31,6 @@ function Seacrh() {
     const textSearchResult = useDebounce(textSearch,2000);
     useEffect(()=>{
         if(!textSearchResult){
-            console.log('nothing');
             return ;
         }
         console.log(textSearchResult)
