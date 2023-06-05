@@ -8,7 +8,7 @@ import { faRulerHorizontal } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import images from "~/assets/image";
-import MenuRelation from "./MenuRelation";
+import MenuRelation from "~/components/MenuRelation";
 import Button from "~/components/Button";
 import MenuSizeColor from "./MenuSizeColor";
 import DescriptProduct from "./DescriptProduct";

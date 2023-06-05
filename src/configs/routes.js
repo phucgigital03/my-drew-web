@@ -1,6 +1,12 @@
 
 const routes = {
     introduce: '/',
+    login: "/collectionsaccount/login",
+    register: "/collectionsaccount/register",
+    recoverPwd: "/collectionsaccount/recover",
+    detailProduct: "/products/:idproduct",
+    checkout: "/checkout",
+    cart: "/cart",
     shopAll: "/collections/shopAll",
     scrapbooks: '/collections/scrapbooks',
     newArrivals: '/collections/newArrivals',
@@ -10,11 +16,6 @@ const routes = {
     tees: "/collections/tees",
     bottoms: "/collections/bottoms",
     accessories: "/collections/accessories",
-    login: "/collectionsaccount/login",
-    register: "/collectionsaccount/register",
-    recoverPwd: "/collectionsaccount/recover",
-    checkout: "/checkout",
-    detailProduct: "/products/:idproduct",
 }
 
 export default routes

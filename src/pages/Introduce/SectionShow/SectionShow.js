@@ -2,6 +2,7 @@ import clsx from "clsx";
 import styles from './SectionShow.module.scss'
 
 import Button from "~/components/Button";
+import configs from "~/configs";
 
 function SectionShow({title,heading,description,imgLink,videoLink,renderBtn}) {
     return ( 
@@ -22,12 +23,12 @@ function SectionShow({title,heading,description,imgLink,videoLink,renderBtn}) {
                     {
                         renderBtn ? (
                             <>
-                                <Button black boder>Shop Tees</Button>
-                                <Button black lg boder>Shop Summer Styles</Button>
+                                <Button to={configs.routes.tees} black boder>Shop Tees</Button>
+                                <Button to={configs.routes.outerwear} black lg boder>Shop Summer Styles</Button>
                             </>
 
                         ) : (
-                            <Button black sm boder>Shop</Button>
+                            <Button to={configs.routes.shopAll} black sm boder>Shop</Button>
                         )
                     }
                 </div>

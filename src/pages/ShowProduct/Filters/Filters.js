@@ -3,7 +3,6 @@ import styles from './Filters.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-
 function Filters() {
     return (
         <div className={clsx(styles.collectionFilters)}>
@@ -25,7 +24,7 @@ function Filters() {
                     <label htmlFor="sortBy">Sort By:</label>
                     <div className={clsx(styles.wrapSortSelec)}>
                         <FontAwesomeIcon icon={faAngleDown}/>
-                        <select onChange={()=>{}} name="sortBy" value={"manual"} id="sortBy">
+                        <select onChange={()=>{}} name="sortBy" id="sortBy" value={"manual"} >
                             <option value="manual" >Featured</option>
                             <option value="best-selling">Best selling</option>
                         </select>

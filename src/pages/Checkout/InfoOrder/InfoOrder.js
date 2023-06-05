@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import FormGroup from "~/components/FormGroup/FormGroup";
 import MenuProduct from "~/components/MenuProduct";
 import Button from "~/components/Button";
+import configs from "~/configs";
 
 function InfoOrder({products}) {
     return ( 
@@ -48,7 +49,7 @@ function InfoOrder({products}) {
                         </div>
                     </div>
                     <div className={clsx(styles.wrapBtnOrder)}>
-                        <Link className={clsx(styles.linkBackCart)} to={"/"}>Quay về giỏ hàng</Link>
+                        <Link className={clsx(styles.linkBackCart)} to={configs.routes.cart}>Quay về giỏ hàng</Link>
                         <Button black classBtn={clsx(styles.orderBtn)}>ĐẶT HÀNG</Button>
                     </div>
                 </footer>

@@ -8,23 +8,25 @@ import Register from "~/pages/Register"
 import RecoverPwd from "~/pages/RecoverPwd"
 import Checkout from "~/pages/Checkout"
 import DetailProduct from "~/pages/DetailProduct"
+import Cart from "~/pages/Cart"
 
 const publicRoutes = [
     {path: configs.routes.introduce, LayOut: IntroduceLayout, Component: Introduce},
+    {path: configs.routes.login, Component: Login},
+    {path: configs.routes.register, Component: Register},
+    {path: configs.routes.recoverPwd, Component: RecoverPwd},
+    {path: configs.routes.detailProduct, Component: DetailProduct},
+    {path: configs.routes.cart, Component: Cart},
+    {path: configs.routes.checkout, Component: Checkout , LayOut: null},
     {path: configs.routes.newArrivals, Component: ShowProduct},
+    {path: configs.routes.shopAll, Component: ShowProduct},
     {path: configs.routes.outerwear, Component: ShowProduct},
     {path: configs.routes.sweatshirts, Component: ShowProduct},
     {path: configs.routes.tops, Component: ShowProduct},
     {path: configs.routes.tees, Component: ShowProduct},
     {path: configs.routes.bottoms, Component: ShowProduct},
     {path: configs.routes.accessories, Component: ShowProduct},
-    {path: configs.routes.shopAll, Component: ShowProduct},
     {path: configs.routes.scrapbooks, Component: ScrapBooks},
-    {path: configs.routes.login, Component: Login},
-    {path: configs.routes.register, Component: Register},
-    {path: configs.routes.recoverPwd, Component: RecoverPwd},
-    {path: configs.routes.detailProduct, Component: DetailProduct},
-    {path: configs.routes.checkout, Component: Checkout , LayOut: null},
 ]
 
 const privateRoutes = []
