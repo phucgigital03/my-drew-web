@@ -1,97 +1,101 @@
 import clsx from "clsx";
 import styles from './Register.module.scss'
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { Form,Formik,FastField } from "formik";
+import * as Yup from "yup";
+import { useSelector, useDispatch } from 'react-redux'
+import { updateEmail } from '~/features/redux/userStote'
+import { fetchUserById } from "~/features/redux/userStote/extraReducers";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 import FormGroup from "~/components/FormGroup"
 import Button from "~/components/Button";
 import configs from "~/configs";
-import Joi from 'joi';
 
 function Register() {
-    const formRef = useRef(null);
-    const schema = Joi.object({
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        email: Joi.string().email({ tlds: { allow: false } }).required(),
-        password: Joi.string().min(4).max(12).required()
+    const registerSchema = Yup.object().shape({
+        firstName: Yup.string()
+          .min(2, 'Too Short!')
+          .max(70, 'Too Long!')
+          .required('Required'),
+        lastName: Yup.string()
+          .min(2, 'Too Short!')
+          .max(70, 'Too Long!')
+          .required('Required'),
+        email: Yup.string()
+          .email('Invalid email')
+          .required('Required'),
+        password: Yup.string().required('Password is required'),
     });
-    const [formUser,setFormUser] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: ""
-    })
-    const handleValueFirstName = (e)=>{
-        const textFirstName = e.target.value;
-        setFormUser((formOld)=>{
-            return {
-                ...formOld,
-                firstName: textFirstName
-            }
-        })
+    const isLoading = useSelector((state) => state.user.isLoading)
+    const dispatch = useDispatch()
+    // console.log(isLoading)
+    const handleSubmit = (values, actions)=>{
+        const { email } = values
+        const action = updateEmail({email})
+        console.log(action)
+        dispatch(action)
     }
-    const handleValueLastName = (e)=>{
-        const textLastName = e.target.value;
-        setFormUser((formOld)=>{
-            return {
-                ...formOld,
-                lastName: textLastName
-            }
-        })
-    }
-    const handleValueEmail = (e)=>{
-        const textEmail = e.target.value;
-        setFormUser((formOld)=>{
-            return {
-                ...formOld,
-                email: textEmail
-            }
-        })
-    }
-    const handleValuePwd = (e)=>{
-        const textPwd = e.target.value;
-        setFormUser((formOld)=>{
-            return {
-                ...formOld,
-                password: textPwd
-            }
-        })
-    }
-    const handleCreateCustomer = ()=>{
-        const { error, value } = schema.validate(formUser,{abortEarly: false});
-        if (error) {
-          console.log(error.details);
-        } else {
-          console.log(value);
-        }
+    const handleClick = async ()=>{
+        const action = await dispatch(fetchUserById())
+        console.log(action)
     }
     return (
         <div className={clsx(styles.register)}>
             <div className={clsx(styles.contentRegister)}>
+            <Button onClick={handleClick} yellow classBtn={clsx(styles.registerBtn)}>test api</Button>
                 <h1 className={clsx(styles.titleRegister)}>
                     Create account
                 </h1>
-                <div className={clsx(styles.wrapForm)}>
-                    <form id="formCreate" ref={formRef} className={clsx(styles.formRegister)}>
-                        <FormGroup valueInput={formUser.firstName} nameInput={"firstName"} idInput={"First name"} labelText={"First name"}
-                            handleChange={handleValueFirstName}
-                        />
-                        <FormGroup valueInput={formUser.lastName} nameInput={"lastName"} idInput={"Last name"} labelText={"Last name"}
-                            handleChange={handleValueLastName}
-                        />
-                        <FormGroup valueInput={formUser.email} nameInput={"email"} idInput={"Email"} labelText={"Email"}
-                            typeInput={"email"}
-                            handleChange={handleValueEmail}
-                        />
-                        <FormGroup valueInput={formUser.password} nameInput={"password"} idInput={"Password"} labelText={"Password"}
-                            typeInput={"password"}
-                            handleChange={handleValuePwd}
-                        />
-                    </form>
-                </div>
-                <Button onClick={handleCreateCustomer} yellow classBtn={clsx(styles.registerBtn)}>create</Button>
-                <Link className={clsx(styles.linkLogin)} to={configs.routes.login}>Do you have account ? Login</Link>
+                <Formik
+                    initialValues={{
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        password: '',
+                    }}
+                    validationSchema={registerSchema}
+                    onSubmit={handleSubmit}
+                >
+                {
+                    (formikProps)=>{
+                        const { handleSubmit } = formikProps
+                        // console.log(values,errors,touched)
+                        return (
+                            <Form onSubmit={handleSubmit}>
+                                <div className={clsx(styles.wrapForm)}>
+                                    <FastField
+                                        type={"text"}
+                                        name={"firstName"}
+                                        component={FormGroup}
+                                        label={"FirstName"}
+                                    />
+                                    <FastField
+                                        type={"text"}
+                                        name={"lastName"}
+                                        component={FormGroup}
+                                        label={"LastName"}
+                                    />
+                                    <FastField
+                                        type={"email"}
+                                        name={"email"}
+                                        component={FormGroup}
+                                        label={"Email"}
+                                    />
+                                    <FastField
+                                        type={"password"}
+                                        name={"password"}
+                                        component={FormGroup}
+                                        label={"Password"}
+                                    />
+                                </div>
+                                <Button type={"submit"} yellow classBtn={clsx(styles.registerBtn)}>create</Button>
+                                <Link className={clsx(styles.linkLogin)} to={configs.routes.login}>Do you have account ? Login</Link>
+                            </Form>
+                        )
+                    }
+                }
+                </Formik>
             </div>
         </div>
      );

@@ -21,21 +21,24 @@
 }
 .searchHeader{
     position: relative;
-    & svg{
+    .searchBtn{
         position: absolute;
         top: 0;
         bottom: 0;
         right: 0;
         font-size: 2rem;
-        padding: 13px 14px;
+        padding: 0px 0px;
         cursor: pointer;
+        width: 48px;
+        background-color: transparent;
     }
 }
 .wrapBtn{
     margin-left: 8px;
-}
-.modalCloseBtn{
-    font-size: 2.6rem;
-    background-color: white;
-    padding: 3px 13px;
+    .modalCloseBtn{
+        font-size: 2.6rem;
+        background-color: white;
+        padding: 3px 13px;
+        width: 60px;
+    }
 }

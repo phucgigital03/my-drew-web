@@ -1,1 +1,1 @@
-export {default as HomeAddmin} from './HomeAddmin'
+export { default as Addmin } from './Addmin'

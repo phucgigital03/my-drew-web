@@ -9,6 +9,7 @@ import RecoverPwd from "~/pages/RecoverPwd"
 import Checkout from "~/pages/Checkout"
 import DetailProduct from "~/pages/DetailProduct"
 import CartPage from "~/pages/CartPage"
+import { Addmin } from "~/pages/Private"
 
 const publicRoutes = [
     {path: configs.routes.introduce, LayOut: IntroduceLayout, Component: Introduce},
@@ -29,7 +30,9 @@ const publicRoutes = [
     {path: configs.routes.scrapbooks, Component: ScrapBooks},
 ]
 
-const privateRoutes = []
+const privateRoutes = [
+    {path: configs.routes.profile, Component: Addmin},
+]
 
 export {
     publicRoutes,

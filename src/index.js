@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import store from './features/redux/store';
 
 import App from './App';
 import GlobalStyles from '~/components/GlobalStyles';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-  <GlobalStyles>
-    <App />
-  </GlobalStyles>
+  <Provider store={store}>
+    <GlobalStyles>
+      <App />
+    </GlobalStyles>
+  </Provider>
   // </React.StrictMode>
 );
 

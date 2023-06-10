@@ -1,9 +1,10 @@
 
 const routes = {
     introduce: '/',
-    login: "/collectionsaccount/login",
-    register: "/collectionsaccount/register",
-    recoverPwd: "/collectionsaccount/recover",
+    profile: "/account/profile",
+    login: "/account/login",
+    register: "/account/register",
+    recoverPwd: "/account/recover",
     detailProduct: "/products/:idproduct",
     checkout: "/checkout",
     cart: "/cart",

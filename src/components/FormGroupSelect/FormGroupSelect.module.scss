@@ -1,104 +1,12 @@
-.wrapSelect{
-    position: relative;
-    margin-top: 20px;
-    height: 45px;
-    box-shadow: 0 0 0 0.1rem rgba(34, 34, 34, 0.55);
+.wrapForm{
+    margin-top: 12px;
     &:hover{
         box-shadow: 0 0 0 0.2rem rgba(34, 34, 34, 0.55);
     }
 }
-.labelSelect{
-    position: absolute;
-    cursor: auto;
-    top: calc(50% - 18px);
-    left: 2%;
-    font-size: 1.4rem;
-    line-height: 1.6rem;
-    height: 16px;
-    color: #6d6d6d;
-}
-.tagSelect{
-    width: 100%;
-    height: 100%;
-    appearance: none;
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
-.textSelect{
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    position: absolute;
-    top: calc(50% - 6px);
-    line-height: 2.4rem;
-    left: 3%;
-    cursor: pointer;
-}
-.iconSelect{
-    position: absolute;
-    font-size: 2rem;
-    padding: 2px;
-    right: 0;
-    height: 45px;
-    width: 40px;
-    text-align: center;
-    color: #787676;
-    cursor: pointer;
-
-    &::before{
-        content: "";
-        position: absolute;
-        width: 2px;
-        height: 30px;
-        top: calc(50% - 15px);
-        left: 0;
-        background-color: rgba(179,179,179,.5);
-    }
-}
-
-// tippy
-.contentMenu{
-    width: 80vw;
-    max-width: 374px;
-    min-width: 285px;
-}
-.headerMenu{
-    padding: 4px;
-}
-.inputSearch{
-    font-size: 1.4rem;
-    height: 26px;
-    width: 100%;
-    padding: 0px 4px;
-    border: 1px solid #6d6d6d;
-    outline: 1px solid #6d6d6d;
-}
-.sectionMenu{
-    height: 200px;
-    overflow-y: overlay;
-}   
-.menu{
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-}
-.itemMenu{
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: #333;
-    padding: 6px;
-    flex-shrink: 0;
-    transition: all 0.1s ease-in-out;
-    cursor: pointer;
+.disabled{
+    margin-top: 12px;
     &:hover{
-        background-color: #f3b300;
+        box-shadow:  0 0 0 0.0rem rgba(34, 34, 34, 0.55);
     }
 }
-.itemActive{
-    background-color: #f3b300;
-}
-.itemHoldActive{
-    background-color: #ddd;
-}
-

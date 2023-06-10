@@ -1,33 +1,24 @@
 import clsx from "clsx";
 import styles from './Search.module.scss'
 import Modal from 'react-bootstrap/Modal';
-import { useRef, useState, memo, useEffect } from "react";
+import { useState, memo, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Form,Formik,FastField } from "formik";
 
 import { useDebounce } from "~/hooks";
 import FormGroup from "~/components/FormGroup";
+import Button from "~/components/Button";
 
 function Seacrh() {
     const [show, setShow] = useState(false);
-    const [textSearch,setTextSearch] = useState("")
-    const inputSearch = useRef(null); 
-    
+    const [textSearch,setTextSearch] = useState('');
     const handleCloseModal = ()=>{
         setShow(false)
     }
     const handleOpenModal = ()=>{
         setShow(true)
-    }
-    const handleEnteredModal = ()=>{
-        inputSearch.current.focusSearch()
-    }
-    const handleChangeInputSearch = (e)=>{
-        const textInput = e.target.value
-        if(!textInput.startsWith(' ')){
-            setTextSearch(textInput)
-        }
-    }
+    } 
     const textSearchResult = useDebounce(textSearch,2000);
     useEffect(()=>{
         if(!textSearchResult){
@@ -47,23 +38,51 @@ function Seacrh() {
             <Modal
                 show={show}
                 className={clsx(styles.searchModal)}
-                onEntered={handleEnteredModal}
                 onHide={handleCloseModal}
             > 
                 <div className={clsx(styles.wrapModalHeader)}>
                     <div className={clsx(styles.searchHeader)}>
-                        <FormGroup 
-                            ref={inputSearch}
-                            valueInput={textSearch}
-                            labelText={"Search"} 
-                            handleChange={handleChangeInputSearch}
-                        />
-                        <FontAwesomeIcon icon={faMagnifyingGlass}/>
+                    <Formik
+                        initialValues={{
+                            search: '',
+                        }}
+                        onSubmit={(values, actions) => {
+                            console.log(values)
+                        }}
+                    >
+                    {
+                        (formikProps)=>{
+                            const {values,errors,touched,handleSubmit,setFieldValue} = formikProps
+                            // console.log(values,errors,touched)
+                            const handleChange = (e)=>{
+                                const textInput = e.target.value
+                                if(!textInput.startsWith(' ')){
+                                    setFieldValue('search',textInput);
+                                    setTextSearch(textInput);
+                                }
+                            }
+                            return (
+                                <Form onSubmit={handleSubmit}>
+                                    <FastField
+                                        handleChange={handleChange}
+                                        type={"text"}
+                                        name={"search"}
+                                        component={FormGroup}
+                                        label={"Search"}
+                                    />
+                                    <Button type={"submit"} classBtn={clsx(styles.searchBtn)}>
+                                        <FontAwesomeIcon icon={faMagnifyingGlass}/>
+                                    </Button>
+                                </Form>
+                            )
+                        }
+                    }
+                    </Formik>
                     </div>
                     <div className={clsx(styles.wrapBtn)}>
-                        <button onClick={handleCloseModal} className={clsx(styles.modalCloseBtn)}>
+                        <Button onClick={handleCloseModal} classBtn={clsx(styles.modalCloseBtn)}>
                             <FontAwesomeIcon icon={faXmark}/>
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </Modal>

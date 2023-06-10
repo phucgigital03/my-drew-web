@@ -1,53 +1,66 @@
 import clsx from "clsx";
 import styles from "./FormGroup.module.scss"
 
-import { forwardRef, useRef, useImperativeHandle } from "react";
+import { useRef } from "react";
+import { ErrorMessage } from "formik";
+import FeedbackError from "~/components/FeedbackError";
 
-function FormGroup({idInput,nameInput,classNameWrap,labelText,typeInput = "text",valueInput,errorMessage = false,handleChange},ref) {
-    const label = useRef(null);
-    const inputText = useRef(null);
-    useImperativeHandle(ref, () => {
-        return {
-            focusSearch(){
-                inputText.current.focus()
-            }
-        };
-    }, []);
+function FormGroup({
+    classNameWrap,
+    type = "text",
+    label,
+    handleChange,
+    disabled = false,
+    placeholder,
+    field,
+    form,
+}) {
+    const labelRef = useRef(null);
+    const { name } = field
+    const { touched,errors } = form
+    const showError = touched[name] && errors[name]
+
     const handleBlur = function(e){
         const textInput = e.target.value
         if(textInput){
-            label.current.classList.add(clsx(styles.labelHasText));
+            labelRef.current.classList.add(clsx(styles.labelHasText));
         }else{
-            label.current.classList.remove(clsx(styles.labelHasText));
+            labelRef.current.classList.remove(clsx(styles.labelHasText));
         }
     }
+    if(handleChange){
+        field.onChange = handleChange
+    }
     return (
-        <div  className={clsx(styles.wrapForm)} >
+        <div className={clsx(styles.wrapForm)} >
             <div className={clsx(styles.formGroup,{
                 [classNameWrap]: classNameWrap
             })}>
                 <input 
-                    ref={inputText}
-                    name={nameInput}
-                    id={idInput} 
+                    id={name} 
+                    type={type}
+                    placeholder={placeholder}
+                    disabled={disabled}
                     className={clsx(styles.input)} 
-                    type={typeInput}
                     spellCheck={false}
-                    value={valueInput} 
-                    onChange={handleChange}
+                    {...field}
                     onBlur={handleBlur}
                 />
                 <label 
-                    ref={label}
-                    htmlFor={idInput} 
+                    ref={labelRef}
+                    htmlFor={name} 
                     className={clsx(styles.label)} 
                 >
-                    {labelText}
+                    {label}
                 </label>
             </div>
-            <span className={clsx(styles.errorMessage)}>{errorMessage}</span>
+            <div className={showError ? "is-invalid" : ""}></div>
+            <ErrorMessage 
+                name={name} 
+                component={FeedbackError}
+            />
         </div>
     );
 }
 
-export default forwardRef(FormGroup);
+export default FormGroup;
