@@ -2,11 +2,16 @@ import clsx from "clsx";
 import styles from './Login.module.scss'
 import { FastField, Form, Formik } from "formik";
 import * as Yup from 'yup'
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import configs from "~/configs";
 import FormGroup from "~/components/FormGroup";
 import Button from "~/components/Button";
+import { login } from "~/services/authentication";
+import { updateUser } from "~/features/redux/userStote";
 
 function Login() {
     const loginSchema = Yup.object().shape({
@@ -15,6 +20,25 @@ function Login() {
           .required('Required'),
         password: Yup.string().required('Password is required'),
     });
+    const [errorForm,setErrorForm] = useState(null);
+    const dispatch = useDispatch()
+    const nagigate = useNavigate();
+    const handleSubmit = async (values, actions) => {
+        const ressult = await login(values)
+        if(ressult.statusCode === 400){
+            setErrorForm(ressult.errorMessage)
+        }else if(ressult.statusCode === 409){
+            setErrorForm(ressult.errorMessage)
+        }else if(ressult.statusCode === 401){
+            setErrorForm(ressult.errorMessage)
+        }else if(ressult.statusCode === 500){
+            setErrorForm(ressult.errorMessage)
+        }else if(ressult.statusCode === 200){
+            const action = updateUser(ressult.data);
+            dispatch(action)
+            nagigate(configs.routes.account,{ replace: true })
+        }
+    }
 
     return ( 
         <div className={clsx(styles.login)}>
@@ -22,20 +46,21 @@ function Login() {
                 <h1 className={clsx(styles.titleLogin)}>
                     Login
                 </h1>
+                <div className={clsx(styles.errorMessage)}>
+                    {errorForm}
+                </div>
                 <Formik
                     initialValues={{
                         email: '',
                         password: '',
                     }}
                     validationSchema={loginSchema}
-                    onSubmit={(values, actions) => {
-                        console.log(values)
-                    }}
+                    onSubmit={handleSubmit}
                 >
                 {
                     (formikProps)=>{
-                        const {values,errors,touched,handleSubmit} = formikProps
-                        console.log(values,errors,touched)
+                        const { handleSubmit } = formikProps
+                        // console.log(values,errors,touched)
                         return (
                             <Form onSubmit={handleSubmit}>
                                 <div className={clsx(styles.wrapForm)}>

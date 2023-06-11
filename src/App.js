@@ -1,19 +1,20 @@
 import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import { Fragment } from "react";
-import { useSelector } from "react-redux";
 
 import { DefaultLayout } from "./layouts";
-import { publicRoutes,privateRoutes } from "./routes";
+import { publicRoutes} from "./routes";
 import NotFound from "./pages/NotFound";
+import RenderPrivateRoute from "./components/RenderPrivateRoute";
 
 function App() {
-  const user = useSelector(state => state.user)
-  console.log(user)
+  console.log('re-render')
   return (
     <Router>
       <div className="App">
         <Routes>
-          {/* public route */}
+          {
+            RenderPrivateRoute()
+          }
           {
             publicRoutes.map((publicRoute,ind)=>{
               let LayOut = DefaultLayout;
@@ -36,29 +37,6 @@ function App() {
               )
             })
           }
-          {
-            privateRoutes.map((privateRoute,ind)=>{
-              let LayOut = DefaultLayout;
-              const Page = privateRoute.Component
-              if(privateRoute.LayOut === null){
-                LayOut = Fragment;
-              }else if(privateRoute.LayOut){
-                LayOut = privateRoute.LayOut;
-              }
-              return (
-                <Route
-                  key={ind}
-                  path={privateRoute.path}
-                  element={
-                    <LayOut>
-                      <Page/>
-                    </LayOut>
-                  }
-                />
-              )
-            })
-          }
-          {/* 404 page */}
           <Route 
             path="*" 
             element={

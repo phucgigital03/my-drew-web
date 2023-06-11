@@ -3,13 +3,6 @@ import reducers from './reducers'
 import extraReducers from './extraReducers'
 
 const initialState = {
-  email: '',
-  roles: {
-    addmin: 9999,
-    user: 2003,
-    employment: 2004,
-  },
-  isLoading: false,
 }
 
 const userSlice = createSlice({
@@ -20,5 +13,5 @@ const userSlice = createSlice({
 })
 
 const { reducer: userReducer, actions } = userSlice
-export const { updateEmail } = actions
+export const { updateUser } = actions
 export default userReducer

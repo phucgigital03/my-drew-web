@@ -1,11 +1,11 @@
 
 const reducers = {
-    updateEmail(state,action){
-        const newState = {
-          ...state,
-          email: action.payload.email
-        }
-        return newState
+    updateUser(state,action){
+      const infoUser = action.payload
+      return {
+        ...state,
+        ...infoUser
+      }
     }
 }
 

@@ -1,7 +1,11 @@
 
 const routes = {
     introduce: '/',
-    profile: "/account/profile",
+    unauthorization: "/unauthorization",
+    account: "/account",
+    addmin: "/account/addmin",
+    employment: "/account/employment",
+    user: "/account/user",
     login: "/account/login",
     register: "/account/register",
     recoverPwd: "/account/recover",

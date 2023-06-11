@@ -9,7 +9,9 @@ import RecoverPwd from "~/pages/RecoverPwd"
 import Checkout from "~/pages/Checkout"
 import DetailProduct from "~/pages/DetailProduct"
 import CartPage from "~/pages/CartPage"
-import { Addmin } from "~/pages/Private"
+import { Addmin,User } from "~/pages/Private"
+import Unauthorization from "~/pages/Unauthorization/Unauthorization"
+import Employment from "~/pages/Private/Employment"
 
 const publicRoutes = [
     {path: configs.routes.introduce, LayOut: IntroduceLayout, Component: Introduce},
@@ -28,11 +30,14 @@ const publicRoutes = [
     {path: configs.routes.bottoms, Component: ShowProduct},
     {path: configs.routes.accessories, Component: ShowProduct},
     {path: configs.routes.scrapbooks, Component: ScrapBooks},
+    {path: configs.routes.unauthorization, Component: Unauthorization},
 ]
 
-const privateRoutes = [
-    {path: configs.routes.profile, Component: Addmin},
-]
+const privateRoutes = {
+    addmin: { path: configs.routes.addmin, Component: Addmin },
+    user: { path: configs.routes.user, Component: User },
+    employment: { path: configs.routes.employment, Component: Employment },
+}
 
 export {
     publicRoutes,
