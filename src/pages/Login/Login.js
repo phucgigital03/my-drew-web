@@ -4,7 +4,7 @@ import { FastField, Form, Formik } from "formik";
 import * as Yup from 'yup'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import configs from "~/configs";
@@ -23,6 +23,8 @@ function Login() {
     const [errorForm,setErrorForm] = useState(null);
     const dispatch = useDispatch()
     const nagigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || configs.routes.account
     const handleSubmit = async (values, actions) => {
         const ressult = await login(values)
         if(ressult.statusCode === 400){
@@ -36,7 +38,7 @@ function Login() {
         }else if(ressult.statusCode === 200){
             const action = updateUser(ressult.data);
             dispatch(action)
-            nagigate(configs.routes.account,{ replace: true })
+            nagigate(from,{ replace: true })
         }
     }
 

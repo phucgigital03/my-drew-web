@@ -12,6 +12,8 @@ import CartPage from "~/pages/CartPage"
 import { Addmin,User } from "~/pages/Private"
 import Unauthorization from "~/pages/Unauthorization/Unauthorization"
 import Employment from "~/pages/Private/Employment"
+import AddProduct from "~/pages/Private/AddProduct"
+import Products from "~/pages/Private/Products"
 
 const publicRoutes = [
     {path: configs.routes.introduce, LayOut: IntroduceLayout, Component: Introduce},
@@ -37,6 +39,8 @@ const privateRoutes = {
     addmin: { path: configs.routes.addmin, Component: Addmin },
     user: { path: configs.routes.user, Component: User },
     employment: { path: configs.routes.employment, Component: Employment },
+    addminAddProduct: { path: configs.routes.addminAddProduct, Component: AddProduct},
+    addminProducts: { path: configs.routes.addminProducts, Component: Products },
 }
 
 export {

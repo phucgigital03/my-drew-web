@@ -1,8 +1,15 @@
 import axios from 'axios';
+const BASE_URL = 'http://localhost:5500'
 
 const http = axios.create({
-    baseURL: 'http://localhost:5500',
+    baseURL: BASE_URL,
 });
+
+const httpPrivate = axios.create({
+    baseURL: BASE_URL,
+    withCredentials: true,
+    headers: {'Content-Type': 'application/json'}
+})
 
 export const get = async (path, option = {}) => {
     const res = await http.get(path, option);
@@ -27,3 +34,6 @@ export const dele = async (path, option = {}) => {
 };
 
 export default http;
+export {
+    httpPrivate
+}

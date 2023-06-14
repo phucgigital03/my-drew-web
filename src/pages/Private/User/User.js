@@ -1,6 +1,12 @@
+import clsx from "clsx";
+import styles from './User.module.scss';
+import Profile from "~/components/Profile";
+
 function User() {
     return (
-        <h1>User</h1>
+        <div className={clsx(styles.wrapUserPage)}>
+            <Profile />
+        </div>
     );
 }
 

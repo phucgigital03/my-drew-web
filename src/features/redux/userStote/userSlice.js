@@ -3,6 +3,13 @@ import reducers from './reducers'
 import extraReducers from './extraReducers'
 
 const initialState = {
+  accessToken: null,
+  email: null,
+  _id: null,
+  roles: null,
+  firstName: null,
+  lastName: null,
+  orderHistorys: null,
 }
 
 const userSlice = createSlice({
@@ -13,5 +20,5 @@ const userSlice = createSlice({
 })
 
 const { reducer: userReducer, actions } = userSlice
-export const { updateUser } = actions
+export const { updateUser, updateAccessToken ,deleUser } = actions
 export default userReducer

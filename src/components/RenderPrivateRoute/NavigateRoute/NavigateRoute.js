@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 import configs from "~/configs";
 
 function NavigateRoute({ children }) {
-    const user = useSelector(state => state.user);
-    const roles = user?.roles ? user?.roles : {};
+    const accessToken = useSelector(state => state.user.accessToken);
+    const decode = accessToken ? jwtDecode(accessToken) : undefined;
+    const roles = decode?.userInfo?.roles || {};
     if(roles?.addmin){
         return <Navigate to={configs.routes.addmin}/>
     }else if(roles?.employment){

@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import styles from './Header.module.scss'
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import configs from "~/configs";
 import images from "~/assets/image";
@@ -10,6 +11,7 @@ import Seacrh from "./Search";
 import Cart from "./Cart";
 
 function Header() {
+    const accessToken = useSelector(state => state.user.accessToken);
     return ( 
         <header className={clsx(styles.header)}>
             <nav className={clsx(styles.navigation)}>
@@ -29,7 +31,11 @@ function Header() {
                 <CountryMenu/>
                 <Seacrh/>
                 <div className={clsx(styles.feature,styles.login)}>
-                    <Link to={configs.routes.login}>login</Link>
+                    {
+                        !accessToken 
+                            ? <Link to={configs.routes.login}>login</Link>
+                            : <Link to={configs.routes.account}>account</Link>
+                    }
                 </div>
                 <Cart/>
             </div>

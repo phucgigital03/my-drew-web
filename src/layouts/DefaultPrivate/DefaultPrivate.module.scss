@@ -1,0 +1,89 @@
+.addmin{
+
+}
+.headerAddmin{
+    padding: 20px 26px;
+    display: flex;
+    justify-content: space-between;
+}
+.wrapLogoAddmin{
+    width: 200px;
+    height: 100%;
+}
+.logo{
+    display: block;
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.logoutAddmin{
+    font-size: 1.8rem;
+    padding: 6px 8px;
+    cursor: pointer;
+    & svg {
+        & + svg{
+            margin-left: 6px;
+        }
+    }
+}
+.logout{
+    width: 200px;
+}
+.menuLogout{
+    padding: 0;
+    margin: 0;
+}
+.itemLogout{
+    padding: 10px 12px;
+    & a {
+        display: block;
+        text-decoration: none;
+        &:hover{
+            color: var(--black);
+        }
+    }
+}
+.containerAddmin{
+    display: flex;
+    justify-content: space-between;
+}
+.navAddmin{
+    flex-basis: 20%;
+}
+.menuNav{
+    height: 100%;
+}
+.item{
+    & h2 {
+        & button{
+            font-size: 1.8rem;
+            background-color: #fcbe13 !important;
+            color: black !important;
+            outline: none !important;
+            border-radius: 0px !important;
+            box-shadow: none !important;
+        }
+    }
+    & div{
+        font-size: 1.6rem;
+        background-color: #fcbe13;
+    }
+}
+.childItem{
+    cursor: pointer;
+    padding: 4px 0px;
+    & a{
+        font-weight: 600;
+        display: block;
+        text-decoration: none;
+        &:hover{
+            color: var(--black);
+        }
+    }
+}
+.pageAddmin{
+    flex: 1;
+    padding: 0px 20px;
+}

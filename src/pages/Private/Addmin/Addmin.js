@@ -1,6 +1,12 @@
+import clsx from "clsx";
+import styles from './Addmin.module.scss'
+import Profile from "~/components/Profile";
+
 function Addmin() {
     return ( 
-        <h1>Addmin</h1>
+        <div className={clsx(styles.contentAddmin)}>
+            <Profile />
+        </div>
     );
 }
 

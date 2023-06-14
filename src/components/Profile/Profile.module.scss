@@ -1,0 +1,38 @@
+.userPage{
+    padding: 0px 40px;
+}
+.account{
+    margin-bottom: 20px;
+    & svg{
+        margin-right: 6px;
+    }
+    & a:hover{
+        color: var(--black);
+    }
+}
+.titleAccountDetails,
+.titleOrder,
+.titleAccount{
+    font-size: 3.2rem;
+    font-weight: 900;
+    font-family: regular;
+    margin: 0;
+}
+.order{
+    margin-bottom: 20px;
+}
+.menuOrder{
+    margin-top: 16px;
+}
+.textOrder{
+    font-size: 1.8rem;
+    text-align: center;
+}
+.nameAccount,
+.countyAccount{
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    margin-bottom: 12px;
+}
