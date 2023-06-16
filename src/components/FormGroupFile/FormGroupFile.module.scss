@@ -1,0 +1,21 @@
+.wrapForm{
+    margin-top: 12px;
+}
+.label{
+    color: #6d6d6d;
+}
+.inputFile{
+    font-size: 1.6rem;
+    height: 45px;
+    border-radius: 0px;
+    box-shadow: 0 0 0 0.1rem rgba(34, 34, 34, 0.55);
+    text-align: center;
+    line-height: 3.5rem;
+    color: #6d6d6d;
+    outline: none;
+    &:focus {
+        border: none;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(34, 34, 34, 0.55);
+    }
+}

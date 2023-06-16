@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { useSelector } from 'react-redux'
 
-import { httpPrivate } from "~/utils/http";
 import useRefreshToken from "./useRefreshToken";
 
-function useAxiosPrivate() {
+function useAxiosPrivate(httpPrivate) {
     const accessToken = useSelector(state => state.user.accessToken)
     const refreshToken = useRefreshToken(); 
     useEffect(()=>{
@@ -25,6 +24,7 @@ function useAxiosPrivate() {
             (response) => response,
             async (error) => {
                 const prevRequest = error?.config;
+                console.log(prevRequest)
                 console.log(prevRequest.sent,error.response.status,error.response.data?._retry)
                 if(!prevRequest.sent && error.response.status === 401 && error.response.data?._retry){
                     prevRequest.sent = true;

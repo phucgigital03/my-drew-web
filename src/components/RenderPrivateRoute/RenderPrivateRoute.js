@@ -18,6 +18,8 @@ function RenderPrivateRoute() {
     const PageAddmin = privateRoutes.addmin.Component
     const PageCustomer = privateRoutes.user.Component
     const PageEmployment = privateRoutes.employment.Component
+    const PageAddProduct = privateRoutes.addminAddProduct.Component
+    const PageProducts = privateRoutes.addminProducts.Component
     return ( 
     <>
         <Route 
@@ -29,6 +31,29 @@ function RenderPrivateRoute() {
             }
         />
         <Route element={<PersistLogin/>}>
+          {/* persist login get accessToken with refreshToken */}
+            <Route element={<ProtectedRoute allowRoles={[allowRoles.addmin]}/>}>
+              <Route 
+                path={privateRoutes.addminAddProduct.path}
+                element={
+                  <DefaultPrivate>
+                    <PageAddProduct/>
+                  </DefaultPrivate>
+                }
+              />
+            </Route>
+
+            <Route element={<ProtectedRoute allowRoles={[allowRoles.addmin]}/>}>
+              <Route 
+                path={privateRoutes.addminProducts.path}
+                element={
+                  <DefaultPrivate>
+                    <PageProducts/>
+                  </DefaultPrivate>
+                }
+              />
+            </Route>
+
             <Route element={<ProtectedRoute allowRoles={[allowRoles.addmin]}/>}>
               <Route 
                 path={privateRoutes.addmin.path}
@@ -39,6 +64,7 @@ function RenderPrivateRoute() {
                 }
               />
             </Route>
+
             <Route element={<ProtectedRoute allowRoles={[allowRoles.employment]}/>}>
               <Route 
                 path={privateRoutes.employment.path}
@@ -49,6 +75,7 @@ function RenderPrivateRoute() {
                 }
               />
             </Route>
+
             <Route element={<ProtectedRoute allowRoles={[allowRoles.user]}/>}>
               <Route 
                 path={privateRoutes.user.path}
@@ -59,6 +86,7 @@ function RenderPrivateRoute() {
                 }
               />
             </Route>
+
         </Route>
     </>
     );

@@ -12,12 +12,13 @@ import { useAxiosPrivate,useLogOut } from "~/hooks";
 import { getOrderHistory } from "~/services/orderHistory";
 import { useNavigate } from "react-router-dom";
 import configs from "~/configs";
+import { httpPrivate } from "~/utils/http";
 
 function Profile() {
     const accessToken = useSelector(state => state.user.accessToken)
     const [orderHistorys,setOrderHistorys] = useState([]);
     const [email,setEmail] = useState('');
-    const httpPrivate = useAxiosPrivate();
+    const httpPrivates = useAxiosPrivate(httpPrivate);
     const navigate = useNavigate();
     const logout = useLogOut();
     const decodeJWT = jwtDecode(accessToken)
@@ -26,7 +27,7 @@ function Profile() {
     useEffect(()=>{
         const controller = new AbortController();
         const getListOrder = async ()=>{
-            const result = await getOrderHistory(httpPrivate,idUser,'orderHistory',controller);
+            const result = await getOrderHistory(httpPrivates,idUser,'orderHistory',controller);
             if(result.statusCode === 500){
                 setOrderHistorys([]);
                 setEmail('');

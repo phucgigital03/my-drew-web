@@ -73,17 +73,24 @@ function DefaultPrivate({children}) {
                     <Accordion className={clsx(styles.menuNav)}>
                         <Accordion.Item className={clsx(styles.item)} eventKey="0">
                             <Accordion.Header className={clsx(styles.header)}>Dashboard</Accordion.Header>
+                            <Accordion.Body className={clsx(styles.description)}>
+                                <div className={clsx(styles.childItem)}>
+                                    <Link to={configs.routes.addmin}>
+                                        Addmin Details
+                                    </Link>
+                                </div >
+                            </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item className={clsx(styles.item)} eventKey="1">
                             <Accordion.Header className={clsx(styles.header)}>Product</Accordion.Header>
                             <Accordion.Body className={clsx(styles.description)}>
                                 <div className={clsx(styles.childItem)}>
-                                    <Link to={"#"}>
+                                    <Link to={configs.routes.addminProducts}>
                                         All product
                                     </Link>
                                 </div >
                                 <div className={clsx(styles.childItem)}>
-                                    <Link to={"#"}>
+                                    <Link to={configs.routes.addminAddProduct}>
                                         Add product
                                     </Link>
                                 </div>

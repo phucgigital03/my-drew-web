@@ -11,6 +11,12 @@ const httpPrivate = axios.create({
     headers: {'Content-Type': 'application/json'}
 })
 
+const httpPrivateFile = axios.create({
+    baseURL: BASE_URL,
+    withCredentials: true,
+    headers: {'Content-Type': 'multipart/form-data'}
+})
+
 export const get = async (path, option = {}) => {
     const res = await http.get(path, option);
     return res;
@@ -35,5 +41,6 @@ export const dele = async (path, option = {}) => {
 
 export default http;
 export {
-    httpPrivate
+    httpPrivate,
+    httpPrivateFile
 }

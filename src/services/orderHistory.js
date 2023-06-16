@@ -1,7 +1,7 @@
 
 export const getOrderHistory = async(httpPrivate,idUser,type,controller)=>{
     try{
-        const result = await httpPrivate.get('v1/api/users',{
+        const result = await httpPrivate.get('/v1/api/users',{
             params: {
                 idUser: idUser,
                 type
