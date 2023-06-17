@@ -31,8 +31,7 @@ function FormGroupSelect({
         },
     };
     const { name,value } = field
-    const { setFieldValue,touched,errors } = form
-    const showError = touched[name] && errors[name]
+    const { setFieldValue } = form
     const handleChange = (selectedOption)=>{
         const selectedValue = selectedOption ? selectedOption.value : selectedOption
         setFieldValue(name,selectedValue);
@@ -55,7 +54,6 @@ function FormGroupSelect({
                     styles={colourStyles}
                 />
             </div>
-            <div className={showError ? "is-invalid" : ""}></div>
             <ErrorMessage
                 name={name}
                 component={FeedbackError}

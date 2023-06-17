@@ -1,18 +1,18 @@
 import axios from 'axios';
-const BASE_URL = 'http://localhost:5500'
+const URL_API = process.env.REACT_APP_URL_API
 
 const http = axios.create({
-    baseURL: BASE_URL,
+    baseURL: URL_API,
 });
 
 const httpPrivate = axios.create({
-    baseURL: BASE_URL,
+    baseURL: URL_API,
     withCredentials: true,
     headers: {'Content-Type': 'application/json'}
 })
 
 const httpPrivateFile = axios.create({
-    baseURL: BASE_URL,
+    baseURL: URL_API,
     withCredentials: true,
     headers: {'Content-Type': 'multipart/form-data'}
 })

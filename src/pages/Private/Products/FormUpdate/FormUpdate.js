@@ -1,22 +1,23 @@
 import clsx from "clsx";
-import styles from './Addproduct.module.scss'
-import { FastField, Form, Formik } from "formik";
+import styles from './FormUpdate.module.scss'
+import { Formik,Form,FastField } from "formik";
 import * as Yup from 'yup'
-import { useState } from "react";
-import { useNavigate,useLocation } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
+import { useState,useContext } from "react";
+import { useNavigate,useLocation } from "react-router-dom";
 
 import FormGroup from "~/components/FormGroup";
-import FormGroupFile from "~/components/FormGroupFile";
 import Button from "~/components/Button";
-import { addproductApi } from "~/services/products";
-import { useAxiosPrivate } from "~/hooks";
-import { useLogOut } from "~/hooks";
-import configs from "~/configs";
+import FormGroupFile from "~/components/FormGroupFile";
+import { updateproductApi } from "~/services/products";
 import { httpPrivateFile } from "~/utils/http";
+import { useAxiosPrivate,useLogOut } from "~/hooks";
+import configs from "~/configs";
 import FeedbackError from "~/components/FeedbackError";
+import { ProductContext } from "../Products";
 
-function Addproduct() {
+function FormUpdate({ product }) {
+    const { handleUpdateProduct } = useContext(ProductContext)
     const httpPrivates = useAxiosPrivate(httpPrivateFile);
     const [messageForm,setMessageForm] = useState(null);
     const logout = useLogOut();
@@ -33,20 +34,20 @@ function Addproduct() {
             .matches(/^[aA-zZ,]+$/,'Is not in correct format')
             .required('Color is required'),
         size: Yup.string().required('Size is required'),
-        listImg: Yup.mixed().nullable().required('listImg is required')
+        listImg: Yup.mixed().nullable()
     });
     const initialValues = {
-        title: '',
-        description: '',
-        category: '',
-        quatity: '',
-        price: '',
-        color: '',
-        size: '',
+        title: product?.title,
+        description: product?.description,
+        category: product?.category,
+        quatity: product?.quatity,
+        price: product?.price,
+        color: product?.color?.toString(),
+        size: product?.size?.toString(),
         listImg: null,
     }
     const handleSubmit = async (values,action)=>{
-        const resultApi = await addproductApi(httpPrivates,values)
+        const resultApi = await updateproductApi(httpPrivates,product?._id,values)
         if(resultApi.statusCode === 500){
             setMessageForm("error server")
             await logout()
@@ -57,28 +58,25 @@ function Addproduct() {
             setMessageForm(resultApi.errorMessage)
         }else if(resultApi.statusCode === 200){
             setMessageForm(resultApi.message)
-            action.resetForm();
+            handleUpdateProduct(resultApi.product)
         }
         action.setSubmitting(false)
     }
-    return (
-        <div className={clsx(styles.addproduct)}>
-            <h1 className={clsx(styles.titlePage)}>
-                add new product
-            </h1>
-            <FeedbackError>
-                {messageForm}
-            </FeedbackError>
-            <Formik
-                initialValues={initialValues}
-                validationSchema={productSchema}
-                onSubmit={handleSubmit}
-            >
-            {
-            (formikProps)=>{
-                const { handleSubmit,isSubmitting } = formikProps
-                return (
+    return ( 
+        <Formik
+            initialValues={initialValues}
+            validationSchema={productSchema}
+            onSubmit={handleSubmit}
+        >
+        {
+        (formikProps)=>{
+            const { handleSubmit,isSubmitting } = formikProps
+            return (
+                <>
                     <Form onSubmit={handleSubmit}>
+                        <FeedbackError>
+                            {messageForm}
+                        </FeedbackError>
                         <div className={clsx(styles.wrapForm)}>
                             <FastField
                                 type={"text"}
@@ -130,14 +128,13 @@ function Addproduct() {
                         </div>
                         <Button type={"submit"} yellow lg>
                             {isSubmitting && <Spinner animation="border" variant="dark" />}
-                            Add product
+                            update product
                         </Button>
                     </Form>
-                )
-            }}
-            </Formik>
-        </div>
+                </>
+        )}}
+        </Formik>
     );
 }
 
-export default Addproduct;
+export default FormUpdate;

@@ -13,13 +13,10 @@ function FormGroup({
     disabled = false,
     placeholder,
     field,
-    form,
 }) {
     const labelRef = useRef(null);
-    const { name } = field
-    const { touched,errors } = form
-    const showError = touched[name] && errors[name]
-
+    const { name,value } = field
+    
     const handleBlur = function(e){
         const textInput = e.target.value
         if(textInput){
@@ -49,12 +46,13 @@ function FormGroup({
                 <label 
                     ref={labelRef}
                     htmlFor={name} 
-                    className={clsx(styles.label)} 
+                    className={clsx(styles.label,{
+                        [styles.labelHasText]: value
+                    })} 
                 >
                     {label}
                 </label>
             </div>
-            <div className={showError ? "is-invalid" : ""}></div>
             <ErrorMessage 
                 name={name} 
                 component={FeedbackError}

@@ -13,8 +13,7 @@ function FormGroupFile({
     form,
 }) {
     const { name } = field
-    const { touched,errors,setFieldValue } = form
-    const showError = touched[name] && errors[name]
+    const { setFieldValue } = form
 
     const handleChange = (e)=>{
         const dataFile = [];
@@ -37,7 +36,6 @@ function FormGroupFile({
                     onChange={handleChange}
                 />
             </Form.Group>
-            <div className={showError ? "is-invalid" : ""}></div>
             <ErrorMessage 
                 name={name} 
                 component={FeedbackError}

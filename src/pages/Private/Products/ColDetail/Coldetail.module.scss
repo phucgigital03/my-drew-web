@@ -1,0 +1,50 @@
+.wrapImg{
+    height: 60px;
+    width: 60px;
+    & img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.action{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.actionUpdate{
+    margin-right: 12px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 4px 6px;
+    cursor: pointer;
+}
+.optionDeleAndPreview{
+    font-size: 2rem;
+    padding: 0px 8px;
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.option{
+    width: 200px;
+}
+.menuOption{
+    margin: 0;
+    padding: 0;
+}
+.itemOption{
+    font-size: 1.6rem;
+    color: #454444;
+    line-height: 4rem;
+    padding: 0px 11px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    &:hover{
+        background-color: #dddcdc;
+    }
+}
+.textOption{
+    margin-left: 12px;
+}

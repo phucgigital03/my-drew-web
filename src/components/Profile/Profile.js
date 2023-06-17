@@ -3,7 +3,6 @@ import styles from './Profile.module.scss'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import Table from 'react-bootstrap/Table';
 import { useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
 import { useState,useEffect,useCallback } from "react";
@@ -13,6 +12,18 @@ import { getOrderHistory } from "~/services/orderHistory";
 import { useNavigate } from "react-router-dom";
 import configs from "~/configs";
 import { httpPrivate } from "~/utils/http";
+import Table from '~/components/Table';
+import ColDetail from "./ColDetail";
+
+const listTitle = [
+    'STT',
+    'Đơn hàng',
+    'Ngày',
+    'Chuyển đến',
+    'Địa chỉ',
+    'Giá trị đơn hàng',
+    'Tình trạng thanh toán'
+]
 
 function Profile() {
     const accessToken = useSelector(state => state.user.accessToken)
@@ -68,43 +79,13 @@ function Profile() {
                     Order history
                 </h2>
                 <div className={clsx(styles.menuOrder)}>
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Đơn hàng</th>
-                                <th>Ngày</th>
-                                <th>Chuyển đến</th>
-                                <th>Địa chỉ</th>
-                                <th>Giá trị đơn hàng</th>
-                                <th>Tình trạng thanh toán</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                orderHistorys.length ? (
-                                    orderHistorys.map((orderHistory,ind)=>{
-                                        return (
-                                            <tr key={ind}>
-                                                <th>{ind}</th>
-                                                <th>{orderHistory?._id}</th>
-                                                <th>{orderHistory?.createdAt}</th>
-                                                <th>{orderHistory?.address?.details}</th>
-                                                <th>{orderHistory?.address?.province}</th>
-                                                <th>{orderHistory?.totalPrice}</th>
-                                                <th>{orderHistory?.status}</th>
-                                            </tr>
-                                        )
-                                    })
-                                ) : (
-                                    <tr>
-                                        <th colSpan={7}>
-                                            <p className={clsx(styles.textOrder)}>You haven't placed any orders yet.</p>
-                                        </th>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
+                    <Table
+                        listTitle={listTitle}
+                    >
+                        <ColDetail
+                            dataRender={orderHistorys}
+                            lengthThTag={listTitle.length}
+                        />
                     </Table>
                 </div> 
             </section>

@@ -1,6 +1,9 @@
+import clsx from "clsx";
+import styles from './FeedbackError.module.scss'
+
 function FeedbackError({children}) {
     return ( 
-        <div style={{fontSize: '1.6rem'}} className="invalid-feedback">
+        <div className={clsx(styles.errorMessage)}>
             {children}
         </div>
     );
