@@ -1,8 +1,8 @@
 
 const routes = {
     introduce: '/',
-    addminAddProduct: "/addmin/addproduct",
-    addminProducts: "/addmin/products",
+    addminAddInventory: "/addmin/addinventory",
+    addminInventorys: "/addmin/inventorys",
     unauthorization: "/unauthorization",
     account: "/account",
     addmin: "/account/addmin",

@@ -5,17 +5,17 @@ import { useContext,useState } from "react";
 import Button from "~/components/Button";
 import { useAxiosPrivate } from "~/hooks";
 import { httpPrivate } from "~/utils/http";
-import { deleSortProduct } from "~/services/products";
-import { ProductContext } from "../../Products";
+import { deleSortInventory } from "~/services/inventorys";
+import { InventoryContext } from "../../Inventorys";
 import FeedbackError from "~/components/FeedbackError";
 
-function Delete({ product,handleHidden }) {
-    const {handleDeleProduct} = useContext(ProductContext)
+function Delete({ inventory,handleHidden }) {
+    const {handleDeleInventory} = useContext(InventoryContext)
     const httpPrivates = useAxiosPrivate(httpPrivate)
     const [messageForm,setMessageForm] = useState(null);
 
     const handleDele = async ()=>{
-        const resultApi = await deleSortProduct(httpPrivates,product._id);
+        const resultApi = await deleSortInventory(httpPrivates,inventory._id);
         console.log(resultApi)
         if(resultApi.statusCode === 500){
             setMessageForm("error server")
@@ -23,7 +23,7 @@ function Delete({ product,handleHidden }) {
             setMessageForm(resultApi.errorMessage)
         }else if(resultApi.statusCode === 200){
             setMessageForm(resultApi.message)
-            handleDeleProduct(product)
+            handleDeleInventory(inventory)
         }
     }
     return (
@@ -33,7 +33,7 @@ function Delete({ product,handleHidden }) {
             </FeedbackError>
             <p className={clsx(styles.textDelete)}>
                 Do you want to delete it ? 
-                <span>{product.title}</span>
+                <span>{inventory.title}</span>
             </p>
             <div className={clsx(styles.blockDeleteBtn)}>
                 <Button yellow onClick={handleHidden}>

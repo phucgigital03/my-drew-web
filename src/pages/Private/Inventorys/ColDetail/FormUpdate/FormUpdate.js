@@ -9,21 +9,21 @@ import { useNavigate,useLocation } from "react-router-dom";
 import FormGroup from "~/components/FormGroup";
 import Button from "~/components/Button";
 import FormGroupFile from "~/components/FormGroupFile";
-import { updateproductApi } from "~/services/products";
+import { updateinventoryApi } from "~/services/inventorys";
 import { httpPrivateFile } from "~/utils/http";
 import { useAxiosPrivate,useLogOut } from "~/hooks";
 import configs from "~/configs";
 import FeedbackError from "~/components/FeedbackError";
-import { ProductContext } from "../../Products";
+import { InventoryContext } from "../../Inventorys";
 
-function FormUpdate({ product }) {
-    const { handleUpdateProduct } = useContext(ProductContext)
+function FormUpdate({ inventory }) {
+    const { handleUpdateInventory } = useContext(InventoryContext)
     const httpPrivates = useAxiosPrivate(httpPrivateFile);
     const [messageForm,setMessageForm] = useState(null);
     const logout = useLogOut();
     const navigate = useNavigate()
     const location = useLocation();
-    const productSchema = Yup.object().shape({
+    const inventorySchema = Yup.object().shape({
         title: Yup.string().required('Title is required'),
         description: Yup.string().required('Description is required'),
         category: Yup.string().required('Category is required'),
@@ -37,17 +37,17 @@ function FormUpdate({ product }) {
         listImg: Yup.mixed().nullable()
     });
     const initialValues = {
-        title: product?.title,
-        description: product?.description,
-        category: product?.category,
-        quatity: product?.quatity,
-        price: product?.price,
-        color: product?.color?.toString(),
-        size: product?.size?.toString(),
+        title: inventory?.title,
+        description: inventory?.description,
+        category: inventory?.category,
+        quatity: inventory?.quatity,
+        price: inventory?.price,
+        color: inventory?.color?.toString(),
+        size: inventory?.size?.toString(),
         listImg: null,
     }
     const handleSubmit = async (values,action)=>{
-        const resultApi = await updateproductApi(httpPrivates,product?._id,values)
+        const resultApi = await updateinventoryApi(httpPrivates,inventory?._id,values)
         if(resultApi.statusCode === 500){
             setMessageForm("error server")
             await logout()
@@ -58,14 +58,14 @@ function FormUpdate({ product }) {
             setMessageForm(resultApi.errorMessage)
         }else if(resultApi.statusCode === 200){
             setMessageForm(resultApi.message)
-            handleUpdateProduct(resultApi.product)
+            handleUpdateInventory(resultApi.inventory)
         }
         action.setSubmitting(false)
     }
     return ( 
         <Formik
             initialValues={initialValues}
-            validationSchema={productSchema}
+            validationSchema={inventorySchema}
             onSubmit={handleSubmit}
         >
         {
@@ -123,12 +123,12 @@ function FormUpdate({ product }) {
                             <FastField
                                 name={"listImg"}
                                 component={FormGroupFile}
-                                label={"List Image Product"}
+                                label={"List Image Inventory"}
                             />
                         </div>
                         <Button type={"submit"} yellow lg>
                             {isSubmitting && <Spinner animation="border" variant="dark" />}
-                            update product
+                            update inventory
                         </Button>
                     </Form>
                 </>

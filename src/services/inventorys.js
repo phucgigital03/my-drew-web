@@ -1,23 +1,23 @@
 import { toast } from 'react-toastify';
 
-const convertToForm = (formProduct)=>{
+const convertToForm = (formInventory)=>{
     const formData = new FormData();
-    for(const key in formProduct){
-        if(key === 'listImg' && formProduct[key]){
-            for(let i = 0;i < formProduct[key].length;++i){
-                formData.append(key,formProduct[key][i])
+    for(const key in formInventory){
+        if(key === 'listImg' && formInventory[key]){
+            for(let i = 0;i < formInventory[key].length;++i){
+                formData.append(key,formInventory[key][i])
             }
         }else{
-            formData.append(key,formProduct[key])
+            formData.append(key,formInventory[key])
         }
     }
     return formData
 }
 
-const addproductApi = async (httpPrivate,formProduct)=>{
+const addinventoryApi = async (httpPrivate,formInventory)=>{
     try{
-        const formData = convertToForm(formProduct);
-        const resultApi = await toast.promise(httpPrivate.post('/v1/api/products',formData),{
+        const formData = convertToForm(formInventory);
+        const resultApi = await toast.promise(httpPrivate.post('/v1/api/inventory',formData),{
             pending: "Promise is pending",
             success: "Promise  Loaded",
             error: "error"
@@ -25,7 +25,7 @@ const addproductApi = async (httpPrivate,formProduct)=>{
         if(resultApi.data?.statusCode === 200){
             return {
                 statusCode: 200,
-                message: 'create success product'
+                message: 'create success inventory'
             }
         }
         console.log(resultApi)
@@ -48,9 +48,9 @@ const addproductApi = async (httpPrivate,formProduct)=>{
     }
 }
 
-const getproductApi = async (httpPrivate,type,controller,limit = 5,page = 1)=>{
+const getinventoryApi = async (httpPrivate,type,controller,limit = 5,page = 1)=>{
     try{
-        const resultApi = await httpPrivate.get('/v1/api/products',{
+        const resultApi = await httpPrivate.get('/v1/api/inventory',{
             params:{
                 type,
                 limit,
@@ -73,10 +73,10 @@ const getproductApi = async (httpPrivate,type,controller,limit = 5,page = 1)=>{
     }
 }
 
-const updateproductApi = async (httpPrivate,id,formProduct)=>{
+const updateinventoryApi = async (httpPrivate,id,formInventory)=>{
     try{
-        const formData = convertToForm(formProduct)
-        const resultApi = await toast.promise(httpPrivate.patch(`/v1/api/products/${id}`,formData), {
+        const formData = convertToForm(formInventory)
+        const resultApi = await toast.promise(httpPrivate.patch(`/v1/api/inventory/${id}`,formData), {
             pending: "Promise is pending",
             success: "Promise  Loaded",
             error: "error"
@@ -85,7 +85,7 @@ const updateproductApi = async (httpPrivate,id,formProduct)=>{
             return {
                 statusCode: 200,
                 message: 'update successfully',
-                product: resultApi.data?.data?.[0]
+                inventory: resultApi.data?.data?.[0]
             }
         }
     }catch(error){
@@ -106,11 +106,11 @@ const updateproductApi = async (httpPrivate,id,formProduct)=>{
     }
 }
 
-const deleSortProduct = async (httpPrivate,id)=>{
+const deleSortInventory = async (httpPrivate,id)=>{
     try{
-        const resultApi = await toast.promise(httpPrivate.delete('/v1/api/products',{
+        const resultApi = await toast.promise(httpPrivate.delete('/v1/api/inventory',{
             params: {
-                idProduct: id
+                idInventory: id
             }
         }),{
             pending: "Promise is pending",
@@ -137,8 +137,8 @@ const deleSortProduct = async (httpPrivate,id)=>{
 }
 
 export {
-    addproductApi,
-    getproductApi,
-    updateproductApi,
-    deleSortProduct
+    addinventoryApi,
+    getinventoryApi,
+    updateinventoryApi,
+    deleSortInventory
 }

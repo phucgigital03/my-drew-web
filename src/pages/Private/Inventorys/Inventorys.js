@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import styles from './Products.module.scss'
+import styles from './Inventorys.module.scss'
 import { useEffect, useState, createContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Pagination from 'react-bootstrap/Pagination';
 
 import Table from "~/components/Table/Table";
-import { getproductApi } from "~/services/products";
+import { getinventoryApi } from "~/services/inventorys";
 import { useAxiosPrivate, useLogOut } from "~/hooks";
 import { httpPrivate } from "~/utils/http";
 import ColDetail from "./ColDetail";
@@ -21,19 +21,19 @@ const listTitle = [
     'Quatity',
     'Action'
 ]
-export const ProductContext = createContext();
+export const InventoryContext = createContext();
 
-function Products() {
+function Inventorys() {
     const [pageCurrent,setPageCurrent] = useState(1);
     const [previousPage,setPreviousPage] = useState({});
     const [nextPage,setNextPage] = useState({});
     const [totalPage,setTotalPage] = useState(null);
-    const [products,setProducts] = useState([]);
+    const [inventorys,setInventorys] = useState([]);
     const [fetchDele,setFetchDele] = useState(false);
-    const [numberProducts,setNumberProducts] = useState({
-        allproduct: 0,
-        productnotdele: 0,
-        productdele: 0,
+    const [numberInventorys,setNumberInventorys] = useState({
+        allinventory: 0,
+        inventorynotdele: 0,
+        inventorydele: 0,
     });
     const httpPrivates = useAxiosPrivate(httpPrivate)
     const logout = useLogOut();
@@ -52,19 +52,19 @@ function Products() {
     }
     useEffect(()=>{
         const controller = new AbortController();
-        const getProducts = async ()=>{
-            const resultApi = await getproductApi(httpPrivates,'nodelete',controller,5,pageCurrent);
+        const getInventorys = async ()=>{
+            const resultApi = await getinventoryApi(httpPrivates,'nodelete',controller,5,pageCurrent);
             console.log(resultApi)
             if(resultApi.statusCode === 500){
                 await logout()
                 navigate(configs.routes.login,{state: {from: location},replace: true})
             }else if(resultApi.statusCode === 200){
-                setProducts(resultApi.products)
-                setNumberProducts(prev => ({
+                setInventorys(resultApi.inventorys)
+                setNumberInventorys(prev => ({
                     ...prev,
-                    allproduct: resultApi.lengthAllProduct,
-                    productnotdele: resultApi.lengthProductNotDele,
-                    productdele: resultApi.lengthProductDele,
+                    allinventory: resultApi.lengthAllInventory,
+                    inventorynotdele: resultApi.lengthInventoryNotDele,
+                    inventorydele: resultApi.lengthInventoryDele,
                 }))
                 setTotalPage(resultApi.totalPageCount)
                 setNextPage(prev => {
@@ -75,49 +75,49 @@ function Products() {
                 })
             }
         }
-        getProducts();
+        getInventorys();
         return ()=>{
             controller.abort()
         }
     },[pageCurrent,fetchDele])
-    const handleUpdateProduct = (productUpdated)=>{
-        setProducts(prevProducts => {
-            prevProducts.forEach((product,ind)=>{
-                if(product._id === productUpdated._id){
-                    prevProducts.splice(ind,1,productUpdated)
+    const handleUpdateInventory = (inventoryUpdated)=>{
+        setInventorys(prevInventorys => {
+            prevInventorys.forEach((inventory,ind)=>{
+                if(inventory._id === inventoryUpdated._id){
+                    prevInventorys.splice(ind,1,inventoryUpdated)
                 }
             })
-            const newProducts = [...prevProducts]
-            return newProducts
+            const newInventorys = [...prevInventorys]
+            return newInventorys
         })
     }
-    const handleDeleProduct = (productDele)=>{
-        if(productDele){
+    const handleDeleInventory = (inventoryDele)=>{
+        if(inventoryDele){
             setFetchDele(true)
         }
     }
     return (
-        <ProductContext.Provider value={{handleUpdateProduct,handleDeleProduct}}>
-            <div className={clsx(styles.products)}>
+        <InventoryContext.Provider value={{handleUpdateInventory,handleDeleInventory}}>
+            <div className={clsx(styles.inventorys)}>
                 <div className={clsx(styles.showInfo)}>
                     <div className={clsx(styles.itemBlock,styles.itemBlock1)}>
-                        <h2>All Product</h2>
-                        <p>{numberProducts.allproduct}</p>
+                        <h2>All Inventory</h2>
+                        <p>{numberInventorys.allinventory}</p>
                     </div>
                     <div className={clsx(styles.itemBlock,styles.itemBlock2)}>
-                        <h2>Product Not Delete</h2>
-                        <p>{numberProducts.productnotdele}</p>
+                        <h2>Inventory Not Delete</h2>
+                        <p>{numberInventorys.inventorynotdele}</p>
                     </div>
                     <div className={clsx(styles.itemBlock,styles.itemBlock3)}>
-                        <h2>Product Deleted</h2>
-                        <p>{numberProducts.productdele}</p>
+                        <h2>Inventory Deleted</h2>
+                        <p>{numberInventorys.inventorydele}</p>
                     </div>
                 </div>
                 <Table
                     listTitle={listTitle}
                 >
                     <ColDetail
-                        dataRender={products}
+                        dataRender={inventorys}
                         lengthThTag={listTitle.length}
                     />
                 </Table>
@@ -137,8 +137,8 @@ function Products() {
                     </Pagination>
                 </div>
             </div>
-        </ProductContext.Provider>
+        </InventoryContext.Provider>
     );
 }
 
-export default Products;
+export default Inventorys;

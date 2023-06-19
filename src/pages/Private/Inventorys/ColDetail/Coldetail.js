@@ -13,7 +13,7 @@ import Delete from "./Delete";
 
 const URL_API = process.env.REACT_APP_URL_API
 function ColDetail({ lengthThTag,dataRender }) {
-    const [product,setProduct] = useState({});
+    const [inventory,setInventory] = useState({});
     const [indexUpdate, setIndexUpdate] = useState(null);
     const [indexOption,setIndexOption] = useState(null);
     const [indexPreview,setIndexPreview] = useState(null);
@@ -26,12 +26,12 @@ function ColDetail({ lengthThTag,dataRender }) {
                 <Popper>
                     <ul className={clsx(styles.menuOption)}>
                         <Modal
-                            textHeader={"preview product"}
+                            textHeader={"preview inventory"}
                             show={indexPreview === index}
                             onHide={handleHiddenModalPreview}
                         >
                             <Preview 
-                                product={product}
+                                inventory={inventory}
                             />
                         </Modal>
                         <li 
@@ -44,12 +44,12 @@ function ColDetail({ lengthThTag,dataRender }) {
                             <span className={clsx(styles.textOption)}>Preview</span>
                         </li>
                         <Modal
-                            textHeader={"delete product"}
+                            textHeader={"delete inventory"}
                             show={indexDele === index}
                             onHide={handleHiddenModalDele}
                         >
                             <Delete
-                                product={product}
+                                inventory={inventory}
                                 handleHidden={handleHiddenModalDele}
                             />
                         </Modal>
@@ -75,14 +75,14 @@ function ColDetail({ lengthThTag,dataRender }) {
     }
     const handleShowModalUpdate = (item,index)=>{
         setIndexUpdate(index)
-        setProduct(item)
+        setInventory(item)
     }
     const handlehiddenModalUpdate = ()=>{
         setIndexUpdate(null)
     }
     const handleShowModalPreview = (item,index)=>{
         setIndexPreview(index)
-        setProduct(item)
+        setInventory(item)
         setIndexOption(null)
     }
     const handleHiddenModalPreview = ()=>{
@@ -90,7 +90,7 @@ function ColDetail({ lengthThTag,dataRender }) {
     }
     const handleShowModalDele = (item,index)=>{
         setIndexDele(index)
-        setProduct(item)
+        setInventory(item)
         setIndexOption(null)
     }
     const handleHiddenModalDele = ()=>{
@@ -106,7 +106,7 @@ function ColDetail({ lengthThTag,dataRender }) {
                     </th>
                     <th>
                         <div className={clsx(styles.wrapImg)}>
-                            <img src={`${URL_API}/${item?.listImg?.[0]}`} alt="imgProduct"/>
+                            <img src={`${URL_API}/${item?.listImg?.[0]}`} alt="imgInventory"/>
                         </div>
                     </th>
                     <th>
@@ -127,12 +127,12 @@ function ColDetail({ lengthThTag,dataRender }) {
                     <th>
                         <div className={clsx(styles.action)}>
                             <Modal
-                                textHeader={"update product"}
+                                textHeader={"update inventory"}
                                 show={indexUpdate === index}
                                 onHide={handlehiddenModalUpdate}
                             >
                                 <FormUpdate
-                                    product={product}
+                                    inventory={inventory}
                                 />
                             </Modal>
                             <span 

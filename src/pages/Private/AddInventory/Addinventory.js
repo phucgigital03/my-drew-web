@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import styles from './Addproduct.module.scss'
+import styles from './Addinventory.module.scss'
 import { FastField, Form, Formik } from "formik";
 import * as Yup from 'yup'
 import { useState } from "react";
@@ -9,20 +9,20 @@ import { Spinner } from "react-bootstrap";
 import FormGroup from "~/components/FormGroup";
 import FormGroupFile from "~/components/FormGroupFile";
 import Button from "~/components/Button";
-import { addproductApi } from "~/services/products";
+import { addinventoryApi } from "~/services/inventorys";
 import { useAxiosPrivate } from "~/hooks";
 import { useLogOut } from "~/hooks";
 import configs from "~/configs";
 import { httpPrivateFile } from "~/utils/http";
 import FeedbackError from "~/components/FeedbackError";
 
-function Addproduct() {
+function Addinventory() {
     const httpPrivates = useAxiosPrivate(httpPrivateFile);
     const [messageForm,setMessageForm] = useState(null);
     const logout = useLogOut();
     const navigate = useNavigate()
     const location = useLocation();
-    const productSchema = Yup.object().shape({
+    const inventorySchema = Yup.object().shape({
         title: Yup.string().required('Title is required'),
         description: Yup.string().required('Description is required'),
         category: Yup.string().required('Category is required'),
@@ -46,7 +46,7 @@ function Addproduct() {
         listImg: null,
     }
     const handleSubmit = async (values,action)=>{
-        const resultApi = await addproductApi(httpPrivates,values)
+        const resultApi = await addinventoryApi(httpPrivates,values)
         if(resultApi.statusCode === 500){
             setMessageForm("error server")
             await logout()
@@ -62,16 +62,16 @@ function Addproduct() {
         action.setSubmitting(false)
     }
     return (
-        <div className={clsx(styles.addproduct)}>
+        <div className={clsx(styles.addinventory)}>
             <h1 className={clsx(styles.titlePage)}>
-                add new product
+                add new inventory
             </h1>
-            <FeedbackError success={messageForm === 'create success product'}>
+            <FeedbackError success={messageForm === 'create success inventory'}>
                 {messageForm}
             </FeedbackError>
             <Formik
                 initialValues={initialValues}
-                validationSchema={productSchema}
+                validationSchema={inventorySchema}
                 onSubmit={handleSubmit}
             >
             {
@@ -125,12 +125,12 @@ function Addproduct() {
                             <FastField
                                 name={"listImg"}
                                 component={FormGroupFile}
-                                label={"List Image Product"}
+                                label={"List Image Inventory"}
                             />
                         </div>
                         <Button type={"submit"} yellow lg>
                             {isSubmitting && <Spinner animation="border" variant="dark" />}
-                            Add product
+                            Add inventory
                         </Button>
                     </Form>
                 )
@@ -140,4 +140,4 @@ function Addproduct() {
     );
 }
 
-export default Addproduct;
+export default Addinventory;

@@ -18,8 +18,8 @@ function RenderPrivateRoute() {
     const PageAddmin = privateRoutes.addmin.Component
     const PageCustomer = privateRoutes.user.Component
     const PageEmployment = privateRoutes.employment.Component
-    const PageAddProduct = privateRoutes.addminAddProduct.Component
-    const PageProducts = privateRoutes.addminProducts.Component
+    const PageAddInventory = privateRoutes.addminAddInventory.Component
+    const PageInventorys = privateRoutes.addminInventorys.Component
     return ( 
     <>
         <Route 
@@ -34,10 +34,10 @@ function RenderPrivateRoute() {
           {/* persist login get accessToken with refreshToken */}
             <Route element={<ProtectedRoute allowRoles={[allowRoles.addmin]}/>}>
               <Route 
-                path={privateRoutes.addminAddProduct.path}
+                path={privateRoutes.addminAddInventory.path}
                 element={
                   <DefaultPrivate>
-                    <PageAddProduct/>
+                    <PageAddInventory/>
                   </DefaultPrivate>
                 }
               />
@@ -45,10 +45,10 @@ function RenderPrivateRoute() {
 
             <Route element={<ProtectedRoute allowRoles={[allowRoles.addmin]}/>}>
               <Route 
-                path={privateRoutes.addminProducts.path}
+                path={privateRoutes.addminInventorys.path}
                 element={
                   <DefaultPrivate>
-                    <PageProducts/>
+                    <PageInventorys/>
                   </DefaultPrivate>
                 }
               />

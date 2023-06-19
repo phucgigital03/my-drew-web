@@ -82,16 +82,16 @@ function DefaultPrivate({children}) {
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item className={clsx(styles.item)} eventKey="1">
-                            <Accordion.Header className={clsx(styles.header)}>Product</Accordion.Header>
+                            <Accordion.Header className={clsx(styles.header)}>Inventory</Accordion.Header>
                             <Accordion.Body className={clsx(styles.description)}>
                                 <div className={clsx(styles.childItem)}>
-                                    <Link to={configs.routes.addminProducts}>
-                                        All product
+                                    <Link to={configs.routes.addminInventorys}>
+                                        All inventory
                                     </Link>
                                 </div >
                                 <div className={clsx(styles.childItem)}>
-                                    <Link to={configs.routes.addminAddProduct}>
-                                        Add product
+                                    <Link to={configs.routes.addminAddInventory}>
+                                        Add inventory
                                     </Link>
                                 </div>
                             </Accordion.Body>
