@@ -1,9 +1,11 @@
 import clsx from "clsx";
 import styles from './FeedbackError.module.scss'
 
-function FeedbackError({children}) {
+function FeedbackError({children,success}) {
     return ( 
-        <div className={clsx(styles.errorMessage)}>
+        <div className={clsx(styles.errorMessage,{
+            [styles.successMessage]: success
+        })}>
             {children}
         </div>
     );

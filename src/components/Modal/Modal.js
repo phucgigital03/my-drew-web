@@ -2,7 +2,7 @@ import clsx from "clsx";
 import styles from './Modal.module.scss';
 import ModalUI from 'react-bootstrap/Modal';
 
-function Modal({ children, ...props }) {
+function Modal({ textHeader,children, ...props }) {
     return ( 
         <ModalUI
             {...props}
@@ -13,7 +13,7 @@ function Modal({ children, ...props }) {
             <ModalUI.Header closeButton>
                 <ModalUI.Title id="contained-modal-title-vcenter">
                     <h1 className={clsx(styles.header)}>
-                        update product
+                        {textHeader}
                     </h1>
                 </ModalUI.Title>
             </ModalUI.Header>

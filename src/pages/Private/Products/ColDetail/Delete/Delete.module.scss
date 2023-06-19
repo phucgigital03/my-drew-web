@@ -1,0 +1,14 @@
+.delete{
+    width: 100%;
+}
+.textDelete{
+    & span{
+        margin-left: 10px;
+        color: #fabe13;
+    }
+}
+.blockDeleteBtn{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}

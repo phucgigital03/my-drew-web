@@ -66,7 +66,7 @@ function Addproduct() {
             <h1 className={clsx(styles.titlePage)}>
                 add new product
             </h1>
-            <FeedbackError>
+            <FeedbackError success={messageForm === 'create success product'}>
                 {messageForm}
             </FeedbackError>
             <Formik

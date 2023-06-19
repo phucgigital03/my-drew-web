@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toastify/dist/ReactToastify.css";
 import store,{ persistor } from './features/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
 
 import App from './App';
 import GlobalStyles from '~/components/GlobalStyles';
@@ -16,6 +17,9 @@ root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <GlobalStyles>
+        <div>
+          <ToastContainer autoClose={2000}/>
+        </div>
         <App />
       </GlobalStyles>
     </PersistGate>

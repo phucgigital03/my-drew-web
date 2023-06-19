@@ -14,7 +14,7 @@ import { httpPrivateFile } from "~/utils/http";
 import { useAxiosPrivate,useLogOut } from "~/hooks";
 import configs from "~/configs";
 import FeedbackError from "~/components/FeedbackError";
-import { ProductContext } from "../Products";
+import { ProductContext } from "../../Products";
 
 function FormUpdate({ product }) {
     const { handleUpdateProduct } = useContext(ProductContext)
@@ -74,7 +74,7 @@ function FormUpdate({ product }) {
             return (
                 <>
                     <Form onSubmit={handleSubmit}>
-                        <FeedbackError>
+                        <FeedbackError success={messageForm === 'update successfully'}>
                             {messageForm}
                         </FeedbackError>
                         <div className={clsx(styles.wrapForm)}>

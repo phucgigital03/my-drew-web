@@ -17,7 +17,11 @@ const convertToForm = (formProduct)=>{
 const addproductApi = async (httpPrivate,formProduct)=>{
     try{
         const formData = convertToForm(formProduct);
-        const resultApi = await httpPrivate.post('/v1/api/products',formData)
+        const resultApi = await toast.promise(httpPrivate.post('/v1/api/products',formData),{
+            pending: "Promise is pending",
+            success: "Promise  Loaded",
+            error: "error"
+        })
         if(resultApi.data?.statusCode === 200){
             return {
                 statusCode: 200,
@@ -57,10 +61,7 @@ const getproductApi = async (httpPrivate,type,controller,limit = 5,page = 1)=>{
         if(resultApi.data?.statusCode === 200){
             return {
                 statusCode: 200,
-                products: resultApi.data?.data?.products,
-                lengthProductNotDele: resultApi.data?.data?.lengthProductNotDele,
-                lengthProductDele: resultApi.data?.data?.lengthProductDele,
-                lengthAllProduct: resultApi.data?.data?.lengthAllProduct,
+                ...resultApi.data?.data,
             }
         }
     }catch(err){
@@ -105,8 +106,39 @@ const updateproductApi = async (httpPrivate,id,formProduct)=>{
     }
 }
 
+const deleSortProduct = async (httpPrivate,id)=>{
+    try{
+        const resultApi = await toast.promise(httpPrivate.delete('/v1/api/products',{
+            params: {
+                idProduct: id
+            }
+        }),{
+            pending: "Promise is pending",
+            success: "Promise  Loaded",
+            error: "error"
+        });
+        if(resultApi.data?.statusCode === 200){
+            return {
+                statusCode: 200,
+                message: resultApi.data?.message
+            }
+        }
+    }catch(error){
+        if(error.response.data?.statusCode === 400){
+            return {
+                ...error.response.data
+            }
+        }
+        return {
+            statusCode: 500,
+            errorMessage: 'error server'
+        }
+    }
+}
+
 export {
     addproductApi,
     getproductApi,
-    updateproductApi
+    updateproductApi,
+    deleSortProduct
 }

@@ -7,51 +7,102 @@ import { useState } from "react";
 
 import Popper from "~/components/Popper";
 import Modal from "~/components/Modal";
-import FormUpdate from "../FormUpdate";
+import FormUpdate from "./FormUpdate";
+import Preview from "./Preview";
+import Delete from "./Delete";
 
 const URL_API = process.env.REACT_APP_URL_API
 function ColDetail({ lengthThTag,dataRender }) {
-    const [showOption,setShowOption] = useState(false);
-    const [modalShow, setModalShow] = useState(false);
-    const renderOption = props => {
-        return (
-            <div className="box" tabIndex="-1" {...props}>
-               <div className={clsx(styles.option)}>
-                    <Popper>
-                        <ul className={clsx(styles.menuOption)}>
-                            <li className={clsx(styles.itemOption)}>
-                                <FontAwesomeIcon icon={faEye}/>
-                                <span className={clsx(styles.textOption)}>Preview</span>
-                            </li>
-                            <li className={clsx(styles.itemOption)}>
-                                <FontAwesomeIcon icon={faTrashCan}/>
-                                <span className={clsx(styles.textOption)}>Delete</span>
-                            </li>
-                        </ul>
-                    </Popper>
-               </div>
-            </div>
-        )
+    const [product,setProduct] = useState({});
+    const [indexUpdate, setIndexUpdate] = useState(null);
+    const [indexOption,setIndexOption] = useState(null);
+    const [indexPreview,setIndexPreview] = useState(null);
+    const [indexDele,setIndexDele] = useState(null);
+
+    const renderOption = (item,index) => {
+        return (props) => (
+        <div className="box" tabIndex="-1" {...props}>
+           <div className={clsx(styles.option)}>
+                <Popper>
+                    <ul className={clsx(styles.menuOption)}>
+                        <Modal
+                            textHeader={"preview product"}
+                            show={indexPreview === index}
+                            onHide={handleHiddenModalPreview}
+                        >
+                            <Preview 
+                                product={product}
+                            />
+                        </Modal>
+                        <li 
+                            className={clsx(styles.itemOption)}
+                            onClick={(e)=>{
+                                handleShowModalPreview(item,index)
+                            }} 
+                        >
+                            <FontAwesomeIcon icon={faEye}/>
+                            <span className={clsx(styles.textOption)}>Preview</span>
+                        </li>
+                        <Modal
+                            textHeader={"delete product"}
+                            show={indexDele === index}
+                            onHide={handleHiddenModalDele}
+                        >
+                            <Delete
+                                product={product}
+                                handleHidden={handleHiddenModalDele}
+                            />
+                        </Modal>
+                        <li 
+                            className={clsx(styles.itemOption)}
+                            onClick={(e)=>{
+                                handleShowModalDele(item,index)
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faTrashCan}/>
+                            <span className={clsx(styles.textOption)}>Delete</span>
+                        </li>
+                    </ul>
+                </Popper>
+           </div>
+        </div>
+    )}
+    const handleShowOption = (index)=>{
+        setIndexOption(index)
     }
-    const handleHidden = ()=>{
-        setShowOption(false)
+    const handleHiddenOption = ()=>{
+        setIndexOption(null)
     }
-    const handleToggle = ()=>{
-        setShowOption(!showOption)
+    const handleShowModalUpdate = (item,index)=>{
+        setIndexUpdate(index)
+        setProduct(item)
     }
-    const handleShowModal = ()=>{
-        setModalShow(true)
+    const handlehiddenModalUpdate = ()=>{
+        setIndexUpdate(null)
     }
-    const handlehiddenModal = ()=>{
-        setModalShow(false)
+    const handleShowModalPreview = (item,index)=>{
+        setIndexPreview(index)
+        setProduct(item)
+        setIndexOption(null)
+    }
+    const handleHiddenModalPreview = ()=>{
+        setIndexPreview(null)
+    }
+    const handleShowModalDele = (item,index)=>{
+        setIndexDele(index)
+        setProduct(item)
+        setIndexOption(null)
+    }
+    const handleHiddenModalDele = ()=>{
+        setIndexDele(null)
     }
     return ( 
         dataRender.length ? (
-           dataRender.map((item,ind)=>{
+           dataRender.map((item,index)=>{
             return (
-                <tr key={ind}>
+                <tr key={index}>
                     <th>
-                        {ind + 1}
+                        {index + 1}
                     </th>
                     <th>
                         <div className={clsx(styles.wrapImg)}>
@@ -75,25 +126,36 @@ function ColDetail({ lengthThTag,dataRender }) {
                     </th>
                     <th>
                         <div className={clsx(styles.action)}>
-                            <span onClick={handleShowModal} className={clsx(styles.actionUpdate)}>
-                                <FontAwesomeIcon icon={faPen}/>
-                            </span>
                             <Modal
-                                show={modalShow}
-                                onHide={handlehiddenModal}
+                                textHeader={"update product"}
+                                show={indexUpdate === index}
+                                onHide={handlehiddenModalUpdate}
                             >
                                 <FormUpdate
-                                    product={item}
+                                    product={product}
                                 />
                             </Modal>
+                            <span 
+                                onClick={()=>{
+                                    handleShowModalUpdate(item,index)
+                                }} 
+                                className={clsx(styles.actionUpdate)}
+                            >
+                                <FontAwesomeIcon icon={faPen}/>
+                            </span>
                             <Tippy
                                 placement="bottom-end"
                                 interactive
-                                visible={showOption}
-                                onClickOutside={handleHidden}
-                                render={renderOption}
+                                visible={indexOption === index}
+                                onClickOutside={handleHiddenOption}
+                                render={renderOption(item,index)}
                             >
-                                <span onClick={handleToggle} className={clsx(styles.optionDeleAndPreview)}>
+                                <span 
+                                    onClick={()=>{
+                                        handleShowOption(index)
+                                    }} 
+                                    className={clsx(styles.optionDeleAndPreview)}
+                                >
                                     <FontAwesomeIcon icon={faEllipsisVertical}/>
                                 </span>
                             </Tippy>

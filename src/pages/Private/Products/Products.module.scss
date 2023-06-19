@@ -40,14 +40,17 @@
     }
 }
 .itemBlock1{
-    background-color: #27e8a7;
-    
+    background-color: #27e8a7; 
 }
 .itemBlock2{
     background-color: #022388;
-
 }
 .itemBlock3{
     background-color: #4285f4;
-
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0px;
 }
