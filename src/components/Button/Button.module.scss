@@ -42,3 +42,9 @@
 .boder{
     border-radius: 20px;
 }
+// disabled
+.disabled {
+    cursor: none;
+    pointer-events: none;
+    opacity: 0.5;
+}

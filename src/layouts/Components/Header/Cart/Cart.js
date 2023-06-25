@@ -1,38 +1,26 @@
 import clsx from "clsx";
 import styles from './Cart.module.scss'
 import Modal from "react-bootstrap/Modal";
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import configs from "~/configs";
 import MenuProduct from "~/components/MenuProduct";
-import images from "~/assets/image";
 import Button from "~/components/Button";
-
-const fakeProducts = [
-    {
-        id: 1,
-        nameProduct: "mascot ss tee - pacific blue", 
-        size: "l",
-        color: "black",
-        price: 250000,
-        imgProduct: images.categoryOne,
-        qtyProduct: 1,
-    }
-]
+import { openCart,hiddenCart } from "~/features/redux/cartStote";
 
 function Cart() {
-    const [products,setProduct] = useState([])
-    const [show,setShow] = useState(false)
+    const products = useSelector(state => state.cart.products)
+    const showCart = useSelector(state => state.cart.showCart)
+    const dispatch = useDispatch();
+
     const handleHide = ()=>{
-        setShow(false)
+        dispatch(hiddenCart())
     }
     const hanldeOpen = ()=>{
-        setShow(true)
+        dispatch(openCart())
     }
-    useEffect(()=>{
-        setProduct(fakeProducts)
-    },[products])
     return (
         <>
             <div 
@@ -44,7 +32,7 @@ function Cart() {
             </div>
             <Modal
                 animation={false}
-                show={show}
+                show={showCart}
                 onHide={handleHide}
                 className={clsx(styles.modalCart)}
                 dialogClassName={clsx(styles.modalDialogCart)}

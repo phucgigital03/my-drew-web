@@ -22,13 +22,13 @@ const addinventoryApi = async (httpPrivate,formInventory)=>{
             success: "Promise  Loaded",
             error: "error"
         })
+        console.log(resultApi)
         if(resultApi.data?.statusCode === 200){
             return {
                 statusCode: 200,
                 message: 'create success inventory'
             }
         }
-        console.log(resultApi)
         return resultApi;
     }catch(error){
         console.log(error)

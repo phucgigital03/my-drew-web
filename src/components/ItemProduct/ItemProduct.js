@@ -1,29 +1,32 @@
 import clsx from "clsx";
 import styles from './ItemProduct.module.scss'
 import Col from 'react-bootstrap/Col';
+import { Link } from "react-router-dom";
 
-import images from "~/assets/image";
+const URL_API = process.env.REACT_APP_URL_API
 
-function ItemProduct() {
+function ItemProduct({product}) {
     return ( 
         <Col className={clsx(styles.collumCollec)}  xs={12} sm={12} md={3} lg={3} xl={3} xxl={3}>
-            <div 
-                className={clsx(styles.itemCollec)}
-            >
-                <h3 
-                    className={clsx(styles.titleProduct)}
+            <Link className={clsx(styles.linkDetail)} to={`/products/${product.title}`}>
+                <div 
+                    className={clsx(styles.itemCollec)}
                 >
-                    oversized mascot trucker jacket  vintage color block
-                </h3>
-                <div className={clsx(styles.wrapImgProduct)}>
-                    <img src={images.categoryThree} alt="product"/>
+                    <h3 
+                        className={clsx(styles.titleProduct)}
+                    >
+                        {product.title}
+                    </h3>
+                    <div className={clsx(styles.wrapImgProduct)}>
+                        <img src={`${URL_API}/${product.listImg[0]}`} alt="product"/>
+                    </div>
+                    <span 
+                        className={clsx(styles.priceProduct)}
+                    >
+                        {product.price} VND
+                    </span>
                 </div>
-                <span 
-                    className={clsx(styles.priceProduct)}
-                >
-                    {230000} VND
-                </span>
-            </div>
+            </Link>
         </Col>
     );
 }

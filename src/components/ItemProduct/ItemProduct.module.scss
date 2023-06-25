@@ -12,6 +12,7 @@
     padding: 0px 20px;
     line-height: 2.4rem;
     transition: all 0.2s ease;
+    color: black;
 }
 .wrapImgProduct{
     width: 100%;
@@ -29,14 +30,16 @@
     width: 100%;
     display: block;
     transition: all 0.2s ease;
+    color: black;
 }
-.collumCollec{
+.linkDetail{
     margin-top: 20px !important;
     display: flex;
     justify-content: center;
     border: 0;
     transition: all 0.1s ease;
     cursor: pointer;
+    text-decoration: none;
     &:hover{
         border: solid 2px #ffc001;
     }

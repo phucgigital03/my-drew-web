@@ -28,7 +28,7 @@
         flex-shrink: 0;
         width: 160px;
         max-width: 160px;
-        height: 240px;
+        height: 210px;
         display: block;
         margin-right: 16px;
     }
@@ -37,6 +37,9 @@
         width: 100%;
         height: 100%;
     }
+}
+.lineItemDetail{
+    flex: 1;
 }
 .destroyProduct{
     font-size: 1.6rem;
