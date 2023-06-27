@@ -33,10 +33,10 @@ function FormGroupSelect({
     const { name,value } = field
     const { setFieldValue } = form
     const handleChange = (selectedOption)=>{
-        const selectedValue = selectedOption ? selectedOption.value : selectedOption
+        const selectedValue = selectedOption ? selectedOption.label : selectedOption
         setFieldValue(name,selectedValue);
     }
-    const selectedOption = options.find(fakeDistrict => fakeDistrict.value === value)
+    const selectedOption = options.find(fakeDistrict => fakeDistrict.label === value)
     return (
         <div className={clsx(styles.wrapForm,{
             [styles.disabled]: disabled

@@ -1,18 +1,38 @@
 import clsx from "clsx";
 import styles from './ShippingAndPayment.module.scss'
 import { useEffect, useState } from "react";
+import { Field } from "formik";
 
 import BlockCheckout from "~/components/BlockCheckout";
 import images from "~/assets/image";
 
-function LogicPayment() {
+const BlockCheckouts = [
+    {
+        id: 'paypal',
+        name: 'methodPayment',
+        descript: 'Thanh toán qua PAYPAL',
+        img: images.iconvnpay
+    },
+    {
+        id: 'visa',
+        name: 'methodPayment',
+        descript: 'Thanh toán qua VISA',
+        img: images.visapay
+    },
+    {
+        id: 'cod',
+        name: 'methodPayment',
+        descript: 'Thanh toán qua COD',
+        img: images.visapay
+    },
+]
+function LogicPayment({values}) {
     const [show,setShow] = useState(false)
     useEffect(()=>{
-        if(!show){
-            return;
+        if(values.commune){
+            setShow(true)
         }
-        setShow(false)
-    },[show])
+    },[values])
     return ( 
         <div className={clsx(styles.wrapPriceShipAndPayment)}>
             <div className={clsx(styles.priceShip)}>
@@ -21,13 +41,8 @@ function LogicPayment() {
                 </h2>
                 {
                     show ? (
-                        <div className={clsx(styles.contentMethodPayment)}>
-                           <BlockCheckout
-                                nameBlock={"priceShip"}
-                                idBlock={"priceShip"}
-                                descript={"Giao hàng tận nơi"}
-                                text={35000}
-                           /> 
+                        <div className={clsx(styles.textPriceShip)}>
+                           Giao hàng tận nơi 35000 vnd
                         </div>
                     ) : (
                         <div className={clsx(styles.textPriceShip)}>
@@ -41,24 +56,27 @@ function LogicPayment() {
                     Thanh toán
                 </h2>
                 <div className={clsx(styles.contentMethodPayment)}>
-                    <BlockCheckout
-                        nameBlock={"methodPayment"}
-                        idBlock={"vnpay"}
-                        descript={"Thanh toán qua VNPAY-QR"}
-                        imgLink={images.iconvnpay}
-                    />
-                    <BlockCheckout
-                        nameBlock={"methodPayment"}
-                        idBlock={"visa"}
-                        descript={"Thanh toán qua VISA"}
-                        imgLink={images.visapay}
-                    />
-                    <BlockCheckout
-                        nameBlock={"methodPayment"}
-                        idBlock={"cod"}
-                        descript={"Thanh toán qua COD"}
-                        imgLink={images.visapay}
-                    />
+                    {
+                        <Field
+                            name={"methodPayment"}
+                        >
+                            {({field})=>{
+                                return BlockCheckouts.map((block,index)=>{
+                                    return (
+                                        <BlockCheckout
+                                            key={index}
+                                            idBlock={block.id}
+                                            descript={block.descript}
+                                            imgLink={block.img}
+                                            value={block.id}
+                                            check={field.value === block.id}
+                                            field={field}
+                                        />
+                                    )
+                                })
+                            }}
+                        </Field>
+                    }
                 </div>
             </div>
         </div>

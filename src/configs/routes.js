@@ -12,6 +12,8 @@ const routes = {
     register: "/account/register",
     recoverPwd: "/account/recover",
     detailProduct: "/products/:title",
+    cancel: "/payment/cancel",
+    success: "/payment/success/:customerID",
     checkout: "/checkout",
     cart: "/cart",
     shopAll: "/collections/shopAll",

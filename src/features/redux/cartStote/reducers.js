@@ -11,6 +11,13 @@ const reducers = {
             ...state,
             showCart: false,
         }
+    },
+    clearProduct(state,action){
+        return {
+            ...state,
+            showCart: false,
+            products: [],
+        }
     }
 }
 

@@ -8,7 +8,7 @@ import jwtDecode from "jwt-decode";
 import { useState,useEffect,useCallback } from "react";
 
 import { useAxiosPrivate,useLogOut } from "~/hooks";
-import { getOrderHistory } from "~/services/orderHistory";
+import { getInfoUser } from "~/services/infoUser";
 import { useNavigate } from "react-router-dom";
 import configs from "~/configs";
 import { httpPrivate } from "~/utils/http";
@@ -38,7 +38,7 @@ function Profile() {
     useEffect(()=>{
         const controller = new AbortController();
         const getListOrder = async ()=>{
-            const result = await getOrderHistory(httpPrivates,idUser,'orderHistory',controller);
+            const result = await getInfoUser(httpPrivates,idUser,'orderHistory',controller);
             if(result.statusCode === 500){
                 setOrderHistorys([]);
                 setEmail('');

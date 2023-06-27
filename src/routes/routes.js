@@ -14,6 +14,8 @@ import Unauthorization from "~/pages/Unauthorization/Unauthorization"
 import Employment from "~/pages/Private/Employment"
 import AddInventory from "~/pages/Private/AddInventory"
 import Inventorys from "~/pages/Private/Inventorys"
+import SuccessPay from "~/pages/SuccessPay"
+import CancelPay from "~/pages/CancelPay"
 
 const publicRoutes = [
     {path: configs.routes.introduce, LayOut: IntroduceLayout, Component: Introduce},
@@ -21,6 +23,8 @@ const publicRoutes = [
     {path: configs.routes.register, Component: Register},
     {path: configs.routes.detailProduct, Component: DetailProduct},
     {path: configs.routes.recoverPwd, Component: RecoverPwd},
+    {path: configs.routes.cancel, Component: CancelPay},
+    {path: configs.routes.success, Component: SuccessPay},
     {path: configs.routes.cart, Component: CartPage},
     {path: configs.routes.checkout, Component: Checkout , LayOut: null},
     {path: configs.routes.newArrivals, Component: ShowProduct},

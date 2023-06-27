@@ -1,0 +1,15 @@
+.successPay{
+    padding: 0px 40px;
+
+    & h2{
+        margin: 0;
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: rgb(2, 163, 58);
+        font-family: regular;
+    }
+    & p:last-of-type{
+        margin-bottom: 30px;
+    }
+}
