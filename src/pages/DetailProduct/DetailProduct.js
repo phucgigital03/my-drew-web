@@ -91,7 +91,7 @@ function DetailProduct() {
     },[checkSize,checkColor,products])
 
     const handleAddCart = async ()=>{
-        const inventoryId = products[indexProduct]?.idInventory
+        const inventoryId = products?.[indexProduct]?.inventoryId
         console.log(cartId)
         console.log(inventoryId)
         const action = await dispatch(addCart({

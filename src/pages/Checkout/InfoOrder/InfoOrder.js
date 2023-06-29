@@ -54,7 +54,7 @@ function InfoOrder() {
                             component={FormGroup}
                             label={"Nhập mã giảm giá"}
                         />
-                        <Button black classBtn={clsx(styles.discountBtn)}>Áp dụng</Button>
+                        <Button to={'#'} black classBtn={clsx(styles.discountBtn)}>Áp dụng</Button>
                     </div>
                     <div className={clsx(styles.totalPriceOrder)}>
                         <div className={clsx(styles.tableOrder)}>

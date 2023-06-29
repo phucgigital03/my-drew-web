@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import styles from './ShippingAndPayment.module.scss'
 import { useEffect, useState } from "react";
-import { Field } from "formik";
+import { Field,ErrorMessage } from "formik";
 
 import BlockCheckout from "~/components/BlockCheckout";
 import images from "~/assets/image";
-
+import FeedbackError from "~/components/FeedbackError";
 const BlockCheckouts = [
     {
         id: 'paypal',
@@ -78,6 +78,10 @@ function LogicPayment({values}) {
                         </Field>
                     }
                 </div>
+                <ErrorMessage 
+                    name={"methodPayment"} 
+                    component={FeedbackError}
+                />
             </div>
         </div>
     );

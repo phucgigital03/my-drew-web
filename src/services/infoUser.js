@@ -1,9 +1,9 @@
 
-export const getInfoUser = async(httpPrivate,idUser,type,controller)=>{
+export const getInfoUser = async(httpPrivate,userId,type,controller)=>{
     try{
         const result = await httpPrivate.get('/v1/api/users',{
             params: {
-                idUser: idUser,
+                userId: userId,
                 type
             },
             signal: controller.signal
@@ -11,8 +11,8 @@ export const getInfoUser = async(httpPrivate,idUser,type,controller)=>{
         if(result.data?.statusCode === 200){
             return {
                 statusCode: 200,
-                data: result.data?.data[0]?.orderHistorys,
-                email: result.data?.data[0]?.email
+                data: result.data?.data?.[0]?.orders,
+                email: result.data?.data?.[0]?.email
             }
         }
     }catch(error){

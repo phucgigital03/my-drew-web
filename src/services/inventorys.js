@@ -110,7 +110,7 @@ const deleSortInventory = async (httpPrivate,id)=>{
     try{
         const resultApi = await toast.promise(httpPrivate.delete('/v1/api/inventory',{
             params: {
-                idInventory: id
+                inventoryId: id
             }
         }),{
             pending: "Promise is pending",

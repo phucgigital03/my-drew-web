@@ -14,9 +14,9 @@ function MenuProduct({products}) {
     const cartId = useSelector(state => state.cart.cartId)
     const dipacth = useDispatch();
     const handlePlus = async (product)=>{
-        let { idInventory } = product
+        let { inventoryId } = product
         const action = await dipacth(updatePlus({
-            inventoryId: idInventory,
+            inventoryId: inventoryId,
             cartId: cartId
         }))
         const { payload } = action;
@@ -27,9 +27,9 @@ function MenuProduct({products}) {
         }
     }
     const handleMinus = async (product)=>{
-        let { idInventory } = product
+        let { inventoryId } = product
         const action = await dipacth(updateMinus({
-            inventoryId: idInventory,
+            inventoryId: inventoryId,
             cartId: cartId
         }))
         const { payload } = action;
@@ -40,9 +40,9 @@ function MenuProduct({products}) {
         }
     }
     const handleDele = async (product)=>{
-        let { idInventory,quatity } = product
+        let { inventoryId,quatity } = product
         const action = await dipacth(deleProduct({
-            inventoryId: idInventory,
+            inventoryId: inventoryId,
             quatity: quatity,
             cartId: cartId
         }))

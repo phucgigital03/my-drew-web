@@ -31,7 +31,7 @@ function Filters() {
                     </div>
                 </div>
                 <p className={clsx(styles.totalProduct)}>
-                    {2} products
+                    Products
                 </p>
             </div>
         </div>

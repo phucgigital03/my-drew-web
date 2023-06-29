@@ -19,6 +19,25 @@ const getURLStripe = async (formData)=>{
     }
 }
 
+const getURLCOD = async (formData)=>{
+    try{
+        const resultApi = await post('/v1/api/cod/orders',formData);
+        if(resultApi.data?.statusCode === 200){
+            return {
+                statusCode: 200,
+                url: resultApi.data?.url
+            }
+        }
+        return resultApi
+    }catch(error){
+        console.log(error)
+        return {
+            statusCode: 500,
+            errorMessage: 'error server'
+        }
+    }
+}
+
 const getOneOrder = async(customerID)=>{
     try{
         const resultApi = await get(`/v1/api/orders/${customerID}`)
@@ -39,5 +58,6 @@ const getOneOrder = async(customerID)=>{
 
 export {
     getURLStripe,
-    getOneOrder
+    getOneOrder,
+    getURLCOD
 }

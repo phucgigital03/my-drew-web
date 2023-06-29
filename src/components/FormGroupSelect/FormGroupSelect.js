@@ -38,6 +38,7 @@ function FormGroupSelect({
     }
     const selectedOption = options.find(fakeDistrict => fakeDistrict.label === value)
     return (
+    <>
         <div className={clsx(styles.wrapForm,{
             [styles.disabled]: disabled
         })} >
@@ -54,11 +55,12 @@ function FormGroupSelect({
                     styles={colourStyles}
                 />
             </div>
-            <ErrorMessage
-                name={name}
-                component={FeedbackError}
-            />
-    </div>
+        </div>
+        <ErrorMessage
+            name={name}
+            component={FeedbackError}
+        />
+    </>
     );
 }
 

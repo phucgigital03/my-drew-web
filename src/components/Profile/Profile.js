@@ -33,17 +33,17 @@ function Profile() {
     const navigate = useNavigate();
     const logout = useLogOut();
     const decodeJWT = jwtDecode(accessToken)
-    const idUser = decodeJWT?.userInfo?.id;
+    const userId = decodeJWT?.userInfo?.id;
 
     useEffect(()=>{
         const controller = new AbortController();
         const getListOrder = async ()=>{
-            const result = await getInfoUser(httpPrivates,idUser,'orderHistory',controller);
+            const result = await getInfoUser(httpPrivates,userId,'orderHistory',controller);
             if(result.statusCode === 500){
                 setOrderHistorys([]);
                 setEmail('');
-                await logout()
-                navigate(configs.routes.login,{ replace: true})
+                // await logout()
+                // navigate(configs.routes.login,{ replace: true})
             }
             if(result.statusCode === 200){
                 console.log(result.data)
@@ -55,7 +55,7 @@ function Profile() {
         return ()=>{
             controller.abort();
         }
-    },[idUser])
+    },[userId])
 
     const handleLogOut = useCallback(async (e)=>{
         e.preventDefault();
