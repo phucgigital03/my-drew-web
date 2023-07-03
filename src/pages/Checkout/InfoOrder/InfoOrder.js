@@ -8,9 +8,10 @@ import { useMemo } from "react";
 import FormGroup from "~/components/FormGroup/FormGroup";
 import Button from "~/components/Button";
 import configs from "~/configs";
+import Paypal from "~/components/paypal";
 
 const URL_API = process.env.REACT_APP_URL_API
-function InfoOrder() {
+function InfoOrder({show,formData}) {
     const products = useSelector(state => state.cart.products)
     const subtotalPrice = useMemo(()=>{
         return products.reduce((total,product)=>{
@@ -18,6 +19,7 @@ function InfoOrder() {
             return total + price
         },0)
     },[products])
+    
     return ( 
         <div className={clsx(styles.infoOrder)}>
             <h2 className={clsx(styles.headerOrder)}>
@@ -82,7 +84,12 @@ function InfoOrder() {
                     </div>
                     <div className={clsx(styles.wrapBtnOrder)}>
                         <Link className={clsx(styles.linkBackCart)} to={configs.routes.cart}>Quay về giỏ hàng</Link>
-                        <Button type={"submit"} black classBtn={clsx(styles.orderBtn)}>ĐẶT HÀNG</Button>
+                        {  
+                            show ? 
+                            <Button type={"submit"} black classBtn={clsx(styles.orderBtn)}>ĐẶT HÀNG</Button> 
+                            :
+                            <Paypal formData={formData}/>
+                        }
                     </div>
                 </footer>
             </div>

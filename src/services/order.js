@@ -2,7 +2,7 @@ import { post,get } from "~/utils/http";
 
 const getURLStripe = async (formData)=>{
     try{
-        const resultApi = await post('/v1/create-checkout-session',formData);
+        const resultApi = await post('/v1/stripe/create-checkout-session',formData);
         if(resultApi.data?.statusCode === 200){
             return {
                 statusCode: 200,
@@ -22,6 +22,65 @@ const getURLStripe = async (formData)=>{
 const getURLCOD = async (formData)=>{
     try{
         const resultApi = await post('/v1/api/cod/orders',formData);
+        if(resultApi.data?.statusCode === 200){
+            return {
+                statusCode: 200,
+                url: resultApi.data?.url
+            }
+        }
+        return resultApi
+    }catch(error){
+        console.log(error)
+        return {
+            statusCode: 500,
+            errorMessage: 'error server'
+        }
+    }
+}
+
+const getURLVnpay = async (formData)=>{
+    try{
+        const resultApi = await post('/v1/api/vnpay/create_payment_url',formData);
+        if(resultApi.data?.statusCode === 200){
+            return {
+                statusCode: 200,
+                url: resultApi.data?.url
+            }
+        }
+        return resultApi
+    }catch(error){
+        console.log(error)
+        return {
+            statusCode: 500,
+            errorMessage: 'error server'
+        }
+    }
+}
+
+const createPaypalOrder = async (cartId)=>{
+    try{
+        const resultApi = await post('/v1/api/paypal/orders',{
+            cartId: cartId
+        });
+        if(resultApi.data?.statusCode === 200){
+            return resultApi.data?.id
+        }
+        return resultApi
+    }catch(error){
+        console.log(error)
+        return {
+            statusCode: 500,
+            errorMessage: 'error server'
+        }
+    }
+}
+
+const captureOrder = async(formData,orderID)=>{
+    try{
+        const resultApi = await post('/v1/api/paypal/capture/orders',{
+            orderId: orderID,
+            formData: formData
+        });
         if(resultApi.data?.statusCode === 200){
             return {
                 statusCode: 200,
@@ -59,5 +118,8 @@ const getOneOrder = async(customerID)=>{
 export {
     getURLStripe,
     getOneOrder,
-    getURLCOD
+    getURLCOD,
+    createPaypalOrder,
+    captureOrder,
+    getURLVnpay
 }

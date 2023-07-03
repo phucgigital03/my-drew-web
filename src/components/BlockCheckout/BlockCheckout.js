@@ -1,7 +1,22 @@
 import clsx from "clsx";
 import styles from './BlockCheckout.module.scss'
-
-function BlockCheckout({idBlock,value,check,descript,imgLink,field}) {
+import { useContext } from "react";
+import { StateContext } from "~/pages/Checkout/Checkout";
+function BlockCheckout({idBlock,value,check,descript,imgLink,field,form}) {
+    const {
+        handleShowPaypal,
+        handleHiddenPaypal
+    } = useContext(StateContext);
+    const { setFieldValue } = form;
+    const handleChange = (e)=>{
+        const value = e.target.value;
+        if(value === 'paypal'){
+            handleShowPaypal()
+        }else{
+            handleHiddenPaypal()
+        }
+        setFieldValue("methodPayment",value)
+    }
     return ( 
         <div className={clsx(styles.blockMethodPayment)}>
             <input 
@@ -9,6 +24,7 @@ function BlockCheckout({idBlock,value,check,descript,imgLink,field}) {
                 className={clsx(styles.inputCheckout)} 
                 id={idBlock} 
                 {...field}
+                onChange={handleChange}
                 value={value}
                 checked={check}
             />
@@ -19,7 +35,7 @@ function BlockCheckout({idBlock,value,check,descript,imgLink,field}) {
                 <span className={clsx(styles.iconBlock)}>
                     <img 
                         className={clsx({
-                            [styles.imgVisa]: idBlock === "visa",
+                            [styles.imgPaypal]: idBlock === "paypal",
                             [styles.imgCod]: idBlock === "cod"
                         })} 
                         src={imgLink} alt="iconBlock"

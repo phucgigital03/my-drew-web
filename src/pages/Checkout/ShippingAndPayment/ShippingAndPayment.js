@@ -8,15 +8,15 @@ import images from "~/assets/image";
 import FeedbackError from "~/components/FeedbackError";
 const BlockCheckouts = [
     {
-        id: 'paypal',
+        id: 'vnpay',
         name: 'methodPayment',
-        descript: 'Thanh toán qua PAYPAL',
+        descript: 'Thanh toán qua VNPAY',
         img: images.iconvnpay
     },
     {
-        id: 'visa',
+        id: 'paypal',
         name: 'methodPayment',
-        descript: 'Thanh toán qua VISA',
+        descript: 'Thanh toán qua PAYPAL',
         img: images.visapay
     },
     {
@@ -26,7 +26,7 @@ const BlockCheckouts = [
         img: images.visapay
     },
 ]
-function LogicPayment({values}) {
+function ShippingAndPayment({ values }) {
     const [show,setShow] = useState(false)
     useEffect(()=>{
         if(values.commune){
@@ -60,7 +60,7 @@ function LogicPayment({values}) {
                         <Field
                             name={"methodPayment"}
                         >
-                            {({field})=>{
+                            {({field,form})=>{
                                 return BlockCheckouts.map((block,index)=>{
                                     return (
                                         <BlockCheckout
@@ -71,6 +71,7 @@ function LogicPayment({values}) {
                                             value={block.id}
                                             check={field.value === block.id}
                                             field={field}
+                                            form={form}
                                         />
                                     )
                                 })
@@ -87,4 +88,4 @@ function LogicPayment({values}) {
     );
 }
 
-export default LogicPayment;
+export default ShippingAndPayment;

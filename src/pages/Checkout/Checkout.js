@@ -6,16 +6,20 @@ import Col from 'react-bootstrap/Col';
 import { Form,Formik } from "formik";
 import { useSelector } from "react-redux";
 import * as Yup from 'yup'
-import { useState } from "react";
+import { useState,createContext } from "react";
+import { Link } from "react-router-dom";
 
 import images from "~/assets/image";
-import DeliveryInfo from "./DeliveryInfo";
 import ShippingAndPayment from "./ShippingAndPayment";
+import DeliveryInfo from "./DeliveryInfo";
 import InfoOrder from "./InfoOrder";
-import { getURLCOD, getURLStripe } from "~/services/order";
+import { getURLCOD,getURLVnpay } from "~/services/order";
 import FeedbackError from "~/components/FeedbackError";
+import configs from "~/configs";
 
+export const StateContext = createContext(null);
 function Checkout() {
+    const [showPaypal,setShowPaypal] = useState(false);
     const [message,setMessage] = useState('');
     const cartId = useSelector(state => state.cart.cartId);
     const orderInfoSchema = Yup.object().shape({
@@ -44,16 +48,17 @@ function Checkout() {
             discount: '',
         },
         onSubmit: async (values, { resetForm }) => {
-            if(values.methodPayment === 'visa'){
-                const { url } = await getURLStripe(values);
+            if(values.methodPayment === 'vnpay'){
+                const { url } = await getURLVnpay(values);
+                console.log(url)
                 if(url){
                     window.location.href = url
+                }else{
+                    setMessage('error server')
                 }
-            }else if(values.methodPayment === 'paypal'){
-                console.log(values)
             }else if(values.methodPayment === 'cod'){
                 const { url } = await getURLCOD(values);
-                if( url ){
+                if(url){
                     window.location.href = url
                 }else{
                     setMessage('error server')
@@ -61,46 +66,59 @@ function Checkout() {
             }
         }
     }
+    const handleShowPaypal = ()=>{
+        setShowPaypal(true)
+    }
+    const handleHiddenPaypal = ()=>{
+        setShowPaypal(false)
+    }
     return ( 
-        <div className={clsx(styles.checkout)}>
-            <FeedbackError>
-                {message}
-            </FeedbackError>
-            <Container
-                fluid={true}
-            >
-                    <Formik
-                        {...propFormiks}
-                        validationSchema={orderInfoSchema}
-                    >
-                    {(formikProps)=>{
-                        const { values,handleSubmit } = formikProps
-                        // console.log(values,errors,touched)
-                        return (
-                            <Form 
-                                onSubmit={handleSubmit}
-                            >
-                                <Row>
-                                    <Col md={8} lg={8} xl={8} xxl={8}>
-                                        <div className={clsx(styles.sectionCheckout1)}>
-                                            <header className={clsx(styles.logocheckout)}>
-                                                <img src={images.logo} alt="logoShop"/>
-                                            </header>
-                                            <div className={clsx(styles.infoCustomer)}>
-                                                <DeliveryInfo values={values}/>
-                                                <ShippingAndPayment values={values}/>
+        <StateContext.Provider value={{handleShowPaypal,handleHiddenPaypal}}>
+            <div className={clsx(styles.checkout)}>
+                <FeedbackError>
+                    {message}
+                </FeedbackError>
+                <Container
+                    fluid={true}
+                >       
+                        <Formik
+                            {...propFormiks}
+                            validationSchema={orderInfoSchema}
+                        >
+                        {(formikProps)=>{
+                            const { values,handleSubmit } = formikProps
+                            // console.log(values,errors,touched)
+                            return (
+                                <Form 
+                                    onSubmit={handleSubmit}
+                                >
+                                    <Row>
+                                        <Col md={8} lg={8} xl={8} xxl={8}>
+                                            <div className={clsx(styles.sectionCheckout1)}>
+                                                <header className={clsx(styles.logocheckout)}>
+                                                    <Link to={configs.routes.shopAll}>
+                                                        <img src={images.logo} alt="logoShop"/>
+                                                    </Link>
+                                                </header>
+                                                <div className={clsx(styles.infoCustomer)}>
+                                                    <DeliveryInfo values={values}/>
+                                                    <ShippingAndPayment values={values}/>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Col>
-                                    <Col md={4} lg={4} xl={4} xxl={4} >
-                                        <InfoOrder/>
-                                    </Col>
-                                </Row>
-                            </Form>
-                        )}}
-                    </Formik>
-            </Container>
-        </div>
+                                        </Col>
+                                        <Col md={4} lg={4} xl={4} xxl={4} >
+                                            <InfoOrder
+                                                show={!showPaypal}
+                                                formData={values}
+                                            />
+                                        </Col>
+                                    </Row>
+                                </Form>
+                            )}}
+                        </Formik>
+                </Container>
+            </div>
+        </StateContext.Provider>
      );
 }
 
