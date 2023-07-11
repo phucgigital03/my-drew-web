@@ -34,6 +34,11 @@ export const patch = async (path, option = {}) => {
     return res;
 };
 
+export const put = async (path, option = {}) => {
+    const res = await http.put(path, option);
+    return res;
+};
+
 export const dele = async (path, option = {}) => {
     const res = await http.delete(path, option);
     return res;

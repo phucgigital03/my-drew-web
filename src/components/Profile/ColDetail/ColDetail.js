@@ -9,9 +9,9 @@ function ColDetail({ lengthThTag,dataRender }) {
                         <th>{ind}</th>
                         <th>{item?._id}</th>
                         <th>{item?.createdAt}</th>
-                        <th>{item?.address?.details}</th>
-                        <th>{item?.address?.province}</th>
-                        <th>{item?.totalPrice}</th>
+                        <th>{item?.shipping?.noteaddress}</th>
+                        <th>{item?.shipping?.province}</th>
+                        <th>{item?.total}</th>
                         <th>{item?.status}</th>
                     </tr>
                 )

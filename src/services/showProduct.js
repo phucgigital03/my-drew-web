@@ -1,9 +1,14 @@
 import { get } from "~/utils/http";
 
-const getProducts = async (signal)=>{
+const getProductsFilter = async (signal,category,price,size)=>{
     try{
         const resultApi = await get('/v1/api/product',{
-            signal
+            signal,
+            params: {
+                category,
+                price,
+                size
+            }
         })
         if(resultApi.data?.statusCode === 200){
             return {
@@ -22,5 +27,5 @@ const getProducts = async (signal)=>{
 }
 
 export {
-    getProducts
+    getProductsFilter
 }

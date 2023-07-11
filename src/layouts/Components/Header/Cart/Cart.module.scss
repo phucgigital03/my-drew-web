@@ -20,7 +20,11 @@
     justify-content: center;
     margin-left: 6px;
 }
+.backropCart{
+    z-index: 10000;
+}
 .modalCart{
+    z-index: 10000;
     & .modalDialogCart{
         width: 100%;
         max-width: 375px;

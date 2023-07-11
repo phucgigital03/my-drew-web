@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import * as Yup from 'yup'
 import { useState,createContext } from "react";
 import { Link } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 import images from "~/assets/image";
 import ShippingAndPayment from "./ShippingAndPayment";
@@ -19,9 +20,15 @@ import configs from "~/configs";
 
 export const StateContext = createContext(null);
 function Checkout() {
+    let userId;
+    const accessToken = useSelector(state => state.user.accessToken);
+    if(accessToken){
+        const decodeJWT = jwtDecode(accessToken);
+        userId = decodeJWT?.userInfo?.id;
+    }
+    const cartId = useSelector(state => state.cart.cartId);
     const [showPaypal,setShowPaypal] = useState(false);
     const [message,setMessage] = useState('');
-    const cartId = useSelector(state => state.cart.cartId);
     const orderInfoSchema = Yup.object().shape({
         email: Yup.string()
           .email('Invalid email')
@@ -34,8 +41,10 @@ function Checkout() {
         commune: Yup.string().required('commune is required'),
         methodPayment: Yup.string().required('method payment is required'),
     });
+    console.log(userId)
     const propFormiks = {
         initialValues: {
+            userId: userId,
             cartId: cartId,
             email: '',
             phoneNumber: '',

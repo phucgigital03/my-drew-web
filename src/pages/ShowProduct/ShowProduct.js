@@ -6,30 +6,52 @@ import { useEffect, useState } from "react";
 
 import Filters from "./Filters";
 import ItemProduct from "~/components/ItemProduct";
-import { getProducts } from "~/services/showProduct";
+import { getProductsFilter } from "~/services/showProduct";
 
 function ShowProduct() {
+    const path = window.location.pathname.split('/').slice(-1);
+    const titleString = path[0]; 
     const [products,setProducts] = useState([]);
+    const [titlePage,setTitlePage] = useState('');
+
     useEffect(()=>{
+        setTitlePage(titleString);
+    },[titleString])
+
+    useEffect(()=>{
+        if(!titlePage){
+            return;
+        }
+        console.log('page',titlePage)
         const controller = new AbortController();
         const getProductsApi = async ()=>{
-            const resultApi = await getProducts(controller.signal)
+            const category = titlePage;
+            const resultApi = await getProductsFilter(controller.signal,category);
+            console.log(resultApi)
             if(resultApi.statusCode === 200){
                 setProducts(resultApi.products)
+            }else if(resultApi.statusCode === 500){
+                setProducts([]);
             }
         }
         getProductsApi()
         return ()=>{
             controller.abort();
         }
-    },[])
+    },[titlePage])
+
+    const handleProducts = (products)=>{
+        setProducts(products)
+    }
     return (
         <div className={clsx(styles.showProductPage)}>
             <div className={clsx(styles.container)}>
-                <Filters/>
+                <Filters
+                    handleProducts={handleProducts}
+                />
                 <div className={clsx(styles.collectionProduct)}>
                     <h1 className={clsx(styles.headinhCollec)}>
-                        outerwear
+                        {titlePage}
                     </h1>
                     <div className={clsx(styles.wrapCollection)}>
                         <Container

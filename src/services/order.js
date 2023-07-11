@@ -75,7 +75,7 @@ const createPaypalOrder = async (cartId)=>{
     }
 }
 
-const captureOrder = async(formData,orderID)=>{
+const capturePaypalOrder = async(formData,orderID)=>{
     try{
         const resultApi = await post('/v1/api/paypal/capture/orders',{
             orderId: orderID,
@@ -120,6 +120,6 @@ export {
     getOneOrder,
     getURLCOD,
     createPaypalOrder,
-    captureOrder,
+    capturePaypalOrder,
     getURLVnpay
 }

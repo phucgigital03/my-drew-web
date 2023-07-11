@@ -42,8 +42,8 @@ const listCategorys = [
     },
     {
         id: 7,
-        title: 'bottoms',
-        path:   configs.routes.bottoms
+        title: 'pants',
+        path:   configs.routes.pants
     },
     {
         id: 8,

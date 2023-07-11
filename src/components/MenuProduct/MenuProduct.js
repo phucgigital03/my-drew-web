@@ -10,8 +10,8 @@ import { updatePlus,updateMinus,deleProduct } from "~/features/redux/cartStote/e
 import FeedbackError from "../FeedbackError";
 const URL_API = process.env.REACT_APP_URL_API
 function MenuProduct({products}) {
-    const [message,setMessage] = useState(null);
     const cartId = useSelector(state => state.cart.cartId)
+    const [message,setMessage] = useState(null);
     const dipacth = useDispatch();
     const handlePlus = async (product)=>{
         let { inventoryId } = product
@@ -40,10 +40,9 @@ function MenuProduct({products}) {
         }
     }
     const handleDele = async (product)=>{
-        let { inventoryId,quatity } = product
+        let { inventoryId } = product
         const action = await dipacth(deleProduct({
             inventoryId: inventoryId,
-            quatity: quatity,
             cartId: cartId
         }))
         const { payload } = action;
@@ -53,6 +52,7 @@ function MenuProduct({products}) {
             setMessage('update success')
         }
     }
+    console.log(products)
     return (
         <section className={clsx(styles.bodyCart)}>
             <FeedbackError success={message === 'update success'}>

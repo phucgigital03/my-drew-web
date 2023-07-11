@@ -1,26 +1,44 @@
 import clsx from "clsx";
 import styles from './Cart.module.scss'
 import Modal from "react-bootstrap/Modal";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import configs from "~/configs";
 import MenuProduct from "~/components/MenuProduct";
 import Button from "~/components/Button";
-import { openCart,hiddenCart } from "~/features/redux/cartStote";
+import { openCart,hiddenCart, getProductCart } from "~/features/redux/cartStote";
+import { getCart } from "~/services/cart";
 
 function Cart() {
+    const cartId = useSelector(state => state.cart.cartId)
     const products = useSelector(state => state.cart.products)
     const showCart = useSelector(state => state.cart.showCart)
     const dispatch = useDispatch();
-
     const handleHide = ()=>{
         dispatch(hiddenCart())
     }
     const hanldeOpen = ()=>{
         dispatch(openCart())
     }
+    useEffect(()=>{
+        if(!cartId){
+            return;
+        }
+        const controller = new AbortController();
+        const getCartDB = async ()=>{
+            const result = await getCart(cartId,controller.signal);
+            if(result.statusCode === 200){
+                dispatch(getProductCart({products: result.products}))
+            }
+        }
+        getCartDB();
+        return ()=>{
+            controller.abort();
+        }
+    },[cartId])
+
     return (
         <>
             <div 
@@ -34,6 +52,7 @@ function Cart() {
                 animation={false}
                 show={showCart}
                 onHide={handleHide}
+                backdropClassName={clsx(styles.backropCart)}
                 className={clsx(styles.modalCart)}
                 dialogClassName={clsx(styles.modalDialogCart)}
                 contentClassName={clsx(styles.contentModalCart)}

@@ -2,23 +2,44 @@ import clsx from "clsx";
 import styles from './InfoOrder.module.scss'
 import { Link } from "react-router-dom";
 import { FastField } from "formik";
-import { useSelector } from "react-redux";
-import { useMemo } from "react";
+import { useSelector,useDispatch } from "react-redux";
+import { useMemo,useEffect } from "react";
 
 import FormGroup from "~/components/FormGroup/FormGroup";
 import Button from "~/components/Button";
 import configs from "~/configs";
 import Paypal from "~/components/paypal";
+import { getProductCart } from "~/features/redux/cartStote";
+import { getCart } from "~/services/cart";
 
 const URL_API = process.env.REACT_APP_URL_API
 function InfoOrder({show,formData}) {
+    const cartId = useSelector(state => state.cart.cartId)
     const products = useSelector(state => state.cart.products)
+    const dispatch = useDispatch();
     const subtotalPrice = useMemo(()=>{
         return products.reduce((total,product)=>{
             const price = product.price * product.quatity
             return total + price
         },0)
     },[products])
+
+    useEffect(()=>{
+        if(!cartId){
+            return;
+        }
+        const controller = new AbortController();
+        const getCartDB = async ()=>{
+            const result = await getCart(cartId,controller.signal);
+            if(result.statusCode === 200){
+                dispatch(getProductCart({products: result.products}))
+            }
+        }
+        getCartDB();
+        return ()=>{
+            controller.abort();
+        }
+    },[cartId])
     
     return ( 
         <div className={clsx(styles.infoOrder)}>

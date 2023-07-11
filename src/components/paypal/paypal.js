@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from './paypal.module.scss'
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import { createPaypalOrder,captureOrder } from "~/services/order";
+import { createPaypalOrder,capturePaypalOrder } from "~/services/order";
 
 function Paypal({ formData }){
     const style = {
@@ -15,7 +15,7 @@ function Paypal({ formData }){
     }
     const handleApprove = async (data,actions)=>{
         const orderID = data.orderID;
-        const { url } = await captureOrder(formData,orderID);
+        const { url } = await capturePaypalOrder(formData,orderID);
         if(url){
             window.location.href = url
         }else{

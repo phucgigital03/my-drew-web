@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { post,patch,dele } from '~/utils/http';
+import { post,dele,put } from '~/utils/http';
 
 const cartCallApi = {
   addToCartApi: async (dataAddcart)=>{
@@ -7,11 +7,11 @@ const cartCallApi = {
     return resultApi
   },
   updatePlus: async (dataPlus)=>{
-    const resultApi = await patch('/v1/api/cart/plus',dataPlus)
+    const resultApi = await put('/v1/api/cart/plus',dataPlus)
     return resultApi
   },
   updateMinus: async (dataMinus)=>{
-    const resultApi = await patch('/v1/api/cart/minus',dataMinus)
+    const resultApi = await put('/v1/api/cart/minus',dataMinus)
     return resultApi
   },
   deteProduct: async (dataDele)=>{

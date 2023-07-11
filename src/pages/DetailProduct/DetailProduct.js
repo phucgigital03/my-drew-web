@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRulerHorizontal } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 
@@ -16,9 +16,22 @@ import DescriptProduct from "./DescriptProduct";
 import { getRefProducts } from "~/services/detailProduct";
 import FeedbackError from "~/components/FeedbackError";
 import { addCart } from "~/features/redux/cartStote/extraReducers";
-
 const URL_API = process.env.REACT_APP_URL_API
 function DetailProduct() {
+    const getSizeAndColor = useCallback((data)=>{
+        const newArray = [];
+        let index = 0;
+        data.forEach((item)=>{
+            if(!newArray.find(itemNew => itemNew.type === item.type)){
+                newArray.push({
+                    id: index,
+                    type: item.type
+                });
+                ++index;
+            }
+        })
+        return newArray;
+    },[])
     const nagivate = useNavigate();
     const dispatch = useDispatch();
     const cartId = useSelector(state => state.cart.cartId)
@@ -44,18 +57,10 @@ function DetailProduct() {
             const resultApi = await getRefProducts(controller.signal,title);
             if(resultApi.statusCode === 200){
                 const listProducts = resultApi.products
-                const colorsMap =  listProducts.map((product,index)=>{
-                    return {
-                        id: index,
-                        type: product.color
-                    }
-                })
-                const sizesMap =  listProducts.map((product,index)=>{
-                    return {
-                        id: index,
-                        type: product.size
-                    }
-                })
+                let colorsMap =  listProducts.map((product,index)=>({id: index,type: product.color}))
+                let sizesMap =  listProducts.map((product,index)=>({id: index,type: product.size}))
+                colorsMap = getSizeAndColor(colorsMap)
+                sizesMap = getSizeAndColor(sizesMap)
                 setColors(colorsMap)
                 setSizes(sizesMap)
                 setProducts(listProducts)
@@ -68,7 +73,6 @@ function DetailProduct() {
             controller.abort()
         }
     },[])
-
     useEffect(()=>{
         const lengthProduct = products.length
         if(!lengthProduct){
@@ -76,8 +80,10 @@ function DetailProduct() {
         }
         let indexSetProduct;
         for (let index = 0; index < lengthProduct; index++) {
-            if( products[index].size === sizes[checkSize].type &&
-                products[index].color === colors[checkColor].type)
+            if( 
+                products[index].size === sizes[checkSize].type &&
+                products[index].color === colors[checkColor].type
+            )
             {
                 indexSetProduct = index;
             }

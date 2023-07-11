@@ -108,11 +108,7 @@ const updateinventoryApi = async (httpPrivate,id,formInventory)=>{
 
 const deleSortInventory = async (httpPrivate,id)=>{
     try{
-        const resultApi = await toast.promise(httpPrivate.delete('/v1/api/inventory',{
-            params: {
-                inventoryId: id
-            }
-        }),{
+        const resultApi = await toast.promise(httpPrivate.delete(`/v1/api/inventory/${id}`),{
             pending: "Promise is pending",
             success: "Promise  Loaded",
             error: "error"

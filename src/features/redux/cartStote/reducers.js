@@ -12,6 +12,13 @@ const reducers = {
             showCart: false,
         }
     },
+    getProductCart(state,action){
+        const { products } = action.payload
+        return {
+            ...state,
+            products: products
+        }
+    },
     clearProduct(state,action){
         return {
             ...state,

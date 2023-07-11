@@ -23,7 +23,7 @@ const routes = {
     sweatshirts: "/collections/sweatshirts",
     tops: "/collections/tops",
     tees: "/collections/tees",
-    bottoms: "/collections/bottoms",
+    pants: "/collections/pants",
     accessories: "/collections/accessories",
 }
 

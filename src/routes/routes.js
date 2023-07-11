@@ -33,7 +33,7 @@ const publicRoutes = [
     {path: configs.routes.sweatshirts, Component: ShowProduct},
     {path: configs.routes.tops, Component: ShowProduct},
     {path: configs.routes.tees, Component: ShowProduct},
-    {path: configs.routes.bottoms, Component: ShowProduct},
+    {path: configs.routes.pants, Component: ShowProduct},
     {path: configs.routes.accessories, Component: ShowProduct},
     {path: configs.routes.scrapbooks, Component: ScrapBooks},
     {path: configs.routes.unauthorization, Component: Unauthorization},

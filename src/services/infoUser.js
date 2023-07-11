@@ -1,5 +1,5 @@
 
-export const getInfoUser = async(httpPrivate,userId,type,controller)=>{
+const getInfoUser = async(httpPrivate,userId,type,controller)=>{
     try{
         const result = await httpPrivate.get('/v1/api/users',{
             params: {
@@ -11,15 +11,25 @@ export const getInfoUser = async(httpPrivate,userId,type,controller)=>{
         if(result.data?.statusCode === 200){
             return {
                 statusCode: 200,
-                data: result.data?.data?.[0]?.orders,
-                email: result.data?.data?.[0]?.email
+                orders: result.data?.orders,
+                email: result.data?.email
             }
         }
     }catch(error){
         console.log(error)
+        if(error?.response?.data?.statusCode === 403){
+            return {
+                statusCode: 403,
+                errorMessage: error?.response?.data?.errorMessage
+            }
+        }
         return {
             statusCode: 500,
             errorMessage: 'error server'
         }
     }
+}
+
+export {
+    getInfoUser
 }

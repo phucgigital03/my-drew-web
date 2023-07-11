@@ -27,7 +27,7 @@ const listTitle = [
 
 function Profile() {
     const accessToken = useSelector(state => state.user.accessToken)
-    const [orderHistorys,setOrderHistorys] = useState([]);
+    const [orders,setOrders] = useState([]);
     const [email,setEmail] = useState('');
     const httpPrivates = useAxiosPrivate(httpPrivate);
     const navigate = useNavigate();
@@ -38,16 +38,16 @@ function Profile() {
     useEffect(()=>{
         const controller = new AbortController();
         const getListOrder = async ()=>{
-            const result = await getInfoUser(httpPrivates,userId,'orderHistory',controller);
-            if(result.statusCode === 500){
-                setOrderHistorys([]);
+            const result = await getInfoUser(httpPrivates,userId,'order',controller);
+            if(result.statusCode === 403 || result.statusCode === 500){
+                setOrders([]);
                 setEmail('');
-                // await logout()
-                // navigate(configs.routes.login,{ replace: true})
+                await logout()
+                navigate(configs.routes.login,{ replace: true})
             }
             if(result.statusCode === 200){
-                console.log(result.data)
-                setOrderHistorys(result.data);
+                console.log(result.orders)
+                setOrders(result.orders);
                 setEmail(result.email);
             }
         }
@@ -83,7 +83,7 @@ function Profile() {
                         listTitle={listTitle}
                     >
                         <ColDetail
-                            dataRender={orderHistorys}
+                            dataRender={orders}
                             lengthThTag={listTitle.length}
                         />
                     </Table>
