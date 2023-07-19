@@ -78,7 +78,12 @@ function DefaultPrivate({children}) {
                                     <Link to={configs.routes.addmin}>
                                         Addmin Details
                                     </Link>
-                                </div >
+                                </div>
+                                <div className={clsx(styles.childItem)}>
+                                    <Link to={'#'}>
+                                        All Order
+                                    </Link>
+                                </div>
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item className={clsx(styles.item)} eventKey="1">

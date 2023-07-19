@@ -9,15 +9,16 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 
-// import MenuRelation from "~/components/MenuRelation";
+import MenuRelation from "~/components/MenuRelation";
 import Button from "~/components/Button";
 import MenuSizeColor from "./MenuSizeColor";
 import DescriptProduct from "./DescriptProduct";
-import { getRefProducts } from "~/services/detailProduct";
+import { getProducts } from "~/services/detailProduct";
 import FeedbackError from "~/components/FeedbackError";
 import { addCart } from "~/features/redux/cartStote/extraReducers";
 const URL_API = process.env.REACT_APP_URL_API
 function DetailProduct() {
+    const title = window.location.pathname.split('/')[2]
     const getSizeAndColor = useCallback((data)=>{
         const newArray = [];
         let index = 0;
@@ -51,10 +52,9 @@ function DetailProduct() {
         setCheckColor(valueColor)
     }
     useEffect(()=>{
-        const title = window.location.pathname.split('/')[2]
         const controller = new AbortController();
-        const getRefProductsApi = async ()=>{
-            const resultApi = await getRefProducts(controller.signal,title);
+        const getProductsApi = async ()=>{
+            const resultApi = await getProducts(controller.signal,title);
             if(resultApi.statusCode === 200){
                 const listProducts = resultApi.products
                 let colorsMap =  listProducts.map((product,index)=>({id: index,type: product.color}))
@@ -68,11 +68,11 @@ function DetailProduct() {
                 nagivate('*');
             }
         }
-        getRefProductsApi()
+        getProductsApi()
         return ()=>{
             controller.abort()
         }
-    },[])
+    },[title])
     useEffect(()=>{
         const lengthProduct = products.length
         if(!lengthProduct){
@@ -185,7 +185,7 @@ function DetailProduct() {
                     </Row>
                 </Container>
             </section>
-            {/* <MenuRelation/> */}
+            <MenuRelation/>
         </div>
     );
 }

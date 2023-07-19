@@ -37,8 +37,9 @@ function Seacrh() {
             </div>
             <Modal
                 show={show}
-                className={clsx(styles.searchModal)}
                 onHide={handleCloseModal}
+                className={clsx(styles.searchModal)}
+                backdropClassName={clsx(styles.backdropSearchModal)}
             > 
                 <div className={clsx(styles.wrapModalHeader)}>
                     <div className={clsx(styles.searchHeader)}>

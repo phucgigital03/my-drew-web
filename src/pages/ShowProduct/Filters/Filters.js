@@ -91,7 +91,7 @@ function Filters({handleProducts}) {
         setPrices([]);
     }
     const handleDeleItemSize = (size)=>{
-        if(sizes.length === 1){
+        if(sizes.length === 1 && !prices.length){
             window.location.reload();
         }
         setSizes(prevSize => prevSize.filter(item => item !== size))

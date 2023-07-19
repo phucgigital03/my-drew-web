@@ -4,7 +4,6 @@
     margin-top: 60px;
     margin-bottom: 90px;
 }
-
 .contentRegister{
     width: 478px;
     padding: 0px 20px;
@@ -29,9 +28,32 @@
 .wrapForm{
     margin-top: 20px;
 }
+.wrapOtp{
+    margin-top: 20px;
+    height: 40px;
+    justify-content: space-around;
+    & .inputOtp{
+        width: 44px !important;
+        height: 100%;
+        border: 1px solid #333;
+    }
+}
+.backBtn{
+    display: flex;
+    justify-content: center;
+    &:hover {
+        color: #333;
+    }
+}
 .registerBtn{
     display: flex;
     margin: auto;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+.btnWrap{
+    display: flex;
     justify-content: center;
     margin-top: 40px;
     margin-bottom: 15px;

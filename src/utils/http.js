@@ -22,9 +22,10 @@ export const get = async (path, option = {}) => {
     return res;
 };
 
-export const post = async (path, option = {}) => {
-    const res = await http.post(path, option, {
+export const post = async (path, body = {}, option = {}) => {
+    const res = await http.post(path, body, {
         withCredentials: true,
+        ...option
     });
     return res;
 };
