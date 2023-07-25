@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from './Cart.module.scss'
 import Modal from "react-bootstrap/Modal";
-import { memo, useEffect } from "react";
+import { memo, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,12 +16,7 @@ function Cart() {
     const products = useSelector(state => state.cart.products)
     const showCart = useSelector(state => state.cart.showCart)
     const dispatch = useDispatch();
-    const handleHide = ()=>{
-        dispatch(hiddenCart())
-    }
-    const hanldeOpen = ()=>{
-        dispatch(openCart())
-    }
+    
     useEffect(()=>{
         if(!cartId){
             return;
@@ -37,8 +32,21 @@ function Cart() {
         return ()=>{
             controller.abort();
         }
-    },[cartId])
+    },[cartId]);
 
+    const handleHide = ()=>{
+        dispatch(hiddenCart())
+    }
+    const hanldeOpen = ()=>{
+        dispatch(openCart())
+    }
+    const subtotal = useMemo(()=>{
+        const resultMoney = products.reduce((total,product)=>{
+            total = total + (product.price * product.quatity)
+            return total;
+        },0) 
+        return resultMoney
+    },[products])
     return (
         <>
             <div 
@@ -71,7 +79,7 @@ function Cart() {
                         <div className={clsx(styles.wrapChecOutBtn)}>
                             <div className={clsx(styles.wrapMoney)}>
                                 <p className={clsx(styles.subtotal)}>subtotal</p>
-                                <p className={clsx(styles.numberMoney)}>${0.00}</p>
+                                <p className={clsx(styles.numberMoney)}>${subtotal} VND</p>
                             </div>
                             <Link to={configs.routes.checkout}>
                                 <Button black classBtn={clsx(styles.checkOutBtn)}>

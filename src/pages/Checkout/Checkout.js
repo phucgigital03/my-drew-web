@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form,Formik } from "formik";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import * as Yup from 'yup'
 import { useState,createContext } from "react";
 import { Link } from "react-router-dom";
@@ -17,6 +17,7 @@ import InfoOrder from "./InfoOrder";
 import { getURLCOD,getURLVnpay } from "~/services/order";
 import FeedbackError from "~/components/FeedbackError";
 import configs from "~/configs";
+import { clearProduct } from "~/features/redux/cartStote";
 
 export const StateContext = createContext(null);
 function Checkout() {
@@ -27,6 +28,7 @@ function Checkout() {
         userId = decodeJWT?.userInfo?.id;
     }
     const cartId = useSelector(state => state.cart.cartId);
+    const dispatch = useDispatch();
     const [showPaypal,setShowPaypal] = useState(false);
     const [message,setMessage] = useState('');
     const orderInfoSchema = Yup.object().shape({
@@ -63,14 +65,16 @@ function Checkout() {
                 if(url){
                     window.location.href = url
                 }else{
-                    setMessage('error server')
+                    setMessage('error server: please add cart again')
+                    dispatch(clearProduct())
                 }
             }else if(values.methodPayment === 'cod'){
                 const { url } = await getURLCOD(values);
                 if(url){
                     window.location.href = url
                 }else{
-                    setMessage('error server')
+                    setMessage('error server: please add cart again')
+                    dispatch(clearProduct())
                 }
             }
         }
@@ -96,7 +100,6 @@ function Checkout() {
                         >
                         {(formikProps)=>{
                             const { values,handleSubmit } = formikProps
-                            // console.log(values,errors,touched)
                             return (
                                 <Form 
                                     onSubmit={handleSubmit}
