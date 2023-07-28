@@ -1,20 +1,10 @@
 import clsx from "clsx";
-import styles from './BlockCheckout.module.scss'
-import { useContext } from "react";
-import { StateContext } from "~/pages/Checkout/Checkout";
+import styles from './BlockCheckout.module.scss';
+
 function BlockCheckout({idBlock,value,check,descript,imgLink,field,form}) {
-    const {
-        handleShowPaypal,
-        handleHiddenPaypal
-    } = useContext(StateContext);
     const { setFieldValue } = form;
     const handleChange = (e)=>{
         const value = e.target.value;
-        if(value === 'paypal'){
-            handleShowPaypal()
-        }else{
-            handleHiddenPaypal()
-        }
         setFieldValue("methodPayment",value)
     }
     return ( 

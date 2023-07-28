@@ -57,10 +57,10 @@ const getURLVnpay = async (formData)=>{
     }
 }
 
-const createPaypalOrder = async (cartId)=>{
+const createPaypalOrder = async (formData)=>{
     try{
         const resultApi = await post('/v1/api/paypal/orders',{
-            cartId: cartId
+            ...formData
         });
         if(resultApi.data?.statusCode === 200){
             return resultApi.data?.id

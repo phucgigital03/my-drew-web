@@ -6,32 +6,23 @@ import "react-toastify/dist/ReactToastify.css";
 import store,{ persistor } from './features/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ToastContainer } from 'react-toastify';
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import App from './App';
 import GlobalStyles from '~/components/GlobalStyles';
 import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const clientPaypalID = process.env.REACT_APP_CLIENT_ID
-const initialOptions = {
-  clientId: clientPaypalID,
-  currency: "USD",
-  intent: "capture",
-  "disable-funding": "card"
-};
+
 root.render(
   // <React.StrictMode>
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <PayPalScriptProvider options={initialOptions}>
         <GlobalStyles>
           <div>
             <ToastContainer autoClose={2000}/>
           </div>
           <App />
         </GlobalStyles>
-      </PayPalScriptProvider>
     </PersistGate>
   </Provider>
   // </React.StrictMode>

@@ -8,15 +8,15 @@ import { useMemo,useEffect } from "react";
 import FormGroup from "~/components/FormGroup/FormGroup";
 import Button from "~/components/Button";
 import configs from "~/configs";
-import Paypal from "~/components/paypal";
 import { getProductCart } from "~/features/redux/cartStote";
 import { getCart } from "~/services/cart";
 
 const URL_API = process.env.REACT_APP_URL_API
-function InfoOrder({show,formData}) {
+function InfoOrder() {
     const cartId = useSelector(state => state.cart.cartId)
     const products = useSelector(state => state.cart.products)
     const dispatch = useDispatch();
+
     const subtotalPrice = useMemo(()=>{
         return products.reduce((total,product)=>{
             const price = product.price * product.quatity
@@ -105,12 +105,7 @@ function InfoOrder({show,formData}) {
                     </div>
                     <div className={clsx(styles.wrapBtnOrder)}>
                         <Link className={clsx(styles.linkBackCart)} to={configs.routes.cart}>Quay về giỏ hàng</Link>
-                        {  
-                            show ? 
-                            <Button type={"submit"} black classBtn={clsx(styles.orderBtn)}>ĐẶT HÀNG</Button> 
-                            :
-                            <Paypal formData={formData}/>
-                        }
+                        <Button type={"submit"} black classBtn={clsx(styles.orderBtn)}>ĐẶT HÀNG</Button> 
                     </div>
                 </footer>
             </div>

@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import { Form,Formik } from "formik";
 import { useSelector,useDispatch } from "react-redux";
 import * as Yup from 'yup'
-import { useState,createContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
@@ -18,8 +18,9 @@ import { getURLCOD,getURLVnpay } from "~/services/order";
 import FeedbackError from "~/components/FeedbackError";
 import configs from "~/configs";
 import { clearProduct } from "~/features/redux/cartStote";
+import Paypal from "~/components/paypal/paypal";
+import Button from "~/components/Button/Button";
 
-export const StateContext = createContext(null);
 function Checkout() {
     let userId;
     const accessToken = useSelector(state => state.user.accessToken);
@@ -76,62 +77,66 @@ function Checkout() {
                     setMessage('error server: please add cart again')
                     dispatch(clearProduct())
                 }
+            }else if(values.methodPayment === 'paypal'){
+                console.log(values)
+                setShowPaypal(true);
             }
         }
     }
-    const handleShowPaypal = ()=>{
-        setShowPaypal(true)
-    }
-    const handleHiddenPaypal = ()=>{
-        setShowPaypal(false)
-    }
+    
     return ( 
-        <StateContext.Provider value={{handleShowPaypal,handleHiddenPaypal}}>
-            <div className={clsx(styles.checkout)}>
-                <FeedbackError>
-                    {message}
-                </FeedbackError>
-                <Container
-                    fluid={true}
-                >       
-                        <Formik
-                            {...propFormiks}
-                            validationSchema={orderInfoSchema}
-                        >
-                        {(formikProps)=>{
-                            const { values,handleSubmit } = formikProps
-                            return (
-                                <Form 
-                                    onSubmit={handleSubmit}
-                                >
-                                    <Row>
-                                        <Col md={8} lg={8} xl={8} xxl={8}>
-                                            <div className={clsx(styles.sectionCheckout1)}>
-                                                <header className={clsx(styles.logocheckout)}>
-                                                    <Link to={configs.routes.shopAll}>
-                                                        <img src={images.logo} alt="logoShop"/>
-                                                    </Link>
-                                                </header>
-                                                <div className={clsx(styles.infoCustomer)}>
-                                                    <DeliveryInfo values={values}/>
-                                                    <ShippingAndPayment values={values}/>
-                                                </div>
-                                            </div>
-                                        </Col>
-                                        <Col md={4} lg={4} xl={4} xxl={4} >
-                                            <InfoOrder
-                                                show={!showPaypal}
-                                                formData={values}
-                                            />
-                                        </Col>
-                                    </Row>
-                                </Form>
-                            )}}
-                        </Formik>
-                </Container>
-            </div>
-        </StateContext.Provider>
-     );
+        <div className={clsx(styles.checkout)}>
+            <FeedbackError>
+                {message}
+            </FeedbackError>
+            <Container
+                fluid={true}
+            >    
+                <Formik
+                    {...propFormiks}
+                    validationSchema={orderInfoSchema}
+                >
+                    {(formikProps)=>{
+                        const { values,handleSubmit } = formikProps
+                        return (
+                            showPaypal ? (
+                                <div className={clsx(styles.checkoutPaypal)}>
+                                    <span>you check out... right now!</span>
+                                    <Paypal formData={values}/>
+                                    <Button yellow lg onClick={()=>{setShowPaypal(false)}}>Back order</Button>
+                                </div>
+                            ) : (
+                            <Form 
+                                            onSubmit={handleSubmit}
+                                        >
+                                            <Row>
+                                                <Col md={8} lg={8} xl={8} xxl={8}>
+                                                    <div className={clsx(styles.sectionCheckout1)}>
+                                                        <header className={clsx(styles.logocheckout)}>
+                                                            <Link to={configs.routes.shopAll}>
+                                                                <img src={images.logo} alt="logoShop"/>
+                                                            </Link>
+                                                        </header>
+                                                        <div className={clsx(styles.infoCustomer)}>
+                                                            <DeliveryInfo values={values}/>
+                                                            <ShippingAndPayment values={values}/>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+                                                <Col md={4} lg={4} xl={4} xxl={4} >
+                                                    <InfoOrder
+                                                        show={!showPaypal}
+                                                        formData={values}
+                                                    />
+                                                </Col>
+                                            </Row>
+                            </Form>
+                        )
+                    )}}
+                </Formik>
+            </Container>
+        </div>
+    );
 }
 
 export default Checkout;
