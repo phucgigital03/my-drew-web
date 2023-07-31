@@ -5,7 +5,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { createPaypalOrder,capturePaypalOrder } from "~/services/order";
 
 const URL_UI = process.env.REACT_APP_URL_UI;
-const clientPaypalID = process.env.REACT_APP_PAYPAL_CLIENT_ID
+const clientPaypalID = process.env.REACT_APP_PAYPAL_CLIENT_ID_PRODUCTION
 const initialOptions = {
   clientId: clientPaypalID,
   currency: "USD",
