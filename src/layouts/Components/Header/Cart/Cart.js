@@ -65,7 +65,6 @@ function Cart() {
                 dialogClassName={clsx(styles.modalDialogCart)}
                 contentClassName={clsx(styles.contentModalCart)}
             >
-                
                 <div className={clsx(styles.contentCart)}>
                     <header className={clsx(styles.headerCart)}>
                         <button onClick={handleHide} className={clsx(styles.closeBtn)}>close</button>

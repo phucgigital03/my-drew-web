@@ -4,7 +4,7 @@
 .infoProduct{
     display: flex;
     margin: auto;
-    width: 1200px;
+    width: 100%;
     padding: 0px 16px;
 }
 .wrapImgProduct{
@@ -19,12 +19,12 @@
 }
 .itemImg{
     width: 100%;
-    height: 804px;
+    max-height: 804px;
     padding: 34px;
     & img{
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 }
 .detailInfoProduct{
@@ -90,4 +90,23 @@
             color: var(--white);
         }
     }
+}
+// mobile
+@media only screen  and (max-width: 672px){
+    .wrapImgProduct{
+        height: 360px;
+        overflow-x: auto;
+    }
+    .listImg{
+        flex-direction: row;
+        height: 100%;
+        & .itemImg{
+            flex-shrink: 0;
+            height: 100%;
+            & img{
+                object-fit: contain;
+            }
+        }
+    }
+
 }

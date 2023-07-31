@@ -84,3 +84,24 @@
         color: var(--text);
     }
 }
+// mobile and tablet
+@media (max-width: 672px),(min-width: 768px) and (max-width: 992px){
+    .suggestEmail{
+        flex: 1;
+    }
+    .iconShop{
+        display: none;
+    }
+    .footerCommunication{
+        padding: 0;
+        height: 200px;
+    }
+    .wrapCommunication{
+        padding: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .footerContent{
+        margin: 0;
+    }
+}

@@ -36,3 +36,10 @@
     border-radius: 5px;
     color: #545454;
 }
+// mobile and tablet
+@media only screen  and (max-width: 992px){
+    .wrapPriceShipAndPayment{
+        margin-top: 20px;
+        width: 100%;
+    }
+}

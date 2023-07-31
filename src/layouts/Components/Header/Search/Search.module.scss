@@ -114,3 +114,9 @@
     font-weight: 600;
     color: #676869;
 }
+// mobile and tablet
+@media only screen and (max-width: 992px){
+    .search{
+        display: none;
+    }
+}

@@ -31,3 +31,17 @@
     display: flex;
     justify-content: space-between;
 }
+// mobile and tablet
+@media only screen  and (max-width: 992px){
+    .infoCustomer{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+// mobile 
+@media only screen  and (max-width: 672px){
+    .checkout{
+        padding: 0;
+        margin: 0;
+    }
+}

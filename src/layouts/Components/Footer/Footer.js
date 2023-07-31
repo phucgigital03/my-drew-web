@@ -31,7 +31,7 @@ function Footer() {
             <div className={clsx(styles.footerContent)}>
                 <Container>
                     <Row>
-                        <Col sm={12} md={12} lg={3} xl={3} xxl={3}>
+                        <Col sm={12} md={3} lg={3} xl={3} xxl={3}>
                             <div className={clsx(styles.helpFooter)}>
                                 <h2 className={clsx(styles.titleFooter)}>
                                     help
@@ -55,7 +55,7 @@ function Footer() {
                                 </ul>
                             </div>
                         </Col>
-                        <Col sm={12} md={12} lg={3} xl={3} xxl={3}>
+                        <Col sm={12} md={3} lg={3} xl={3} xxl={3}>
                             <div className={clsx(styles.blahFooter)}>
                                 <h2 className={clsx(styles.titleFooter)}>
                                     blah blah blah
@@ -76,7 +76,7 @@ function Footer() {
                                 </ul>
                             </div>
                         </Col>
-                        <Col sm={12} md={12} lg={3} xl={3} xxl={3}>
+                        <Col sm={12} md={3} lg={3} xl={3} xxl={3}>
                             <div className={clsx(styles.socialFooter)}>
                                 <h2 className={clsx(styles.titleFooter)}>
                                     social
@@ -94,7 +94,13 @@ function Footer() {
                                 </ul>
                             </div>
                         </Col>
-                        <Col sm={12} md={12} lg={3} xl={3} xxl={3}></Col>
+                        <Col sm={12} md={3} lg={3} xl={3} xxl={3}>
+                        <div className={clsx(styles.socialFooter)}>
+                                <h2 className={clsx(styles.titleFooter)}>
+                                    download
+                                </h2>
+                            </div>
+                        </Col>
                     </Row>
                 </Container>
             </div>

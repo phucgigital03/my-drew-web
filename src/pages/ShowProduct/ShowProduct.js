@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import { useEffect, useState } from "react";
 
 import Filters from "./Filters";
+import FiltersMobile from "./FiltersMobile";
 import ItemProduct from "~/components/ItemProduct";
 import { getProductsFilter } from "~/services/showProduct";
 
@@ -49,6 +50,7 @@ function ShowProduct() {
                 <Filters
                     handleProducts={handleProducts}
                 />
+                <FiltersMobile/>
                 <div className={clsx(styles.collectionProduct)}>
                     <h1 className={clsx(styles.headinhCollec)}>
                         {titlePage}

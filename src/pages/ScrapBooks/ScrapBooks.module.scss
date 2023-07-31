@@ -1,6 +1,3 @@
-.scrapBooks{
-
-}
 .SecretLogo{
     width: 100%;
     height: 58px;
@@ -71,4 +68,20 @@
     font-weight: 600;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+@media only screen and (max-width: 992px){
+    .colVideos{
+        margin-top: 20px;
+    }
+    .contentVideo{
+        align-items: center;
+    }
+    .imgVideo{
+        display: flex;
+        justify-content: center;
+        & img{
+            max-height: 500px;
+            object-fit: contain;
+        }
+    }
 }

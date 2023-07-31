@@ -3,7 +3,7 @@ import styles from './InfoOrder.module.scss'
 import { Link } from "react-router-dom";
 import { FastField } from "formik";
 import { useSelector,useDispatch } from "react-redux";
-import { useMemo,useEffect } from "react";
+import { useMemo,useEffect, useState } from "react";
 
 import FormGroup from "~/components/FormGroup/FormGroup";
 import Button from "~/components/Button";
@@ -13,6 +13,7 @@ import { getCart } from "~/services/cart";
 
 const URL_API = process.env.REACT_APP_URL_API
 function InfoOrder() {
+    const [showOrder,setShowOrder] = useState(true);
     const cartId = useSelector(state => state.cart.cartId)
     const products = useSelector(state => state.cart.products)
     const dispatch = useDispatch();
@@ -41,18 +42,21 @@ function InfoOrder() {
         }
     },[cartId])
     
+    const handleShowOrder = ()=>{
+        setShowOrder(!showOrder)
+    }
     return ( 
         <div className={clsx(styles.infoOrder)}>
-            <h2 className={clsx(styles.headerOrder)}>
+            <h2 onClick={handleShowOrder} className={clsx(styles.headerOrder)}>
                 Đơn hàng {products.length} sản phẩm
             </h2>
             <div className={clsx(styles.contentOrder)}>
                 <div className={clsx(styles.menuOrder)}>
-                    <ul className={clsx(styles.ListOrder)}>
+                    <ul className={clsx(styles.listOrder,{[clsx(styles.listOrderMobile)]: showOrder})}>
                         {
                             products.map((product,index)=>{
                                 return (
-                                    <li key={index} className={clsx(styles.ItemOrder)}>
+                                    <li key={index} className={clsx(styles.itemOrder)}>
                                         <div className={clsx(styles.imgItem)}>
                                             <img src={`${URL_API}/${product.listImg[0]}`} alt="prodcut"/>
                                         </div>

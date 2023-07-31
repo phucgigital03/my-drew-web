@@ -48,3 +48,20 @@
         opacity: 1;
     }
 }
+// mobile
+@media only screen  and (max-width: 672px){
+    .itemCollec{
+        border: 1px solid #fdc113;
+    }
+    .titleProduct{
+        opacity: 1;
+        padding: 0;
+        font-size: 1.8rem;
+    }
+    .priceProduct{
+        opacity: 1;
+        padding: 0;
+        font-size: 1.6rem;
+        text-align: center;
+    }
+}

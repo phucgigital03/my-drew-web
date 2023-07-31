@@ -11,17 +11,14 @@
     line-height: 2rem;
     padding: 20px 0px 20px 0px;
 }
-.menuOrder{
-
-}
-.ListOrder{
+.listOrder{
     display: flex;
     height: 300px;
     flex-direction: column;
     padding: 0;
     overflow-y: overlay;
 }
-.ItemOrder{
+.itemOrder{
     display: flex;
     + .ItemOrder{
         margin-top: 12px;
@@ -56,9 +53,6 @@
     justify-content: space-between;
     align-items: center;
 }
-.setWidth{
-    width: auto;
-}
 .discountBtn{
     margin-left: 12px;
     flex-shrink: 0;
@@ -90,4 +84,22 @@
     text-decoration: none;
     font-size: 1.6rem;
     cursor: pointer;
+}
+// when component order up 
+@media only screen and (max-width: 1200px) {
+    .headerOrder{
+        cursor: pointer;
+    }
+    .infoOrder{
+        height: auto;
+    }
+    .footerOrder{
+        position: relative;
+    }
+    .listOrder{
+        height: auto;
+    }
+    .listOrderMobile{
+        display: none;
+    }
 }

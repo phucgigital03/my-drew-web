@@ -18,14 +18,13 @@
     }
 }
 .wrapperVideo{
+    display: flex;
     position: absolute;
     left: 2px;
     bottom: 0;
     width: 50%;
-
     & video{
         width: 78%;
-        height: auto;
     }
 }
 .cardOverlayContent{

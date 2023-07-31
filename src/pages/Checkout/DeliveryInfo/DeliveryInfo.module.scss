@@ -31,3 +31,12 @@
 .setWidth{
     width: 100%;
 }
+// mobile and tablet
+@media only screen  and (max-width: 992px){
+    .wrapDeliveryInfo{
+        width: 100%;
+    }
+    .setWidth{
+        max-width: none;
+    }
+}

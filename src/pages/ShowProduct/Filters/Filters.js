@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import Popper from "~/components/Popper";
 import { getProductsFilter } from "~/services/showProduct";
+import Sort from "../Sort";
 
 const listSize = [
     {
@@ -272,16 +273,7 @@ function Filters({handleProducts}) {
                 </div>
             </div>
             <div className={clsx(styles.wrapFeaturedSort)}>
-                <div className={clsx(styles.sortSelec)}>
-                    <label htmlFor="sortBy">Sort By:</label>
-                    <div className={clsx(styles.wrapSortSelec)}>
-                        <FontAwesomeIcon icon={faAngleDown}/>
-                        <select onChange={()=>{}} name="sortBy" id="sortBy" value={"manual"} >
-                            <option value="manual" >Featured</option>
-                            <option value="best-selling">Best selling</option>
-                        </select>
-                    </div>
-                </div>
+                <Sort/>
                 <p className={clsx(styles.totalProduct)}>
                     Products
                 </p>

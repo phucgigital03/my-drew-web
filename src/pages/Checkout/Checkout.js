@@ -107,29 +107,29 @@ function Checkout() {
                                 </div>
                             ) : (
                             <Form 
-                                            onSubmit={handleSubmit}
-                                        >
-                                            <Row>
-                                                <Col md={8} lg={8} xl={8} xxl={8}>
-                                                    <div className={clsx(styles.sectionCheckout1)}>
-                                                        <header className={clsx(styles.logocheckout)}>
-                                                            <Link to={configs.routes.shopAll}>
-                                                                <img src={images.logo} alt="logoShop"/>
-                                                            </Link>
-                                                        </header>
-                                                        <div className={clsx(styles.infoCustomer)}>
-                                                            <DeliveryInfo values={values}/>
-                                                            <ShippingAndPayment values={values}/>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                                <Col md={4} lg={4} xl={4} xxl={4} >
-                                                    <InfoOrder
-                                                        show={!showPaypal}
-                                                        formData={values}
-                                                    />
-                                                </Col>
-                                            </Row>
+                                onSubmit={handleSubmit}
+                            >
+                                <Row>
+                                    <Col sm={12} md={12} lg={12} xl={8} xxl={8}>
+                                        <div className={clsx(styles.sectionCheckout1)}>
+                                            <header className={clsx(styles.logocheckout)}>
+                                                <Link to={configs.routes.shopAll}>
+                                                    <img src={images.logo} alt="logoShop"/>
+                                                </Link>
+                                            </header>
+                                            <div className={clsx(styles.infoCustomer)}>
+                                                <DeliveryInfo values={values}/>
+                                                <ShippingAndPayment values={values}/>
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col sm={12} md={12} lg={12} xl={4} xxl={4} >
+                                        <InfoOrder
+                                            show={!showPaypal}
+                                            formData={values}
+                                        />
+                                    </Col>
+                                </Row>
                             </Form>
                         )
                     )}}

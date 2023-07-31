@@ -12,7 +12,7 @@ function SectionNavCategory() {
         <div className={clsx(styles.sectionNavCategory)}>
             <Container>
                 <Row>
-                    <Col lg={4} xl={4} xxl={4}>
+                    <Col lg={4} xl={4} xxl={4} md={12} sm={12}>
                         <div className={clsx(styles.content)}>
                             <div className={clsx(styles.wrapImg)}>
                                 <img src={images.categoryOne} alt="category"/>
@@ -23,7 +23,7 @@ function SectionNavCategory() {
                             </div>
                         </div>
                     </Col>
-                    <Col lg={4} xl={4} xxl={4}>
+                    <Col lg={4} xl={4} xxl={4} md={12} sm={12}>
                         <div className={clsx(styles.content)}>
                             <div className={clsx(styles.wrapImg)}>
                                 <img src={images.categoryTwo} alt="category"/>
@@ -34,7 +34,7 @@ function SectionNavCategory() {
                             </div>
                         </div>
                     </Col>
-                    <Col lg={4} xl={4} xxl={4}>
+                    <Col lg={4} xl={4} xxl={4} md={12} sm={12}>
                         <div className={clsx(styles.content)}>
                             <div className={clsx(styles.wrapImg)}>
                                 <img src={images.categoryThree} alt="category"/>

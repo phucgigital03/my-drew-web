@@ -7,7 +7,7 @@ const URL_API = process.env.REACT_APP_URL_API
 
 function ItemProduct({product}) {
     return ( 
-        <Col className={clsx(styles.collumCollec)}  xs={12} sm={12} md={3} lg={3} xl={3} xxl={3}>
+        <Col className={clsx(styles.collumCollec)}  xs={6} sm={6} md={6} lg={3} xl={3} xxl={3}>
             <Link className={clsx(styles.linkDetail)} to={`/products/${product.title}`}>
                 <div 
                     className={clsx(styles.itemCollec)}
